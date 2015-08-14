@@ -1,0 +1,7 @@
+*.config
+*.dll
+*.cs
+*.csproj
+*.csproj.user
+bin/
+obj/
