@@ -5,16 +5,27 @@
 	/*background-image: url('images/vertical_lines.png');*/
 	background-color: #7ABAFF;
 	background-repeat: repeat;
-
-	/*7ABAFF*/
 }
 
 .card
 {
 	width: 400px;
 	height: 560px;
-	background-color: red;
+	background-color: whitesmoke;
 	position: absolute;
 	top: calc(50% - 280px);
 	left: calc(50% - 200px);
+}
+
+.question
+{
+	font-family: 'Patua One', cursive;
+	font-size: 48px;
+	height: 400px;
+	width: 400px;
+	padding: 24px;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	text-align: center;
 }
