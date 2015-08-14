@@ -1,14 +1,20 @@
 ﻿body
 {
+	/*background-image: url('images/grid_2.png');*/
+	background-image: url('images/horizontal_lines.png');
+	/*background-image: url('images/vertical_lines.png');*/
+	background-color: #7ABAFF;
+	background-repeat: repeat;
 
+	/*7ABAFF*/
 }
 
 .card
 {
-    width: 2.5in;
-    height: 3.5in;
-    background-color: red;
-    position: absolute;
-    top: calc(50% - 1.75in);
-    left: calc(50% - 1.25in);
+	width: 400px;
+	height: 560px;
+	background-color: red;
+	position: absolute;
+	top: calc(50% - 280px);
+	left: calc(50% - 200px);
 }
