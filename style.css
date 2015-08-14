@@ -1,0 +1,14 @@
+﻿body
+{
+
+}
+
+.card
+{
+    width: 2.5in;
+    height: 3.5in;
+    background-color: red;
+    position: absolute;
+    top: calc(50% - 1.75in);
+    left: calc(50% - 1.25in);
+}
