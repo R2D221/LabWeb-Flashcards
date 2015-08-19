@@ -30,7 +30,63 @@
 	text-align: center;
 }
 
+.table-question
+{
+    font-family: 'Patua One', cursive;
+    font-size: 30px;
+    padding: 24px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    text-align: center;
+    background-color: #FFE28A;
+    position: absolute;
+    top: calc(50% - 280px);
+    left: calc(50% - 450px);
+    width: 900px;
+    height: 550px;
+}
+
 .answer
+{
+    font-family: 'Patua One', cursive;
+    font-size: 20px;
+}
+
+.answers
+{
+    font-family: 'Patua One', cursive;
+    font-size: 15px;
+    width: 100%;
+    border-spacing: 2pt;
+}
+
+td{
+    vertical-align: top;
+    text-align: center;
+}
+
+.number
+{
+    background-color: #000;
+    color: #fff;
+    width: 25px;
+}
+
+.disp-answer
+{
+    background-color: #fff;
+    width: 175px;
+}
+
+.achievement{
+    vertical-align: middle;
+    text-align: left;
+    padding-left: 20px;
+    font-size: 25px;
+}
+
+.card-answer
 {
 	width: 198px;
 	display: inline-block;
