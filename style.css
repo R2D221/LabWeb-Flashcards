@@ -29,3 +29,13 @@
 	box-sizing: border-box;
 	text-align: center;
 }
+
+.answer
+{
+	width: 198px;
+	display: inline-block;
+	text-align: center;
+	height: 80px;
+	font-size: 30px;
+	font-family: Arial;
+}
