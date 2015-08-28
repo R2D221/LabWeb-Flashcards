@@ -59,7 +59,7 @@ function loadJSON() {
     };
     $.ajax({
         type: "POST", 
-        url: "http://paginas.ccm.itesm.mx/~A01215142/Flashcards/bonus-1.json", 
+        url: "http://paginas.ccm.itesm.mx/~A01215142/Flashcards/bonus-2.json", 
         data: form_data,
         success: function(response)
         {
