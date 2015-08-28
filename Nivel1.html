@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> Cerebraton </title>
+        <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type ="text/css"
+              href="./CSS/estiloNivel.css">
+        <script src="jquery-1.11.3.js" type="text/javascript"></script>
+        <script type="text/javascript">
+                
+            function evaluarOpcion(opcion){
+                   alert("Aquí se evalua la pregunta");
+            }    
+                
+            $(document).ready(function () {                   
+                var temas = ["Historia", "Matemáticas"];
+                var contador = 1;
+                var pregunta;
+                var respuesta;
+
+
+                $.getJSON('json/input.json', function (contenidoArchivo) {
+                    var indice = Math.floor((Math.random()*2));
+                    
+                    //$('#tema').text = contenidoArchivo.Preguntas[indice].materia;
+                    document.getElementById("tema").innerHTML = contenidoArchivo.Preguntas[indice].materia;
+                    //$('#numero').text = contador;
+                    document.getElementById("numero").innerHTML = contador;
+                    //alert(contenidoArchivo.Preguntas[indice].pregunta);
+                    //$('#texto').text = contenidoArchivo.Preguntas[indice].pregunta;
+                    document.getElementById("texto").innerHTML = contenidoArchivo.Preguntas[indice].pregunta;
+                    for (var i = 0; i < 4; i++) {
+                        var opcion = document.getElementById("opcion" + (i + 1));
+                        opcion.innerHTML = contenidoArchivo.Preguntas[indice].Opciones[i];
+                        //opcion.setAttribute('onclick','evaluarRespuesta('+  opcion(i + 1)  + ')');
+                    }
+                });
+            });
+
+
+        </script>
+    </head>
+    <body>
+
+        <table id="header">
+            <tr>
+                <td>
+                    <img src="./img/cerebro.jpg" class="logo">
+                </td>
+                <td>
+                    <h1 align="center"><img src="./img/cerebro.png" id="letras"/></h1>
+                </td>
+            </tr>
+        </table>
+        <br/>
+
+
+        <table id="infoNivel">
+            <tr>
+                <td id="titulo" colspan="6" rowspan="2"> <h1> Nivel 1 </h1> </td>
+            </tr> 
+            <tr>
+            </tr>
+            <tr id="indicadores">
+                <td>Tema: </td>
+                <td id="tema"></td> 
+                <td> N&uacute;mero de Pregunta: </td>
+                <td id="numero"></td>
+                <td>Tiempo:</td>
+                <td colspan="2">00</td> 
+                <td></td>
+            </tr>
+            <tr>
+            </tr>
+        </table>
+
+        <div align=center class="opciones">
+            <div id="card">
+                <div id="texto">
+
+                </div>    
+            </div>
+            <div id="indicaciones">
+                <div id="indi">
+                    Elige una opci&oacute;n:
+                </div>
+            </div>
+            <div id="opcion1" onclick="evaluarOpcion('opcion1')"></div>
+            <div id="opcion2" onclick="evaluarOpcion('opcion2')"></div>
+            <div id="opcion3" onclick="evaluarOpcion('opcion3')"></div>
+            <div id="opcion4" onclick="evaluarOpcion('opcion4')"></div>
+        </div>
+
+        <br/>
+
+        <div id="creditos">
+            <table width="100%">  
+                <tr>
+                    <td align=center colspan="3" id="direccion">Campus Ciudad de M&eacute;xico
+                        Calle del Puente #222 Col. Ejidos de Huipulco, Tlalpan C.P. 14380, M&eacute;xico D.F. | 5483 2020 D.R. &copy;
+                        Instituto Tecnol&oacute;gico y de Estudios Superiores de Monterrey, M&eacute;xico. 2015.
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>
