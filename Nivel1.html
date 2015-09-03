@@ -8,7 +8,6 @@
               href="css/estiloNivel.css">
         <script src="js/jquery-1.11.3.js" type="text/javascript"></script>
         <script type="text/javascript">
-<<<<<<< HEAD
             var puntaje = 0;
             var correcta;
             var contador = 1;
@@ -22,14 +21,11 @@
                 
                 document.getElementById("puntos").innerHTML = puntaje;
                 contador++;
-                changeQuestion();
-            } 
-                
-            $(document).ready(function () {                   
-=======
-
-            function evaluarOpcion(opcion){
-                   alert("Aquí se evalua la pregunta");
+                if(contador < 17){
+                    changeQuestion();
+                }else{
+                    location.reload("bonusQuestion.html");
+                }
             }
 
             function formatTime(sec_num) {
@@ -48,7 +44,6 @@
             }
 
             $(document).ready(function () {
->>>>>>> origin/master
                 var temas = ["Historia", "Matemáticas"];
                 var contador = 1;
                 var pregunta;
@@ -57,12 +52,6 @@
 
                 $.getJSON('json/input.json', function (contenidoArchivo) {
                     var indice = Math.floor((Math.random()*2));
-<<<<<<< HEAD
-                    
-=======
-
-                    //$('#tema').text = contenidoArchivo.Preguntas[indice].materia;
->>>>>>> origin/master
                     document.getElementById("tema").innerHTML = contenidoArchivo.Preguntas[indice].materia;
                     document.getElementById("numero").innerHTML = contador;
                     document.getElementById("texto").innerHTML = contenidoArchivo.Preguntas[indice].pregunta;
@@ -85,7 +74,7 @@
                         }
                         else
                         {
-                        	location.replace("index.html");
+                            location.replace("index.html");
                         }
                     }
 
@@ -128,7 +117,7 @@
 
         <table id="infoNivel">
             <tr>
-                <td id="titulo" colspan="6" rowspan="2"> <h1> Nivel 1 </h1> </td>
+                <td id="titulo" colspan="8" rowspan="2"> <h1> Nivel 1 </h1> </td>
             </tr>
             <tr>
             </tr>
@@ -138,8 +127,9 @@
                 <td> N&uacute;mero de Pregunta: </td>
                 <td id="numero"></td>
                 <td>Tiempo:</td>
-                <td colspan="2" id="timer">0:00</td>
-                <td></td>
+                <td id="timer">0:00</td>
+                <td>Puntuaci&oacute;n:</td>
+                <td id="puntos">0</td>
             </tr>
             <tr>
             </tr>
@@ -156,10 +146,10 @@
                     Elige una opci&oacute;n:
                 </div>
             </div>
-            <div id="opcion1" onclick="evaluarOpcion('opcion1')"></div>
-            <div id="opcion2" onclick="evaluarOpcion('opcion2')"></div>
-            <div id="opcion3" onclick="evaluarOpcion('opcion3')"></div>
-            <div id="opcion4" onclick="evaluarOpcion('opcion4')"></div>
+            <div id="opcion1" onclick="evaluarOpcion('1')"></div>
+            <div id="opcion2" onclick="evaluarOpcion('2')"></div>
+            <div id="opcion3" onclick="evaluarOpcion('3')"></div>
+            <div id="opcion4" onclick="evaluarOpcion('4')"></div>
         </div>
 
         <br/>

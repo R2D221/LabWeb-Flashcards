@@ -3,27 +3,27 @@
             "Preguntas": [
                 {
                     "materia": "Historia",
-                    "pregunta": "Â¿En quÃ© fecha se iniciÃ³ la lucha de independencia de MÃ©xico?",
+                    "pregunta": "¿En qué fecha se inició la lucha de independencia de México?",
                     "Opciones": [
                         "20 de Noviembre de 1910",
                         "30 de Diciembte de 1825",
                         "15 de Septiembre de 1810",
                         "5 de Febrero de 1920"
                     ],
-                    "Respuesta": "15 de Septiembre de 1810",
-                    "ExplicaciÃ³n": "La noche del 15 de Septiembre de 1810 diÃ³ inicio la lucha de independencia de MÃ©xico."
+                    "Respuesta": "3",
+                    "Explicacion": "La noche del 15 de Septiembre de 1810 día inicio la lucha de independencia de México."
                 },
                 {
                     "materia":"Historia",
-                    "pregunta": "Â¿Fue un lider destacado en el movimiento de independencia?",
+                    "pregunta": "¿Fue un lider destacado en el movimiento de independencia?",
                     "Opciones": [
-                        "Porfirio DÃ­az",
+                        "Porfirio Díaz",
                         "Manuel Doblado",
                         "Miguel Hidalgo y Costilla",
-                        "JosÃ© MarÃ­a Morelos"
+                        "José María Morelos"
                     ],
-                    "Respuesta": "Miguel Hidalgo y Costilla",
-                    "ExplicaciÃ³n": "Miguel Hidalgo Rules!!!"
+                    "Respuesta": "3",
+                    "Explicacion": "Miguel Hidalgo Rules!!!"
                 }
             ]
 }
