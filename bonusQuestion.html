@@ -4,12 +4,20 @@
         <title>Flashcards</title>
         <meta charset="utf-8">
 	<link rel="stylesheet" href="css/style.css" />
-        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="js/jquery-1.11.3.js" type="text/javascript"></script>
         <script src="js/bonusQuestion.js"></script>
     </head>
-    <body onload="loadJSON();">
+    <body>
         <div class="table-question">
             <div id="pregunta">Nombra las capitales de los Estados de M&eacute;xico: </div><br />
+            
+            <div id="datos">
+                <div>Tiempo:</div>
+                <div id="timer">0:00</div>
+                <div>Puntuaci&oacute;n:</div>
+                <div id="puntos">0</div>
+            </div>
+            
             <input type="text" placeholder="Respuesta(s)" class="answer" id="answer" onchange="checkAnswer();"/> <p id="correctas">0/31</p>
             <br />
             <table class="answers">

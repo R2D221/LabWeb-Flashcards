@@ -3,7 +3,7 @@
             "Preguntas": [
                 {
                     "materia": "Historia",
-                    "pregunta": "¿En qué fecha se inició la lucha de independencia de México?",
+                    "pregunta": "¿En qu&eacute; fecha se inici&oacute; la lucha de independencia de M&eacute;xico?",
                     "Opciones": [
                         "20 de Noviembre de 1910",
                         "30 de Diciembte de 1825",
@@ -20,7 +20,7 @@
                         "Porfirio Díaz",
                         "Manuel Doblado",
                         "Miguel Hidalgo y Costilla",
-                        "José María Morelos"
+                        "Jos&eacute; Mar&iacute;a Morelos"
                     ],
                     "Respuesta": "3",
                     "Explicacion": "Miguel Hidalgo Rules!!!"

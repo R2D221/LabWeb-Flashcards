@@ -11,6 +11,7 @@
             var puntaje = 0;
             var correcta;
             var contador = 1;
+            var timeLeft;
             
             function evaluarOpcion(opcion){
                 if(opcion === correcta){
@@ -24,7 +25,9 @@
                 if(contador < 17){
                     changeQuestion();
                 }else{
-                    location.reload("bonusQuestion.html");
+                    puntaje += (timeLeft / 10);
+                    localStorage["puntaje"] = puntaje;
+                    location.replace("bonusQuestion.html");
                 }
             }
 
@@ -65,7 +68,7 @@
                     var deadline = Date.now() + 1000 * 60; //60 segundos
                     function timer()
                     {
-                        var timeLeft = deadline - Date.now();
+                        timeLeft = deadline - Date.now();
                         var $timerElement = $("#timer");
                         $timerElement.text(formatTime(timeLeft / 1000));
 
