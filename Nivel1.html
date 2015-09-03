@@ -8,10 +8,21 @@
               href="css/estiloNivel.css">
         <script src="js/jquery-1.11.3.js" type="text/javascript"></script>
         <script type="text/javascript">
-                
+            var puntaje = 0;
+            var correcta;
+            var contador = 1;
+            
             function evaluarOpcion(opcion){
-                   alert("Aquí se evalua la pregunta");
-            }    
+                if(opcion === correcta){
+                    puntaje += 100;
+                }else if(puntaje > 0){
+                    puntaje -= 50;
+                }
+                
+                document.getElementById("puntos").innerHTML = puntaje;
+                contador++;
+                changeQuestion();
+            } 
                 
             $(document).ready(function () {                   
                 var temas = ["Historia", "Matemáticas"];
@@ -23,22 +34,34 @@
                 $.getJSON('json/input.json', function (contenidoArchivo) {
                     var indice = Math.floor((Math.random()*2));
                     
-                    //$('#tema').text = contenidoArchivo.Preguntas[indice].materia;
                     document.getElementById("tema").innerHTML = contenidoArchivo.Preguntas[indice].materia;
-                    //$('#numero').text = contador;
                     document.getElementById("numero").innerHTML = contador;
-                    //alert(contenidoArchivo.Preguntas[indice].pregunta);
-                    //$('#texto').text = contenidoArchivo.Preguntas[indice].pregunta;
                     document.getElementById("texto").innerHTML = contenidoArchivo.Preguntas[indice].pregunta;
+                    
+                    correcta = contenidoArchivo.Preguntas[indice].Respuesta;
                     for (var i = 0; i < 4; i++) {
                         var opcion = document.getElementById("opcion" + (i + 1));
                         opcion.innerHTML = contenidoArchivo.Preguntas[indice].Opciones[i];
-                        //opcion.setAttribute('onclick','evaluarRespuesta('+  opcion(i + 1)  + ')');
                     }
                 });
             });
+            
+            function changeQuestion(){
+                $.getJSON('json/input.json', function (contenidoArchivo) {
+                    var indice = Math.floor((Math.random()*2));
+                    
+                    document.getElementById("tema").innerHTML = contenidoArchivo.Preguntas[indice].materia;
+                    document.getElementById("numero").innerHTML = contador;
+                    document.getElementById("texto").innerHTML = contenidoArchivo.Preguntas[indice].pregunta;
 
-
+                    correcta = contenidoArchivo.Preguntas[indice].Respuesta;
+                    for (var i = 0; i < 4; i++) {
+                        var opcion = document.getElementById("opcion" + (i + 1));
+                        opcion.innerHTML = contenidoArchivo.Preguntas[indice].Opciones[i];
+                    }
+                });  
+            }
+            
         </script>
     </head>
     <body>

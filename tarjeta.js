@@ -1,3 +1,3 @@
-﻿$(function () {
+$(function () {
 	$("#card").flip({ trigger: "manual" });
 });
