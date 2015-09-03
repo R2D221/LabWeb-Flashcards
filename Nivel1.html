@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+﻿<!DOCTYPE HTML>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -8,6 +8,7 @@
               href="css/estiloNivel.css">
         <script src="js/jquery-1.11.3.js" type="text/javascript"></script>
         <script type="text/javascript">
+<<<<<<< HEAD
             var puntaje = 0;
             var correcta;
             var contador = 1;
@@ -25,6 +26,29 @@
             } 
                 
             $(document).ready(function () {                   
+=======
+
+            function evaluarOpcion(opcion){
+                   alert("Aquí se evalua la pregunta");
+            }
+
+            function formatTime(sec_num) {
+                var hours = Math.floor(sec_num / 3600);
+                var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+                var seconds = Math.floor(sec_num - (hours * 3600) - (minutes * 60));
+
+                var hourSeparator = ':';
+                var minuteSeparator = ':';
+
+                if (hours == 0) { hours = ''; hourSeparator = ''; }
+                if (minutes < 10 && hours != 0) { minutes = "0" + minutes; }
+                if (seconds < 10) { seconds = "0" + seconds; }
+                var time = hours + hourSeparator + minutes + minuteSeparator + seconds;
+                return time;
+            }
+
+            $(document).ready(function () {
+>>>>>>> origin/master
                 var temas = ["Historia", "Matemáticas"];
                 var contador = 1;
                 var pregunta;
@@ -33,7 +57,12 @@
 
                 $.getJSON('json/input.json', function (contenidoArchivo) {
                     var indice = Math.floor((Math.random()*2));
+<<<<<<< HEAD
                     
+=======
+
+                    //$('#tema').text = contenidoArchivo.Preguntas[indice].materia;
+>>>>>>> origin/master
                     document.getElementById("tema").innerHTML = contenidoArchivo.Preguntas[indice].materia;
                     document.getElementById("numero").innerHTML = contador;
                     document.getElementById("texto").innerHTML = contenidoArchivo.Preguntas[indice].pregunta;
@@ -43,6 +72,24 @@
                         var opcion = document.getElementById("opcion" + (i + 1));
                         opcion.innerHTML = contenidoArchivo.Preguntas[indice].Opciones[i];
                     }
+
+                    var deadline = Date.now() + 1000 * 60; //60 segundos
+                    function timer()
+                    {
+                        var timeLeft = deadline - Date.now();
+                        var $timerElement = $("#timer");
+                        $timerElement.text(formatTime(timeLeft / 1000));
+
+                        if (timeLeft > 0) {
+                            setTimeout(timer, 50);
+                        }
+                        else
+                        {
+                        	location.replace("index.html");
+                        }
+                    }
+
+                    timer();
                 });
             });
             
@@ -82,16 +129,16 @@
         <table id="infoNivel">
             <tr>
                 <td id="titulo" colspan="6" rowspan="2"> <h1> Nivel 1 </h1> </td>
-            </tr> 
+            </tr>
             <tr>
             </tr>
             <tr id="indicadores">
                 <td>Tema: </td>
-                <td id="tema"></td> 
+                <td id="tema"></td>
                 <td> N&uacute;mero de Pregunta: </td>
                 <td id="numero"></td>
                 <td>Tiempo:</td>
-                <td colspan="2">00</td> 
+                <td colspan="2" id="timer">0:00</td>
                 <td></td>
             </tr>
             <tr>
@@ -102,7 +149,7 @@
             <div id="card">
                 <div id="texto">
 
-                </div>    
+                </div>
             </div>
             <div id="indicaciones">
                 <div id="indi">
@@ -118,7 +165,7 @@
         <br/>
 
         <div id="creditos">
-            <table width="100%">  
+            <table width="100%">
                 <tr>
                     <td align=center colspan="3" id="direccion">Campus Ciudad de M&eacute;xico
                         Calle del Puente #222 Col. Ejidos de Huipulco, Tlalpan C.P. 14380, M&eacute;xico D.F. | 5483 2020 D.R. &copy;
