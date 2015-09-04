@@ -1,0 +1,129 @@
+body{
+	background-color: #7ABAFF;
+ 	background-size: 100%;
+ 	border-image-repeat: no-repeat;
+}
+
+table{
+-webkit-border-radius: 10px; 
+-moz-border-radius: 10px; 
+border-radius: 10px;
+background-color: #FCF5a7;
+opacity: 0.9;
+}
+
+td{
+ border:0;	
+}
+
+th{
+	margin-right: 20px;
+}
+
+.logo{
+	width: 60px;
+	height: 60px;
+}
+
+#header{
+    position: relative;
+    top: 0px;
+    height: 65px;
+    width: 600px;
+}
+
+#subtitulo{
+	color: blue;
+	margin-top: 20px;
+}
+
+.titulo{
+	font-family: "Pusab";
+	text-align: center;
+	font-size: 50px;
+        color: black;
+}
+
+.opciones{
+	width: 1000px;
+	height: 550px;
+        left: 560px;
+        background-color: #FCF5a7;
+        margin-left: 200px;
+}
+
+.menus{
+	text-align: center;
+	font-family: "Pusab";
+	font-size: 20px;
+	color: #8a1b8f;
+}
+
+.perfil{
+	margin-top: 10px;
+}
+
+.submit{
+	text-align: center;
+}
+
+#titulo{
+	text-align: center;
+	color: white;
+	font-family: "Pusab";
+	letter-spacing: 10px;
+}
+
+#infoNivel{
+	margin: 0 auto;
+        background-color: #f57e00;
+	width: 60px;
+	height: 90px;
+	width: 800px;
+	text-align: center;
+        position: relative;
+        left: 100px;
+}
+
+#resNivel{
+	font-family: "Pusab";
+	font-size: 20px;
+}
+
+#resNivel > td{
+    margin-top: 30px;
+    height: 100px;
+    width: 200px;
+}
+
+
+#ac{
+    position: relative;
+    top: 50px;
+    font-size: 40px;
+}
+
+#ti{
+    position: relative;
+    top: 100px;
+    font-size: 40px;
+}
+
+#bo{
+    position: relative;
+    top: 150px;
+    font-size: 40px;
+}
+
+#to{
+    position: relative;
+    top: 200px;
+    color: #8a1b8f;
+    font-size: 45px;
+    
+}
+
+#ref{
+    position: relative;
+    top: 300px;
+}
