@@ -1,29 +1,160 @@
-{
-
-            "Preguntas": [
-                {
-                    "materia": "Historia",
-                    "pregunta": "¿En qu&eacute; fecha se inici&oacute; la lucha de independencia de M&eacute;xico?",
-                    "Opciones": [
-                        "20 de Noviembre de 1910",
-                        "30 de Diciembte de 1825",
-                        "15 de Septiembre de 1810",
-                        "5 de Febrero de 1920"
-                    ],
-                    "Respuesta": "3",
-                    "Explicacion": "La noche del 15 de Septiembre de 1810 día inicio la lucha de independencia de México."
-                },
-                {
-                    "materia":"Historia",
-                    "pregunta": "¿Fue un lider destacado en el movimiento de independencia?",
-                    "Opciones": [
-                        "Porfirio Díaz",
-                        "Manuel Doblado",
-                        "Miguel Hidalgo y Costilla",
-                        "Jos&eacute; Mar&iacute;a Morelos"
-                    ],
-                    "Respuesta": "3",
-                    "Explicacion": "Miguel Hidalgo Rules!!!"
-                }
-            ]
+{  
+   "Preguntas":[  
+      {  
+         "materia":"Historia",
+         "pregunta":"&iquest;En qu&eacute; fecha se inici&oacute; la lucha de independencia de M&eacute;xico?",
+         "Opciones":[  
+            "20 de Noviembre de 1910",
+            "30 de Diciembte de 1825",
+            "16 de Septiembre de 1810",
+            "5 de Febrero de 1920"
+         ],
+         "Respuesta":"3",
+         "Explicacion":"La noche del 15 de Septiembre de 1810 d&iacute;a inicio la lucha de independencia de M&eacute;xico."
+      },
+      {  
+         "materia":"Historia",
+         "pregunta":"&iquest;Fue un lider destacado en el movimiento de independencia?",
+         "Opciones":[  
+            "Porfirio D&iacute;az",
+            "Manuel Doblado",
+            "Miguel Hidalgo y Costilla",
+            "Jos&eacute; Mar&iacute;a Morelos"
+         ],
+         "Respuesta":"3",
+         "Explicacion":"Miguel Hidalgo marc&oacute; el inicio de la lucha de independencia con el acto conocido cono El grito de Dolores"
+      },
+      {  
+         "materia":"Historia",
+         "pregunta":"&iquest;Fecha en qu&eacute; se consumo la independencia de M&eacute;xico?",
+         "Opciones":[  
+            "27 de Septiembre del 1821",
+            "24 de Diciembre de 1842",
+            "5 de Mayo de 1820",
+            "15 de Junio de 1830"
+         ],
+         "Respuesta":"1",
+         "Explicacion":"La lucha de Independencia dur&oacute; 11 a&ntilde;os (1810-1821), se consum&oacute; con la entrada triunfal del Ej&eacute;rcito Trigarante; encabezado por Agustin de Iturbide y Vicente Guerrero"
+      },
+      {  
+         "materia":"Historia",
+         "pregunta":"&iquest;De las clases sociales del M&eacute;xico de la &eacute;poca colonial, &iquest;Qui&eacute;nes eran los criollos?",
+         "Opciones":[  
+            "Hijos de nativos mexicanos",
+            "Nacidos en Espa&ntilde;a y traidos a M&eacute;xico",
+            "Nacidos en m&eacute;xico, de padres europeos",
+            "Nacidos en m&eacute;xico y llevados a Espa&ntilde;a"
+         ],
+         "Respuesta":"3",
+         "Explicacion":"La lucha de Independencia dur&oacute; 11 a&ntilde;os (1810-1821), se consum&oacute; con la entrada triunfal del Ej&eacute;rcito Trigarante; encabezado por Agustin de Iturbide y Vicente Guerrero"
+      },
+      {  
+         "materia":"Ciencias Naturales",
+         "pregunta":"&iquest;Es el mamifero m&aacute;s grande?",
+         "Opciones":[  
+            "Ballena Jorobada",
+            "Elefante",
+            "Rinoceronte",
+            "Ballena Azul"
+         ],
+         "Respuesta":"4",
+         "Explicacion":"La ballena azul es el mamifero m&aacute;s grande y puede llegar a pesar 160 toneladas m&eacute;tricas (160.00 Kg)"
+      },
+      {  
+         "materia":"Ciencias Naturales",
+         "pregunta":"Los animales viviparos:",
+         "Opciones":[  
+            "De un huevo",
+            "Se desarrollan en el vientre de su madre",
+            "En un &aacute;rbol",
+            "Crecen en la tierra"
+         ],
+         "Respuesta":"2",
+         "Explicacion":"La mayoria de los mamiferos paren cr&iacute;as vivas (solo el ornitorrinco y los equidnas ponen huevos))"
+      },
+      {  
+         "materia":"Ciencias Naturales",
+         "pregunta":"&iquest;Mamifero semiac&uacute;atico que pone huevos?",
+         "Opciones":[  
+            "Pato",
+            "Nutria",
+            "Tortuga",
+            "Ornitorrinco"
+         ],
+         "Respuesta":"4",
+         "Explicacion":"De la clase de los mamiferos, el ornitorrinco y los equidnas son los &uacute;nicos que ponen huevos."
+      },
+      {  
+         "materia":"Ciencias Naturales",
+         "pregunta":"Caracteristica que les permiti&oacute; a los mamiferos adaptarse a ambientes diversos",
+         "Opciones":[  
+            "Tama&ntilde;o",
+            "Visi&oacute;n",
+            "Manejo del estr&eacute;s",
+            "Su capacidad para mamtener su temperatura corporal constante"
+         ],
+         "Respuesta":"4",
+         "Explicacion":"A pesar de los cambios en condiciones externas, los mamiferos tienen la habilida de mantener su temperatura corporal constante. ."
+      },
+      {  
+         "materia":"Materm&aacute;ticas",
+         "pregunta":"&iquest;Cu&aacute;l es el resultado de la siguiente suma:  - 6 + 15 - 12 + 3?",
+         "Opciones":[  
+            "0 ",
+            "15",
+            "-20",
+            "10"
+         ],
+         "Respuesta":"1",
+         "Explicacion":"Agrupando positivos y negativos : (-6 -12) + (15 + 3) = (-18) + 18 = 0"
+      },
+      {  
+         "materia":"Materm&aacute;ticas",
+         "pregunta":"&iquest;Qu&eacute; n&uacute;mero hace falta en la siguiente secuencia? 2, 4,..., 10, 16,...,42  ",
+         "Opciones":[  
+            "6, 26 ",
+            "5, 25",
+            "8, 22",
+            "9, 30"
+         ],
+         "Respuesta":"1",
+         "Explicacion":"La secuencia es generada sumando los dos digitos anteriores, para dar producir el tercer digito. Ejemplo: 2 + 4 = 6, 6 + 10 = 16"
+      },
+      {  
+         "materia":"Materm&aacute;ticas",
+         "pregunta":"Ayuda a Don Juan a pagar sus cuentas. Don Juan gana $700 (setecientos pesos) semanales, pero gasta $50 en trasporte y $300 en alimentos, semanales. &iquest;Cu&aacute;l es el sueldo real de Don Juan? ?",
+         "Opciones":[  
+            "$700",
+            "$100",
+            "$500",
+            "$350"
+         ],
+         "Respuesta":"4",
+         "Explicacion":"Don Juan tiene gastos semanales por $350 pesos, los cuales debe solventar con su sueldo; por lo tanto su sueldo real es de $350."
+      },
+      {  
+         "materia":"Materm&aacute;ticas",
+         "pregunta":"Explica a Do&ntilde;a Mari su cuenta en el restaurante, ella consumi&oacute;: Un plato de fruta fresa $25.00, dos tazas de t&eacute; $20, y un sandwich $25. &iquest;Cu&aacute;nto debe pagar? ",
+         "Opciones":[  
+            "$100",
+            "$70",
+            "$50",
+            "$120"
+         ],
+         "Respuesta":"2",
+         "Explicacion":" $25 (plato de fruta fresca) + $20 (dos tazas de t&eacute;) + $25 (sandwich) = $70"
+      }
+   ],
+   "Referencias":[  
+      {  
+         "Historia":"http://www.mexicodesconocido.com.mx/la-independencia-de-mexico-1810-1821.html"
+      },
+      {  
+         "Matematicas":"http://www.educaplus.org/play-172-Pincha-globos-Sumas-y-Restas.html"
+      },
+      {  
+         "Ciencias Naturales":"http://www.biodiversidad.gob.mx/especies/gran_familia/animales/mamiferos/mamiferos.html"
+      }
+   ],
+   "tiempo":"60"
 }
