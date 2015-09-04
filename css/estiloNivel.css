@@ -1,108 +1,110 @@
-body{
-	background-color: #7ABAFF;
- 	background-size: 100%;
- 	border-image-repeat: no-repeat;
+body {
+    background-color: #7ABAFF;
+    background-size: 100%;
+    border-image-repeat: no-repeat;
 }
 
-table{
--webkit-border-radius: 10px; 
--moz-border-radius: 10px; 
-border-radius: 10px;
-background-color: #FCF5a7;
-opacity: 0.9;
+table {
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    background-color: #FCF5A7;
+    opacity: 0.9;
 }
 
-td{
- border:0;	
+td {
+    border: 0;
 }
 
-th{
-	margin-right: 20px;
+th {
+    margin-right: 20px;
 }
 
-.logo{
-	width: 60px;
-	height: 60px;
+#header {
+    width: 960px;
+    height: 90px;
+    margin: 15px auto;
 }
 
-#header{
-    position: relative;
-    top: 0px;
-    height: 65px;
+#logo {
+    height: 100%;
     width: 600px;
+    margin: 0 15px;
+    border-radius: 10px;
+    background-color: #FCF5A7;
+    opacity: 0.9;
+    float: left;
 }
 
-#subtitulo{
-	color: blue;
-	margin-top: 20px;
+#infoNivel {
+    background-color: #F57E00;
+    height: 100%;
+    width: 300px;
+    margin: 0 15px;
+    text-align: center;
+    border-radius: 10px;
+    float: left;
 }
 
-.titulo{
-	font-family: "Pusab";
-	text-align: center;
-	font-size: 50px;
+#subtitulo {
+    color: blue;
+    margin-top: 20px;
 }
 
-.opciones{
-	width: 1000px;
-	height: 550px;
-        left: 560px;
-        background-color: #FCF5a7;
-        margin-left: 200px;
+.titulo {
+    font-family: "Pusab";
+    text-align: center;
+    font-size: 50px;
 }
 
-.menus{
-	text-align: center;
-	font-family: "Pusab";
-	font-size: 20px;
-	color: #8a1b8f;
+.opciones {
+    width: 930px;
+    height: 550px;
+    background-color: #FCF5A7;
+    margin: 15px auto;
+    border-radius: 10px;
 }
 
-.perfil{
-	margin-top: 10px;
+.menus {
+    text-align: center;
+    font-family: "Pusab";
+    font-size: 20px;
+    color: #8a1b8f;
 }
 
-.submit{
-	text-align: center;
+.perfil {
+    margin-top: 10px;
 }
 
-#titulo{
-	text-align: center;
-	color: white;
-	font-family: "Pusab";
-	letter-spacing: 10px;
+.submit {
+    text-align: center;
 }
 
-#infoNivel{
-	margin: 0 auto;
-        background-color: #f57e00;
-	width: 60px;
-	height: 90px;
-	width: 800px;
-	text-align: center;
-        position: relative;
-        left: 100px;
+#titulo {
+    text-align: center;
+    color: white;
+    font-family: "Pusab";
+    letter-spacing: 10px;
 }
 
-#indicadores{
-	font-family: "Pusab";
-	font-size: 20px;
+#indicadores {
+    font-family: "Pusab";
+    font-size: 20px;
 }
 
-#card{
-    position:relative;
+#card {
+    position: relative;
     top: 20px;
     height: 250px;
     width: 500px;
     background-color: #2866ec;
-    
-    -webkit-border-radius: 10px; 
-    -moz-border-radius: 10px; 
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
     border-radius: 10px;
     opacity: 0.9;
 }
 
-#texto{
+#texto {
     background-color: #2866ec;
     position: relative;
     top: 100px;
@@ -111,28 +113,28 @@ th{
     font-size: 30px;
 }
 
-#indicaciones{
+#indicaciones {
     height: 40px;
     width: 350px;
     position: relative;
     top: 20px;
     left: -325px;
-    	font-family: "Pusab";
-	font-size: 20px;
+    font-family: "Pusab";
+    font-size: 20px;
 }
 
-#indi{
+#indi {
     position: relative;
     top: 30px;
 }
 
-#opcion1, #opcion2, #opcion3, #opcion4{
+#opcion1, #opcion2, #opcion3, #opcion4 {
     font-family: 'Lobster', cursive;
     font-weight: bold;
     font-size: 20px;
 }
 
-#opcion1{
+#opcion1 {
     height: 40px;
     width: 350px;
     position: relative;
@@ -140,7 +142,7 @@ th{
     background-color: #f57e00;
 }
 
-#opcion2{
+#opcion2 {
     height: 40px;
     width: 350px;
     position: relative;
@@ -148,7 +150,7 @@ th{
     background-color: #f57e00;
 }
 
-#opcion3{
+#opcion3 {
     height: 40px;
     width: 350px;
     position: relative;
@@ -156,7 +158,7 @@ th{
     background-color: #f57e00;
 }
 
-#opcion4{
+#opcion4 {
     height: 40px;
     width: 350px;
     position: relative;

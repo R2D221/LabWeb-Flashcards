@@ -1,4 +1,4 @@
-﻿<!DOCTYPE HTML>
+<!DOCTYPE HTML>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -13,15 +13,15 @@
             var contador = 1;
             var timeLeft;
             var preguntasMostradas = new Array(12);
-                    
-            
+
+
             function evaluarOpcion(opcion){
                 if(opcion === correcta){
                     puntaje += 100;
                 }else if(puntaje > 0){
                     puntaje -= 50;
                 }
-                
+
                 document.getElementById("puntos").innerHTML = puntaje;
                 contador++;
                 if(contador < 17){
@@ -61,14 +61,14 @@
                     document.getElementById("tema").innerHTML = contenidoArchivo.Preguntas[indice].materia;
                     document.getElementById("numero").innerHTML = contador;
                     document.getElementById("texto").innerHTML = contenidoArchivo.Preguntas[indice].pregunta;
-                    
+
                     correcta = contenidoArchivo.Preguntas[indice].Respuesta;
                     for (var i = 0; i < 4; i++) {
                         var opcion = document.getElementById("opcion" + (i + 1));
                         opcion.innerHTML = contenidoArchivo.Preguntas[indice].Opciones[i];
                     }
 
-                    var deadline = Date.now() + 1000 * contenidoArchivo.tiempo; //60 segundos
+                    var deadline = Date.now() + 100000 * contenidoArchivo.tiempo; //60 segundos
                     function timer()
                     {
                         timeLeft = deadline - Date.now();
@@ -82,22 +82,22 @@
                         {
                             guardar();
                             location.replace("ResultadosNivel1.html");
-                            
+
                         }
                     }
 
                     timer();
                 });
             });
-            
+
             function changeQuestion(){
                 $.getJSON('json/input.json', function (contenidoArchivo) {
                     if(contador <= 12){
-                                              
+
                     do{
                         var indice = Math.floor((Math.random()*12));
                     }while(verificarPregunta(indice));
-                        
+
                     preguntasMostradas[contador-1] = indice;
                     document.getElementById("tema").innerHTML = contenidoArchivo.Preguntas[indice].materia;
                     document.getElementById("numero").innerHTML = contador;
@@ -108,80 +108,66 @@
                         var opcion = document.getElementById("opcion" + (i + 1));
                         opcion.innerHTML = contenidoArchivo.Preguntas[indice].Opciones[i];
                     }
-                        
+
                     }else{
-                        
+
                         guardar();
-                        location.replace("ResultadosNivel1.html");                 
+                        location.replace("ResultadosNivel1.html");
                     }
-                });  
+                });
             }
-            
-            
+
+
             function verificarPregunta(numero){
                 var resultado = false;
-                
+
                 for(var i =0; i < contador; i++){
                     if(preguntasMostradas[i]===numero){
                         resultado =  true;
                     }
                 }
-                
+
                 return resultado;
             }
-            
-            
+
+
             function guardar(){
-                
+
                 var acierto = puntaje/100;
-                var tp = timeLeft/1000;    
-                
+                var tp = timeLeft/1000;
+
                 var resultados = {
-                    aciertos: acierto, 
-                    tiempo: tp, 
+                    aciertos: acierto,
+                    tiempo: tp,
                     bono:0
                 };
                 localStorage ["resultados"] = JSON.stringify(resultados);
                 //localStorage["ola"] = 5;
                 //localStorage["ola"] = {aciertos: puntaje/100, tiempo: timeLeft, bono:0};
             }
-            
+
         </script>
     </head>
     <body>
 
-        <table id="header">
-            <tr>
-                <td>
-                    <img src="./img/cerebro.jpg" class="logo">
-                </td>
-                <td>
-                    <h1 align="center"><img src="./img/cerebro.png" id="letras"/></h1>
-                </td>
-            </tr>
-        </table>
-        <br/>
-
-
-        <table id="infoNivel">
-            <tr>
-                <td id="titulo" colspan="8" rowspan="2"> <h1> Nivel 1 </h1> </td>
-            </tr>
-            <tr>
-            </tr>
-            <tr id="indicadores">
-                <td>Tema: </td>
-                <td id="tema"></td>
-                <td> N&uacute;mero de Pregunta: </td>
-                <td id="numero"></td>
-                <td>Tiempo:</td>
-                <td id="timer">0:00</td>
-                <td>Puntuaci&oacute;n:</td>
-                <td id="puntos">0</td>
-            </tr>
-            <tr>
-            </tr>
-        </table>
+        <div id="header">
+            <div id="logo">
+                <img src="./img/cerebro.jpg" style="width: 60px; height: 60px;" /><img src="./img/cerebro.png" id="letras" />
+            </div>
+            <div id="infoNivel">
+                <h2>Nivel 1</h2>
+                <div id="indicadores">
+                    <span>Tema: </span>
+                    <span id="tema"></span>
+                    <span> N&uacute;mero de Pregunta: </span>
+                    <span id="numero"></span>
+                    <span>Tiempo:</span>
+                    <span id="timer">0:00</span>
+                    <span>Puntuaci&oacute;n:</span>
+                    <span id="puntos">0</span>
+                </div>
+            </div>
+        </div>
 
         <div align=center class="opciones">
             <div id="card">
