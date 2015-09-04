@@ -1,0 +1,160 @@
+{  
+   "Preguntas":[  
+      {  
+         "materia":"Historia",
+         "pregunta":"&iquest;En qu&eacute; a&ntilde;o estallo la Revoluci&oacute;n Mexicana?",
+         "Opciones":[  
+            "1910",
+            "1825",
+            "1914",
+            "1810"
+         ],
+         "Respuesta":"1910",
+         "explicacion":"En 1910 inicio la revoluci&oacute;n mexicana para acabar con la dictadura de Porfirio Diaz."
+      },
+      {  
+         "materia":"Historia",
+         "pregunta":"&iquest;Personaje que lider&oacute;, en principio, la Revoluci&oacute;n Mexicana?",
+         "Opciones":[  
+            "Porfirio Diaz",
+            "Jos&eacute; Mar&iacute;a Morelos",
+            "Josefa Ortiz de Dominguez",
+            "Francisco I. Madero"
+         ],
+         "Respuesta":"Francisco I. Madero",
+         "explicacion":"Francisco I. Madero, se hizo candidato de la plataforma antirreeleccionista, buscando quitar del poder a Porfirio Diaz"
+      },
+      {  
+         "materia":"Historia",
+         "pregunta":"&iquest;Documento elaborado por Francisco I. Madero, en en cual se hace un llamado al puebo mexicano para tomar las armas contra el gobierno?",
+         "Opciones":[  
+            "Plan de San Luis",
+            "Plan de Iguala",
+            "Constituci&oacute;n Politica",
+            "Carta de Derechos"
+         ],
+         "Respuesta":"Plan de San Luis",
+         "explicacion":"Refugiado en Estados Unidos, Francisco I. Madero promuldo el Plan de San Luis, en donde se hacia un llamado al pueblo para derrocar el gobierno dictatorial de Porfirio Diaz"
+      },
+      {  
+         "materia":"Historia",
+         "pregunta":"&iquest;Qui&eacute;n acu&ntilde;o la frase: \" La tierra es para qui&eacute;n la trabaja? \" ",
+         "Opciones":[  
+            "Porfirio Diaz",
+            "Venustiano Carranza",
+            "Benito Ju&aacute;rez",
+            "Emiliano Zapata"
+         ],
+         "Respuesta":"Emiliano Zapata",
+         "explicacion":"Con el objetivo de establecer una reforma agrar&iacute;a, Emiliano Zapata se incorpor&oacute; a la Revoluci&oacute;n Mexicana."
+      },
+      {  
+         "materia":"Ciencias Naturales",
+         "pregunta":"Los animales oviparos se reproducen mediante...",
+         "Opciones":[  
+            "Esporas",
+            "Huevos",
+            "Astillas",
+            "Divisi&oacute;n"
+         ],
+         "Respuesta":"Huevos",
+         "explicacion":"Los animales ov&iacute;paros se caracterizan por ser concebidos a partir de un huevo fecundado. "
+      },
+      {  
+         "materia":"Ciencias Naturales",
+         "pregunta":"Entre este tipo de animales, no es com&uacute;n la atenci&oacute;n a sus crias despu&eacute;s del parto",
+         "Opciones":[  
+            "Pollos",
+            "Panteras",
+            "Serpientes",
+            "Osos"
+         ],
+         "Respuesta":"Serpientes",
+         "explicacion":"Las serpientes beb&eacute;s son capaces de defenderse desde su nacimiento, y no reciben una atenci&oacute;n particular de sus padres."
+      },
+      {  
+         "materia":"Ciencias Naturales",
+         "pregunta":"Ejemplo de animales oviparos:",
+         "Opciones":[  
+            "Cangrejos",
+            "Ratones",
+            "Topos",
+            "Jerbo"
+         ],
+         "Respuesta":"Ranas",
+         "explicacion":"La amplia gama de artr&oacute;podos incluye insectos, cangrejos, ara&ntilde;as y escorpiones. La mayoria se reproduce mediante huevos."
+      },
+      {  
+         "materia":"Ciencias Naturales",
+         "pregunta":"&iquest;Animal oviparo que pone los huevos m&aacute;s grandes? ",
+         "Opciones":[  
+            "Avestruz",
+            "Ornitorrinco",
+            "Tibur&oacute;n ballena",
+            "Ballena azul"
+         ],
+         "Respuesta":"Tibur&oacute;n Ballena",
+         "explicacion":"El tibur&oacute;n ballena pone huevos que llegan a medir entre 20 cm y 30 cm de largo."
+      },
+      {  
+         "materia":"Matem&aacute;ticas",
+         "pregunta":" &iquest;Qu&eacute; n&uacute;meros hace falta en la siguiente secuencia? 1,2,4,___,16,____,64 ",
+         "Opciones":[  
+            "9, 17 ",
+            "8, 32",
+            "15, 25",
+            "10, 30"
+         ],
+         "Respuesta":"8 , 32",
+         "explicacion":"La secuencia num&eacute;rica se obtiene al multiplicar el numero correspondiente a cada posicion de la serie por 2. Ejemplo: 1 x 2 = 2; 2 x 2 = 4..."
+      },
+      {  
+         "materia":"Matem&aacute;ticas",
+         "pregunta":"Jos&eacute; quiere comprar cuatro chocolates, cada chocolate cuesta cuatro pesos. &iquest;Cu&aacute;nto debe pagar Jos&eacute;? ",
+         "Opciones":[  
+            "16 ",
+            "8",
+            "12",
+            "10"
+         ],
+         "Respuesta":"16",
+         "explicacion":" 4 (numero de chocolates) x 4 (costo de cada chocolate) = 16 pesos"
+      },
+      {  
+         "materia":"Matem&aacute;ticas",
+         "pregunta":"Maria compro tres cajas de paletas, cada caja tiene 5 paletas. &iquest;Cu&aacute;ntos paletas tiene Maria?",
+         "Opciones":[  
+            "15",
+            "3",
+            "8",
+            "18"
+         ],
+         "Respuesta":"20",
+         "explicacion":" 3 (cajas de paletas) x 5 (numero de paletas en cada caja) = 15 paletas"
+      },
+      {  
+         "materia":"Matem&aacute;ticas",
+         "pregunta":"Adrian quiere comprar dos juguetes para cada una de sus mascotas: dos perros, tres gatitos y dos h&aacute;smters. &iquest;Cu&aacute;ntos juguetes comprar&aacute;? ",
+         "Opciones":[  
+            "10",
+            "2",
+            "6",
+            "20"
+         ],
+         "Respuesta":"10",
+         "Explicacion":" 2 (juguetes) x 2 (perros) = 4 juguetes , 2 (juguetes) x 3 (gatitos) = 6 , 2 (juguetes) x 2 (h&aacute;msters) = 4. 4 + 6 + 4 = 10;"
+      }
+   ],
+   "Referencias":[  
+      {  
+         "Historia":"http://www.cicloescolar.com/2012/11/la-revolucion-mexicana-cuento-para-ninos.html"
+      },
+      {  
+         "Matematicas":"http://www.cyberkidz.co/cyberkidz/juego.php?spelUrl=library/rekenen/groep4/rekenen1/&spelNaam=Tablas%20de%20multiplicar%201,2,5%20y%2010&groep=4&vak=rekenen"
+      },
+      {  
+         "Ciencias Naturales":"http://animalesoviparos.com"
+      }
+   ],
+   "tiempo":"90"
+}
