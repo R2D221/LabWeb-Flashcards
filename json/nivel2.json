@@ -9,7 +9,7 @@
             "1914",
             "1810"
          ],
-         "Respuesta":"1910",
+         "Respuesta":"1",
          "explicacion":"En 1910 inicio la revoluci&oacute;n mexicana para acabar con la dictadura de Porfirio Diaz."
       },
       {  
@@ -21,7 +21,7 @@
             "Josefa Ortiz de Dominguez",
             "Francisco I. Madero"
          ],
-         "Respuesta":"Francisco I. Madero",
+         "Respuesta":"4",
          "explicacion":"Francisco I. Madero, se hizo candidato de la plataforma antirreeleccionista, buscando quitar del poder a Porfirio Diaz"
       },
       {  
@@ -33,7 +33,7 @@
             "Constituci&oacute;n Politica",
             "Carta de Derechos"
          ],
-         "Respuesta":"Plan de San Luis",
+         "Respuesta":"1",
          "explicacion":"Refugiado en Estados Unidos, Francisco I. Madero promuldo el Plan de San Luis, en donde se hacia un llamado al pueblo para derrocar el gobierno dictatorial de Porfirio Diaz"
       },
       {  
@@ -45,7 +45,7 @@
             "Benito Ju&aacute;rez",
             "Emiliano Zapata"
          ],
-         "Respuesta":"Emiliano Zapata",
+         "Respuesta":"4",
          "explicacion":"Con el objetivo de establecer una reforma agrar&iacute;a, Emiliano Zapata se incorpor&oacute; a la Revoluci&oacute;n Mexicana."
       },
       {  
@@ -57,7 +57,7 @@
             "Astillas",
             "Divisi&oacute;n"
          ],
-         "Respuesta":"Huevos",
+         "Respuesta":"2",
          "explicacion":"Los animales ov&iacute;paros se caracterizan por ser concebidos a partir de un huevo fecundado. "
       },
       {  
@@ -69,7 +69,7 @@
             "Serpientes",
             "Osos"
          ],
-         "Respuesta":"Serpientes",
+         "Respuesta":"3",
          "explicacion":"Las serpientes beb&eacute;s son capaces de defenderse desde su nacimiento, y no reciben una atenci&oacute;n particular de sus padres."
       },
       {  
@@ -77,11 +77,11 @@
          "pregunta":"Ejemplo de animales oviparos:",
          "Opciones":[  
             "Cangrejos",
-            "Ratones",
+            "Ranas",
             "Topos",
             "Jerbo"
          ],
-         "Respuesta":"Ranas",
+         "Respuesta":"2",
          "explicacion":"La amplia gama de artr&oacute;podos incluye insectos, cangrejos, ara&ntilde;as y escorpiones. La mayoria se reproduce mediante huevos."
       },
       {  
@@ -93,7 +93,7 @@
             "Tibur&oacute;n ballena",
             "Ballena azul"
          ],
-         "Respuesta":"Tibur&oacute;n Ballena",
+         "Respuesta":"1",
          "explicacion":"El tibur&oacute;n ballena pone huevos que llegan a medir entre 20 cm y 30 cm de largo."
       },
       {  
@@ -105,7 +105,7 @@
             "15, 25",
             "10, 30"
          ],
-         "Respuesta":"8 , 32",
+         "Respuesta":"2",
          "explicacion":"La secuencia num&eacute;rica se obtiene al multiplicar el numero correspondiente a cada posicion de la serie por 2. Ejemplo: 1 x 2 = 2; 2 x 2 = 4..."
       },
       {  
@@ -117,7 +117,7 @@
             "12",
             "10"
          ],
-         "Respuesta":"16",
+         "Respuesta":"1",
          "explicacion":" 4 (numero de chocolates) x 4 (costo de cada chocolate) = 16 pesos"
       },
       {  
@@ -129,7 +129,7 @@
             "8",
             "18"
          ],
-         "Respuesta":"20",
+         "Respuesta":"1",
          "explicacion":" 3 (cajas de paletas) x 5 (numero de paletas en cada caja) = 15 paletas"
       },
       {  
@@ -141,7 +141,7 @@
             "6",
             "20"
          ],
-         "Respuesta":"10",
+         "Respuesta":"1",
          "Explicacion":" 2 (juguetes) x 2 (perros) = 4 juguetes , 2 (juguetes) x 3 (gatitos) = 6 , 2 (juguetes) x 2 (h&aacute;msters) = 4. 4 + 6 + 4 = 10;"
       }
    ],
