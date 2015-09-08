@@ -4,14 +4,6 @@ body {
     border-image-repeat: no-repeat;
 }
 
-table {
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    background-color: #FCF5A7;
-    opacity: 0.9;
-}
-
 td {
     border: 0;
 }
@@ -45,6 +37,12 @@ th {
     border-radius: 10px;
     float: left;
 }
+
+    #infoNivel h2 {
+        height: 100%;
+        width: 50%;
+        float: left;
+    }
 
 #subtitulo {
     color: blue;
@@ -96,6 +94,7 @@ th {
     position: relative;
     top: 20px;
     height: 250px;
+    line-height: 250px;
     width: 500px;
     background-color: #2866ec;
     -webkit-border-radius: 10px;
@@ -105,63 +104,39 @@ th {
 }
 
 #texto {
-    background-color: #2866ec;
-    position: relative;
-    top: 100px;
     font-family: 'Lobster', cursive;
     font-weight: bold;
     font-size: 30px;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
 }
 
-#indicaciones {
-    height: 40px;
-    width: 350px;
-    position: relative;
-    top: 20px;
-    left: -325px;
-    font-family: "Pusab";
-    font-size: 20px;
-}
-
-#indi {
-    position: relative;
-    top: 30px;
-}
-
-#opcion1, #opcion2, #opcion3, #opcion4 {
+.opcion {
     font-family: 'Lobster', cursive;
     font-weight: bold;
     font-size: 20px;
+    position: relative;
+    background-color: #F57E00;
+    width: 500px;
+    height: 40px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
 }
 
 #opcion1 {
-    height: 40px;
-    width: 350px;
-    position: relative;
     top: 35px;
-    background-color: #f57e00;
 }
 
 #opcion2 {
-    height: 40px;
-    width: 350px;
-    position: relative;
     top: 45px;
-    background-color: #f57e00;
 }
 
 #opcion3 {
-    height: 40px;
-    width: 350px;
-    position: relative;
     top: 55px;
-    background-color: #f57e00;
 }
 
 #opcion4 {
-    height: 40px;
-    width: 350px;
-    position: relative;
     top: 65px;
-    background-color: #f57e00;
 }

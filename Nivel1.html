@@ -157,33 +157,30 @@
             <div id="infoNivel">
                 <h2>Nivel 1</h2>
                 <div id="indicadores">
-                    <span>Tema: </span>
-                    <span id="tema"></span>
-                    <span> N&uacute;mero de Pregunta: </span>
-                    <span id="numero"></span>
-                    <span>Tiempo:</span>
-                    <span id="timer">0:00</span>
-                    <span>Puntuaci&oacute;n:</span>
-                    <span id="puntos">0</span>
+                    <table>
+                        <tr>
+                            <td style="text-align: left;"><span>Tiempo:</span></td>
+                            <td style="text-align: right;"><span id="timer">0:00</span></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;"><span>Puntos:</span></td>
+                            <td style="text-align: right;"><span id="puntos">0</span></td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
 
         <div align=center class="opciones">
+            <span id="tema"></span>
+            <span id="numero"></span>
             <div id="card">
-                <div id="texto">
-
-                </div>
+                <span id="texto"></span>
             </div>
-            <div id="indicaciones">
-                <div id="indi">
-                    Elige una opci&oacute;n:
-                </div>
-            </div>
-            <div id="opcion1" onclick="evaluarOpcion('1')"></div>
-            <div id="opcion2" onclick="evaluarOpcion('2')"></div>
-            <div id="opcion3" onclick="evaluarOpcion('3')"></div>
-            <div id="opcion4" onclick="evaluarOpcion('4')"></div>
+            <div class="opcion" id="opcion1" onclick="evaluarOpcion('1')"></div>
+            <div class="opcion" id="opcion2" onclick="evaluarOpcion('2')"></div>
+            <div class="opcion" id="opcion3" onclick="evaluarOpcion('3')"></div>
+            <div class="opcion" id="opcion4" onclick="evaluarOpcion('4')"></div>
         </div>
 
         <br/>
