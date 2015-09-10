@@ -68,7 +68,7 @@
                         opcion.innerHTML = contenidoArchivo.Preguntas[indice].Opciones[i];
                     }
 
-                    var deadline = Date.now() + 100000 * contenidoArchivo.tiempo; //60 segundos
+                    var deadline = Date.now() + 1000 * parseInt(contenidoArchivo.tiempo); //60 segundos
                     function timer()
                     {
                         timeLeft = deadline - Date.now();
@@ -142,8 +142,54 @@
                     bono:0
                 };
                 localStorage ["resultados"] = JSON.stringify(resultados);
-                //localStorage["ola"] = 5;
-                //localStorage["ola"] = {aciertos: puntaje/100, tiempo: timeLeft, bono:0};
+                
+                if(localStorage.getItem("max_puntuaciones") === null){
+                    var puntuaciones = {
+                        puntuaciones:[{
+                                usuario: localStorage["usuario_actual"],
+                                puntuacion: puntaje
+                        },{
+                                usuario: "anonimo",
+                                puntuacion: 0
+                        },{
+                                usuario: "anonimo",
+                                puntuacion: 0
+                        },{
+                                usuario: "anonimo",
+                                puntuacion: 0
+                        },{
+                                usuario: "anonimo",
+                                puntuacion: 0
+                        }]
+                    };
+                    
+                    localStorage.setItem("max_puntuaciones", JSON.stringify(puntuaciones));
+                }else{
+                    var max = {};
+                    var temp1, temp2, start;
+                    max = JSON.parse(localStorage.getItem("max_puntuaciones"));
+                    for(var i = 0; i < 5; i++){
+                        if(max.puntuaciones[i].puntuacion < puntaje){
+                            temp1 = max.puntuaciones[i].puntuacion;
+                            temp2 = max.puntuaciones[i].usuario;
+                            start = i;
+                            max.puntuaciones[i].puntuacion = puntaje;
+                            max.puntuaciones[i].usuario = localStorage["usuario_actual"];
+                            break;
+                        }
+                    }
+                    
+                    for(var i = start + 1; i < 5; i++){
+                        var temp3 = max.puntuaciones[i].puntuacion;
+                        var temp4 = max.puntuaciones[i].usuario;
+                        max.puntuaciones[i].puntuacion = temp1;
+                        max.puntuaciones[i].usuario = temp2;
+                        temp1 = temp3;
+                        temp2 = temp4;
+                    }
+                
+                    localStorage.setItem("max_puntuaciones", JSON.stringify(max));
+                }
             }
 
         </script>
