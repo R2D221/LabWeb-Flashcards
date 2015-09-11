@@ -13,11 +13,13 @@
             var contador = 1;
             var timeLeft;
             var preguntasMostradas = new Array(12);
+            var aciertos = 0;
 
 
             function evaluarOpcion(opcion){
                 if(opcion === correcta){
                     puntaje += 100;
+                    aciertos++;
                 }else if(puntaje > 0){
                     puntaje -= 50;
                 }
@@ -132,12 +134,10 @@
 
 
             function guardar(){
-
-                var acierto = puntaje/100;
                 var tp = timeLeft/1000;
 
                 var resultados = {
-                    aciertos: acierto,
+                    aciertos: aciertos,
                     tiempo: tp,
                     bono:0
                 };
