@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title> Cerebraton </title>
+  <link rel="stylesheet" type ="text/css"
+        href="./css/estiloRanking.css">
+        <script src="js/jquery-1.11.3.js" type="text/javascript"></script>
+  	<script type="text/javascript">
+            $(document).ready(function () {
+                var max = {};
+                    var temp1, temp2, start;
+                    max = JSON.parse(localStorage.getItem("max_puntuaciones"));
+                    for(var i =0; i < 5; i++){
+                        //alert("usuario " + max.puntuaciones[i].usuario + " puntuaciones " + max.puntuaciones[i].puntuacion);
+                       document.getElementById('nick' + (i+1)).innerHTML = max.puntuaciones[i].usuario;
+                       document.getElementById('puntaje' + (i+1)).innerHTML = max.puntuaciones[i].puntuacion;
+                    }
+                    
+               }
+            );
+  	</script>
+</head>
+<body>
+<div id="header">
+            <div id="logo">
+                <img src="./img/cerebro.jpg" style="width: 60px; height: 60px;" /><img src="./img/cerebro.png" id="letras" />
+            </div>
+            <div id="infoNivel">
+                <h2>Ranking</h2>
+            </div>
+        </div>
+
+        <div align=center class="opciones">
+            <div class="opcion" id="lugar1">
+                <div id="usuario1"> 1er</div>
+                <div id="nick1"></div>
+                <div id="puntaje1"></div>
+            </div>
+            <div class="opcion" id="lugar2" >
+                <div id="usuario2">2do</div>
+                <div id="nick2"></div>
+                <div id="puntaje2"></div>
+            </div>
+            <div class="opcion" id="lugar3" >
+                <div id="usuario3">3er</div>
+                <div id="nick3"></div>
+                <div id="puntaje3"></div>
+            </div>
+            <div class="opcion" id="lugar4" >
+                <div id="nick4"></div>
+                <div id="usuario4">4to</div>
+                <div id="puntaje4"></div>
+            </div>
+            <div class="opcion" id="lugar5" >
+                <div id="nick5"></div>
+                <div id="usuario5">5to</div>
+                <div id="puntaje5"></div>
+            </div>
+        </div>
+
+        <br/>
+
+        <div id="creditos">
+            <table width="100%">
+                <tr>
+                    <td align=center colspan="3" id="direccion">Campus Ciudad de M&eacute;xico
+                        Calle del Puente #222 Col. Ejidos de Huipulco, Tlalpan C.P. 14380, M&eacute;xico D.F. | 5483 2020 D.R. &copy;
+                        Instituto Tecnol&oacute;gico y de Estudios Superiores de Monterrey, M&eacute;xico. 2015.
+                    </td>
+                </tr>
+            </table>
+        </div>
+</body>
+</html>
