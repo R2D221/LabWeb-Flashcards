@@ -34,7 +34,8 @@ $(document).ready(function () {
             }
             else
             {
-                location.replace("index.html");
+                localStorage["puntaje"] = puntaje;
+                location.replace("Nivel1.html");
             }
         }
 

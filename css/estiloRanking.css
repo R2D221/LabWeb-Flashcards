@@ -1,0 +1,201 @@
+body {
+    background-color: #FAAF3D;
+    background-size: 100%;
+    border-image-repeat: no-repeat;
+}
+
+td {
+    border: 0;
+}
+
+th {
+    margin-right: 20px;
+}
+
+#header {
+    width: 960px;
+    height: 90px;
+    margin: 15px auto;
+}
+
+#logo {
+    height: 100%;
+    width: 600px;
+    margin: 0 15px;
+    border-radius: 10px;
+    background-color: #FCF5A7;
+    opacity: 0.9;
+    float: left;
+}
+
+#infoNivel {
+    background-color: #F57E00;
+    height: 100%;
+    width: 300px;
+    margin: 0 15px;
+    text-align: center;
+    border-radius: 10px;
+    float: left;
+}
+
+    #infoNivel h2 {
+        height: 100%;
+        width: 50%;
+        float: left;
+        font-family: "Pusab";
+        text-align: center;
+        font-size: 40px;
+    }
+
+#subtitulo {
+    color: blue;
+    margin-top: 20px;
+}
+
+.titulo {
+    font-family: "Pusab";
+    text-align: center;
+    font-size: 50px;
+}
+
+.opciones {
+    width: 930px;
+    height: 500px;
+    background-color: #FCF5A7;
+    margin: 15px auto;
+    border-radius: 10px;
+}
+
+.menus {
+    text-align: center;
+    font-family: "Pusab";
+    font-size: 20px;
+    color: #8a1b8f;
+}
+
+.perfil {
+    margin-top: 10px;
+}
+
+.submit {
+    text-align: center;
+}
+
+#titulo {
+    text-align: center;
+    color: white;
+    font-family: "Pusab";
+    letter-spacing: 10px;
+}
+
+#indicadores {
+    font-family: "Pusab";
+    font-size: 20px;
+}
+
+.opcion {
+    font-family: 'Lobster', cursive;
+    font-weight: bold;
+    font-size: 20px;
+    position: relative;
+    background-color: #F57E00;
+    width: 500px;
+    height: 40px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+#usuario1, #usuario2, #usuario3, #usuario4, #usuario5{
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+#usuario1{
+    background-color: #1228B0;
+    width: 100px;
+    height: 80px;
+    position: relative;
+    left: -200px;
+    color: white;
+}
+
+#usuario2{
+    background-color: green;
+    width: 100px;
+    height: 40px;
+    position: relative;
+    left: -200px;
+    color: white;
+}
+
+#usuario3{
+    background-color: red;
+    width: 100px;
+    height: 40px;
+    position: relative;
+    left: -200px;
+    color: white;
+}
+
+#usuario4{
+    background-color: #f7d8a8;
+    width: 100px;
+    height: 40px;
+    position: relative;
+    left: -200px;
+    top: -30px;
+    color: white;
+}
+
+#usuario5{
+    background-color: pink;
+    width: 100px;
+    height: 40px;
+    position: relative;
+    left: -200px;
+    top: -30px;
+    color: white;
+}
+
+#lugar1{
+    top: 80px;
+    height: 80px;
+}
+
+#lugar2 {
+    top: 100px;
+}
+
+#lugar3 {
+    top: 120px;
+}
+
+#lugar4 {
+    top: 140px;
+}
+
+#lugar5 {
+    top: 160px;
+}
+
+
+#nick1, #nick2, #nick3{
+    position: relative;
+    left: -100px;
+    top: -30px;
+}
+
+#nick4,#nick5{
+    position: relative;
+    left: -100px;
+    top: 0px;
+}
+
+
+#puntaje1, #puntaje2, #puntaje3, #puntaje4, #puntaje5{
+    position: relative;
+    left: 200px;
+    top: -60px;
+}
