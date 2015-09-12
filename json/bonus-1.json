@@ -1,6 +1,7 @@
 {
     "Nivel": 1,
-    "Pregunta": "Nombra las capitales de los Estados de México.",
+    "Pregunta": "Nombra las capitales de los Estados de M&eacute;xico.",
+    "Tiempo": 90,
     "Respuestas": [
         "aguascalientes",
         "mexicali",
@@ -8,7 +9,7 @@
         "campeche",
         "saltillo",
         "colima",
-        "tuxtla gutiérrez",
+        "tuxtla gutierrez",
         "chihuahua",
         "durango",
         "guanajuato",
@@ -22,16 +23,16 @@
         "monterrey",
         "oaxaca",
         "puebla",
-        "querétaro",
+        "queretaro",
         "chetumal",
-        "san luis potosí",
-        "culiacán",
+        "san luis potosi",
+        "culiacan",
         "hermosillo",
         "villahermosa",
         "ciudad victoria",
         "tlaxcala",
         "xalapa",
-        "mérida",
+        "merida",
         "zacatecas"
     ]
 }

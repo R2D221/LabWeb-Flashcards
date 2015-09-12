@@ -1,6 +1,8 @@
 var correctas = 0;
 var answers;
 var timeLeft, puntaje;
+var nivel = parseInt(localStorage["nivel"]);
+var answered = [];
 
 function formatTime(sec_num) {
     var hours = Math.floor(sec_num / 3600);
@@ -22,7 +24,7 @@ $(document).ready(function () {
         document.getElementById("pregunta").innerHTML = contenidoArchivo.Pregunta;
         answers = contenidoArchivo.Respuestas;
 
-        var deadline = Date.now() + 1000 * 90; //90 segundos
+        var deadline = Date.now() + 1000 * parseInt(contenidoArchivo.Tiempo);
         function timer()
         {
             timeLeft = deadline - Date.now();
@@ -43,30 +45,28 @@ $(document).ready(function () {
         
         puntaje = parseInt(localStorage["puntaje"]);
         document.getElementById("puntos").innerHTML = puntaje;
+        var disp = correctas + "/" + answers.length;
+        $("#correctas").html(disp);
     });
 });
-
-function getQueryVariable(variable)
-{
-       var query = window.location.search.substring(1);
-       var vars = query.split("&");
-       for (var i=0;i<vars.length;i++) {
-               var pair = vars[i].split("=");
-               if(pair[0] === variable){return pair[1];}
-       }
-       return(false);
-}
             
 function checkAnswer(){
     var answ = $('#answer').val().toString();
     answ = answ.toLowerCase();
     if(answers.indexOf(answ) > -1){
-        correctas++;
-        puntaje += 150;
-        var ind = answers.indexOf(answ)+ 1;
-        document.getElementById('answer').value = '';
-        $("#" + ind).html("<b>" + answ + "</b>");
-        $("#correctas").html(correctas + "/31");
-        document.getElementById("puntos").innerHTML = puntaje;
+        var indAnsw = answers.indexOf(answ);
+        if(answered.indexOf(indAnsw) > -1){
+            
+        }else{
+            answered.push(indAnsw);
+            correctas++;
+            puntaje += 150;
+            var ind = answers.indexOf(answ)+ 1;
+            document.getElementById('answer').value = '';
+            $("#" + ind).html("<b>" + answ + "</b>");
+            var disp = correctas + "/" + answers.length;
+            $("#correctas").html(disp);
+            document.getElementById("puntos").innerHTML = puntaje;
+        }
     }
 }
