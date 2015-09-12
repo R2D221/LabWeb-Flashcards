@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+﻿<!DOCTYPE HTML>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -142,7 +142,7 @@
                     bono:0
                 };
                 localStorage ["resultados"] = JSON.stringify(resultados);
-                
+
                 if(localStorage.getItem("max_puntuaciones") === null){
                     var puntuaciones = {
                         puntuaciones:[{
@@ -162,7 +162,7 @@
                                 puntuacion: 0
                         }]
                     };
-                    
+
                     localStorage.setItem("max_puntuaciones", JSON.stringify(puntuaciones));
                 }else{
                     var max = {};
@@ -178,7 +178,7 @@
                             break;
                         }
                     }
-                    
+
                     for(var i = start + 1; i < 5; i++){
                         var temp3 = max.puntuaciones[i].puntuacion;
                         var temp4 = max.puntuaciones[i].usuario;
@@ -187,7 +187,7 @@
                         temp1 = temp3;
                         temp2 = temp4;
                     }
-                
+
                     localStorage.setItem("max_puntuaciones", JSON.stringify(max));
                 }
             }
@@ -217,9 +217,11 @@
             </div>
         </div>
 
-        <div align=center class="opciones">
-            <span id="tema"></span>
-            <span id="numero"></span>
+        <div align="center" class="opciones">
+            <div id="infoPregunta">
+                <span id="tema" style=" float: left;"></span>
+                <span id="numero" style="float: right;"></span>
+            </div>
             <div id="card">
                 <span id="texto"></span>
             </div>

@@ -61,6 +61,7 @@ th {
     background-color: #FCF5A7;
     margin: 15px auto;
     border-radius: 10px;
+    /*text-align: center;*/
 }
 
 .menus {
@@ -110,6 +111,19 @@ th {
     display: inline-block;
     vertical-align: middle;
     line-height: normal;
+}
+
+#infoPregunta {
+    width: 500px;
+    height: 20px;
+}
+
+#tema {
+    float: left;
+}
+
+#numero {
+    float: right;
 }
 
 .opcion {
