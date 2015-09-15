@@ -19,8 +19,9 @@ function formatTime(sec_num) {
     return time;
 }
 
-$(document).ready(function () {                   
-    $.getJSON('json/bonus-1.json', function (contenidoArchivo) {
+$(document).ready(function () {       
+    var jName = "json/bonus-" + nivel + ".json";
+    $.getJSON(jName, function (contenidoArchivo) {
         document.getElementById("pregunta").innerHTML = contenidoArchivo.Pregunta;
         answers = contenidoArchivo.Respuestas;
 
@@ -36,12 +37,28 @@ $(document).ready(function () {
             }
             else
             {
-                localStorage["puntaje"] = puntaje;
+                nivel++;
+                localStorage["nivel"] = nivel;
                 location.replace("Nivel1.html");
             }
         }
 
         timer();
+        
+        var rows = answers.length / 4;
+        rows = Math.floor(rows) +  1;
+        var tablaHTML = "";
+        
+        for(i = 0; i < 4; i++){
+            tablaHTML += "<td><table>";
+            for(j = 0; j < rows && (rows * i + j) < answers.length; j++){
+                tablaHTML += "<tr>" + "<td class=\"number\" >" + ((j + 1) + (rows * i))
+                    + "</td> <td class=\"disp-answer\" id=\"" + ((j + 1) + (rows * i)) + "\" ></td></tr>";
+            }
+            tablaHTML += "</table></td>";
+        }
+        
+        $('#answTable').html(tablaHTML);
         
         puntaje = parseInt(localStorage["puntaje"]);
         document.getElementById("puntos").innerHTML = puntaje;
