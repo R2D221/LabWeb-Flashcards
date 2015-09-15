@@ -9,6 +9,7 @@
         <script src="js/jquery-1.11.3.js" type="text/javascript"></script>
         <script type="text/javascript">
             var puntaje = parseInt(localStorage["puntaje"]);
+            var nivel = parseInt(localStorage["nivel"]);    
             var correcta;
             var contador = 1;
             var timeLeft;
@@ -23,7 +24,7 @@
                 }else if(puntaje > 0){
                     puntaje -= 50;
                 }
-
+                
                 document.getElementById("puntos").innerHTML = puntaje;
                 contador++;
                 if(contador < 13){
@@ -51,13 +52,15 @@
             }
 
             $(document).ready(function () {
+                var jName = "json/nivel" + nivel + ".json";
                 var temas = ["Historia", "Matemáticas"];
                 var contador = 1;
                 var pregunta;
                 var respuesta;
-
-
-                $.getJSON('json/input.json', function (contenidoArchivo) {
+                
+                $('#nivel').html("Nivel " + nivel);
+                
+                $.getJSON(jName, function (contenidoArchivo) {
                     var indice = Math.floor((Math.random()*12));
                     preguntasMostradas[contador-1] = indice;
                     document.getElementById("tema").innerHTML = contenidoArchivo.Preguntas[indice].materia;
@@ -93,7 +96,8 @@
             });
 
             function changeQuestion(){
-                $.getJSON('json/input.json', function (contenidoArchivo) {
+                var jName = "json/nivel" + nivel + ".json";
+                $.getJSON(jName, function (contenidoArchivo) {
                     if(contador <= 12){
 
                     do{
@@ -201,7 +205,7 @@
                 <img src="./img/cerebro.jpg" style="width: 60px; height: 60px;" /><img src="./img/cerebro.png" id="letras" />
             </div>
             <div id="infoNivel">
-                <h2>Nivel 1</h2>
+                <h2 id="nivel"></h2>
                 <div id="indicadores">
                     <table>
                         <tr>
