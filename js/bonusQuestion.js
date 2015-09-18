@@ -2,6 +2,7 @@ var correctas = 0;
 var answers;
 var timeLeft, puntaje;
 var nivel = parseInt(localStorage["nivel"]);
+var usuario = localStorage["usuario_actual"];
 var answered = [];
 
 function formatTime(sec_num) {
@@ -37,9 +38,83 @@ $(document).ready(function () {
             }
             else
             {
+                if(correctas === 0){
+                    if(localStorage.getItem("logros_" + usuario) === null){
+                        var logros = {
+                            logros:[{
+                                    nombre: "Uy, estaba muy difícil.",
+                                    descripcion: "Fallaste épicamente el bonus.",
+                                    imagen: "img/fallaEpica.png"
+                            }]
+                        };
+                        alert("¡Desbloqueaste un logro!");
+
+                        localStorage.setItem("logros_" + usuario, JSON.stringify(logros));
+                    }else{
+                        var logros = {};
+                        var obtenido = 0;
+                        logros = JSON.parse(localStorage.getItem("logros_" + usuario));
+                        for(var k = 0; k < logros.logros.length; k++){
+                            if(logros.logros[k].nombre.indexOf("Uy, estaba muy difícil.") > -1){
+                                obtenido = 1;
+                            }
+                        }
+                        if(obtenido === 0){
+                            logros.logros.push({
+                                        nombre: "Uy, estaba muy difícil.",
+                                        descripcion: "Fallaste épicamente el bonus.",
+                                        imagen: "img/fallaEpica.png"
+                                });
+
+                            localStorage.setItem("logros_" + usuario, JSON.stringify(logros));
+                            alert("¡Desbloqueaste un logro!");
+                        }
+                    }
+                }
+                
                 nivel++;
+                
+                if(nivel === 4){
+                    if(localStorage.getItem("logros_" + usuario) === null){
+                        var logros = {
+                            logros:[{
+                                    nombre: "Ahí vamos.",
+                                    descripcion: "Pasaste el nivel 3.",
+                                    imagen: "img/enCamino.png"
+                            }]
+                        };
+                        alert("¡Desbloqueaste un logro!");
+
+                        localStorage.setItem("logros_" + usuario, JSON.stringify(logros));
+                    }else{
+                        var logros = {};
+                        var obtenido = 0;
+                        logros = JSON.parse(localStorage.getItem("logros_" + usuario));
+                        for(var k = 0; k < logros.logros.length; k++){
+                            if(logros.logros[k].nombre.indexOf("Ahí vamos.") > -1){
+                                obtenido = 1;
+                            }
+                        }
+                        if(obtenido === 0){
+                            logros.logros.push({
+                                    nombre: "Ahí vamos.",
+                                    descripcion: "Pasaste el nivel 3.",
+                                    imagen: "img/enCamino.png"
+                                });
+
+                            localStorage.setItem("logros_" + usuario, JSON.stringify(logros));
+                            alert("¡Desbloqueaste un logro!");
+                        }
+                    }
+                }
+                
                 localStorage["nivel"] = nivel;
-                location.replace("Nivel1.html");
+                localStorage["puntaje"] = puntaje;
+                if(nivel === 6){
+                    location.replace("Home.html")
+                }else{
+                    location.replace("Nivel1.html");
+                }
             }
         }
 
@@ -84,6 +159,73 @@ function checkAnswer(){
             var disp = correctas + "/" + answers.length;
             $("#correctas").html(disp);
             document.getElementById("puntos").innerHTML = puntaje;
+            
+            if(correctas === answers.length){
+                if(timeLeft / 1000 > 20){
+                    if(localStorage.getItem("logros_" + usuario) === null){
+                        var logros = {
+                            logros:[{
+                                    nombre: "Todo un Pro.",
+                                    descripcion: "Respondiste todas las preguntas del bonus y te sobraron 20 segundos.",
+                                    imagen: "img/enPerra.png"
+                            }]
+                        };
+                        alert("¡Desbloqueaste un logro!");
+
+                        localStorage.setItem("logros_" + usuario, JSON.stringify(logros));
+                    }else{
+                        var logros = {};
+                        var obtenido = 0;
+                        logros = JSON.parse(localStorage.getItem("logros_" + usuario));
+                        for(var k = 0; k < logros.logros.length; k++){
+                            if(logros.logros[k].nombre.indexOf("Ahí vamos.") > -1){
+                                obtenido = 1;
+                            }
+                        }
+                        if(obtenido === 0){
+                            logros.logros.push({
+                                    nombre: "Todo un Pro.",
+                                    descripcion: "Respondiste todas las preguntas del bonus.",
+                                    imagen: "img/elGuapo.png"
+                                });
+
+                            localStorage.setItem("logros_" + usuario, JSON.stringify(logros));
+                            alert("¡Desbloqueaste un logro!");
+                        }
+                    }
+                }
+                if(localStorage.getItem("logros_" + usuario) === null){
+                    var logros = {
+                        logros:[{
+                            nombre: "Todo un Pro.",
+                            descripcion: "Respondiste todas las preguntas del bonus y te sobraron 20 segundos.",
+                            imagen: "img/enPerra.png"
+                        }]
+                    };
+                    alert("¡Desbloqueaste un logro!");
+
+                    localStorage.setItem("logros_" + usuario, JSON.stringify(logros));
+                }else{
+                    var logros = {};
+                    var obtenido = 0;
+                    logros = JSON.parse(localStorage.getItem("logros_" + usuario));
+                    for(var k = 0; k < logros.logros.length; k++){
+                        if(logros.logros[k].nombre.indexOf("Super Bonus.") > -1){
+                            obtenido = 1;
+                        }
+                    }
+                    if(obtenido === 0){
+                        logros.logros.push({
+                                nombre: "Super Bonus.",
+                                descripcion: "Respondiste todas las preguntas del bonus.",
+                                imagen: "img/elGuapo.png"
+                            });
+
+                        localStorage.setItem("logros_" + usuario, JSON.stringify(logros));
+                        alert("¡Desbloqueaste un logro!");
+                    }
+                }
+            }
         }
     }
 }

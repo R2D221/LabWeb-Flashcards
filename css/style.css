@@ -71,3 +71,11 @@ td{
 .bonus-stuff{
     display:inline-block
 }
+
+#pregunta,#datos,#correctas{
+    font-family: 'Lobster', cursive;
+}
+
+#datos{
+    font-size: 15px;
+}

@@ -1,7 +1,7 @@
 body{
- 	background-color: #FAAF3D;
- 	background-size: 100%;
- 	border-image-repeat: no-repeat;
+	background-image: url('../img/horizontal_lines.png');
+	background-color: #7ABAFF;
+	background-repeat: repeat;
 }
 
 table{

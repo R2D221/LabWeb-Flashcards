@@ -1,4 +1,4 @@
-﻿<!DOCTYPE HTML>
+<!DOCTYPE HTML>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -9,12 +9,14 @@
         <script src="js/jquery-1.11.3.js" type="text/javascript"></script>
         <script type="text/javascript">
             var puntaje = parseInt(localStorage["puntaje"]);
-            var nivel = parseInt(localStorage["nivel"]);    
+            var nivel = parseInt(localStorage["nivel"]);
+            var fallos = parseInt(localStorage["fallidos"]);    
             var correcta;
             var contador = 1;
             var timeLeft;
             var preguntasMostradas = new Array(12);
             var aciertos = 0;
+            var usuario = localStorage["usuario_actual"];
 
 
             function evaluarOpcion(opcion){
@@ -31,6 +33,42 @@
                     changeQuestion();
                 }else{
                     puntaje += (timeLeft / 10);
+                    
+                    if(timeLeft / 1000 > 30){
+                        if(localStorage.getItem("logros_" + usuario) === null){
+                            var logros = {
+                                logros:[{
+                                        nombre: "Estoy en llamas.",
+                                        descripcion: "Completaste un nivel y te sobraron 30 segundos.",
+                                        imagen: "img/enLlamas.png"
+                                }]
+                            };
+
+                            localStorage.setItem("logros_" + usuario, JSON.stringify(logros));
+                            alert("¡Desbloqueaste un logro!");
+                        }else{
+                            var logros = {};
+                            var obtenido = 0;
+                            logros = JSON.parse(localStorage.getItem("logros_" + usuario));
+                            for(var k = 0; k < logros.logros.length; k++){
+                                if(logros.logros[k].nombre.indexOf("Estoy en llamas.") > -1){
+                                    obtenido = 1;
+                                }
+                            }
+                            if(obtenido === 0){
+                                logros.logros.push({
+                                            nombre: "Estoy en llamas.",
+                                            descripcion: "Completaste un nivel y te sobraron 30 segundos.",
+                                            imagen: "img/enLlamas.png"
+                                    });
+
+                                localStorage.setItem("logros_" + usuario, JSON.stringify(logros));
+                                alert("¡Desbloqueaste un logro!");
+                            }
+                        }
+                    }
+                    
+                    localStorage["fallidos"] = 0;
                     localStorage["puntaje"] = puntaje;
                     location.replace("bonusQuestion.html");
                 }
@@ -86,6 +124,42 @@
                         else
                         {
                             guardar();
+                            if(nivel === 1){
+                                fallos++;
+                                if(fallos === 3){
+                                    if(localStorage.getItem("logros_" + usuario) === null){
+                                        var logros = {
+                                            logros:[{
+                                                    nombre: "Ni con este puedo.",
+                                                    descripcion: "Fallaste el nivel 1 tres veces seguidas.",
+                                                    imagen: "img/esNeta.png"
+                                            }]
+                                        };
+
+                                        localStorage.setItem("logros_" + usuario, JSON.stringify(logros));
+                                        alert("¡Desbloqueaste un logro!");
+                                    }else{
+                                        var logros = {};
+                                        var obtenido = 0;
+                                        logros = JSON.parse(localStorage.getItem("logros_" + usuario));
+                                        for(var k = 0; k < logros.logros.length; k++){
+                                            if(logros.logros[k].nombre.indexOf("Ni con este puedo.") > -1){
+                                                obtenido = 1;
+                                            }
+                                        }
+                                        if(obtenido === 0){
+                                            logros.logros.push({
+                                                    nombre: "Ni con este puedo.",
+                                                    descripcion: "Fallaste el nivel 1 tres veces seguidas.",
+                                                    imagen: "img/esNeta.png"
+                                                });
+
+                                            localStorage.setItem("logros_" + usuario, JSON.stringify(logros));
+                                            alert("¡Desbloqueaste un logro!");
+                                        }
+                                    }   
+                                }
+                            }
                             location.replace("ResultadosNivel1.html");
 
                         }
@@ -118,6 +192,7 @@
                     }else{
 
                         guardar();
+                        localStorage["nivel"] = 1;
                         location.replace("ResultadosNivel1.html");
                     }
                 });
@@ -146,7 +221,7 @@
                     bono:0
                 };
                 localStorage ["resultados"] = JSON.stringify(resultados);
-
+                
                 if(localStorage.getItem("max_puntuaciones") === null){
                     var puntuaciones = {
                         puntuaciones:[{
@@ -166,7 +241,7 @@
                                 puntuacion: 0
                         }]
                     };
-
+                    
                     localStorage.setItem("max_puntuaciones", JSON.stringify(puntuaciones));
                 }else{
                     var max = {};
@@ -182,7 +257,41 @@
                             break;
                         }
                     }
+                    
+                    if(start === 0){
+                        if(localStorage.getItem("logros_" + usuario) === null){
+                            var logros = {
+                                logros:[{
+                                        nombre: "Bop to the top.",
+                                        descripcion: "Colocaste tu puntuación como la número 1.",
+                                        imagen: "img/elEraElNumeroUno.png"
+                                }]
+                            };
 
+                            localStorage.setItem("logros_" + usuario, JSON.stringify(logros));
+                            alert("¡Desbloqueaste un logro!");
+                        }else{
+                            var logros = {};
+                            var obtenido = 0;
+                            logros = JSON.parse(localStorage.getItem("logros_" + usuario));
+                            for(var k = 0; k < logros.logros.length; k++){
+                                if(logros.logros[k].nombre.indexOf("Bop to the top.") > -1){
+                                    obtenido = 1;
+                                }
+                            }
+                            if(obtenido === 0){
+                                logros.logros.push({
+                                        nombre: "Bop to the top.",
+                                        descripcion: "Colocaste tu puntuación como la número 1.",
+                                        imagen: "img/elEraElNumeroUno.png"
+                                    });
+
+                                localStorage.setItem("logros_" + usuario, JSON.stringify(logros));
+                                alert("¡Desbloqueaste un logro!");
+                            }
+                        }
+                    }
+                    
                     for(var i = start + 1; i < 5; i++){
                         var temp3 = max.puntuaciones[i].puntuacion;
                         var temp4 = max.puntuaciones[i].usuario;
@@ -191,7 +300,7 @@
                         temp1 = temp3;
                         temp2 = temp4;
                     }
-
+                
                     localStorage.setItem("max_puntuaciones", JSON.stringify(max));
                 }
             }
@@ -205,7 +314,7 @@
                 <img src="./img/cerebro.jpg" style="width: 60px; height: 60px;" /><img src="./img/cerebro.png" id="letras" />
             </div>
             <div id="infoNivel">
-                <h2 id="nivel"></h2>
+                <h2 id="nivel">Nivel 1</h2>
                 <div id="indicadores">
                     <table>
                         <tr>
@@ -221,11 +330,9 @@
             </div>
         </div>
 
-        <div align="center" class="opciones">
-            <div id="infoPregunta">
-                <span id="tema" style=" float: left;"></span>
-                <span id="numero" style="float: right;"></span>
-            </div>
+        <div align=center class="opciones">
+            <span id="tema"></span>
+            <span id="numero"></span>
             <div id="card">
                 <span id="texto"></span>
             </div>

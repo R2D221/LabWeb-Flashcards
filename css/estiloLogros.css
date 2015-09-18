@@ -64,6 +64,8 @@ th {
     background-color: #FCF5A7;
     margin: 15px auto;
     border-radius: 10px;
+    padding-top: 20px;
+    overflow: auto;
 }
 
 .menus {
@@ -98,104 +100,16 @@ th {
     font-weight: bold;
     font-size: 20px;
     position: relative;
-    background-color: #F57E00;
+    background-color: #a3dced;
     width: 500px;
-    height: 40px;
+    height: auto;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
 }
 
-#usuario1, #usuario2, #usuario3, #usuario4, #usuario5{
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-}
-
-#usuario1{
-    background-color: #1228B0;
-    width: 100px;
-    height: 80px;
-    position: relative;
-    left: -200px;
-    color: white;
-}
-
-#usuario2{
-    background-color: green;
-    width: 100px;
-    height: 40px;
-    position: relative;
-    left: -200px;
-    color: white;
-}
-
-#usuario3{
-    background-color: red;
-    width: 100px;
-    height: 40px;
-    position: relative;
-    left: -200px;
-    color: white;
-}
-
-#usuario4{
-    background-color: #f7d8a8;
-    width: 100px;
-    height: 40px;
-    position: relative;
-    left: -200px;
-    top: -30px;
-    color: white;
-}
-
-#usuario5{
-    background-color: pink;
-    width: 100px;
-    height: 40px;
-    position: relative;
-    left: -200px;
-    top: -30px;
-    color: white;
-}
-
-#lugar1{
-    top: 80px;
-    height: 80px;
-}
-
-#lugar2 {
-    top: 100px;
-}
-
-#lugar3 {
-    top: 120px;
-}
-
-#lugar4 {
-    top: 140px;
-}
-
-#lugar5 {
-    top: 160px;
+.descrip,.logro-icono{
+    display: inline-block;
 }
 
 
-#nick1, #nick2, #nick3{
-    position: relative;
-    left: -100px;
-    top: -30px;
-}
-
-#nick4,#nick5{
-    position: relative;
-    left: -100px;
-    top: 0px;
-}
-
-
-#puntaje1, #puntaje2, #puntaje3, #puntaje4, #puntaje5{
-    position: relative;
-    left: 200px;
-    top: -60px;
-}
