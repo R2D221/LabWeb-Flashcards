@@ -1,4 +1,4 @@
-﻿<!DOCTYPE HTML>
+<!DOCTYPE HTML>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -16,17 +16,17 @@
                document.getElementById('tiempo').innerHTML = res.tiempo;
                document.getElementById('bonus').innerHTML = res.bono;
                document.getElementById('total').innerHTML = (res.aciertos + res.tiempo);
-               
+
                $.getJSON('json/input.json', function (contenidoArchivo) {
-                   
+
                             document.getElementById('materia').innerHTML = "Historia";
                             var referencias = contenidoArchivo.Referencias[0].Historia;
                             document.getElementById('referencia').innerHTML = referencias;
                             document.getElementById('refer').href = referencias;
-                            
+
                         }
                    );
-              
+
                 }
             );
         </script>
@@ -51,12 +51,12 @@
                 <td id="titulo" colspan="8" rowspan="2"> <h1>Resultados Nivel 1 </h1> </td>
             </tr>
             <tr>
-            </tr>       
+            </tr>
         </table>
 
         <div align=center class="opciones" id="resNivel">
-            <div id="ac">Aciertos: <label id="aciertos">00</label> </div>  
-            <div id="ti">Tiempo: <label id="tiempo">00</label> </div> 
+            <div id="ac">Aciertos: <label id="aciertos">00</label> </div>
+            <div id="ti">Tiempo: <label id="tiempo">00</label> </div>
             <div id="bo">Bonus <label id="bonus">00</label></div>
             <div id="to">Total <label id="total">00</label></div>
             <div id="ref">La materia en la que tuviste menos aciertos fue: <label id="materia"></label> <br/>
@@ -64,7 +64,7 @@
                             <br/>
                           Te recomendamos consultar esta referencias: <br/>
                           <a id="refer" href=""><label id="referencia"></label></a>
-             </div> 
+             </div>
         </div>
         <br/>
         <div id="creditos">

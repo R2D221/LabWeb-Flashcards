@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+﻿<!DOCTYPE HTML>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -8,9 +8,18 @@
               href="css/estiloNivel.css">
         <script src="js/jquery-1.11.3.js" type="text/javascript"></script>
         <script type="text/javascript">
+			var safeToLeave = false;
+			if (window.name != "juego") {
+				location.replace("Home.html");
+			}
+
+			window.onbeforeunload = function () {
+				if (!safeToLeave) return "Si sales de esta página, perderás tu progreso.";
+			};
+
             var puntaje = parseInt(localStorage["puntaje"]);
             var nivel = parseInt(localStorage["nivel"]);
-            var fallos = parseInt(localStorage["fallidos"]);    
+            var fallos = parseInt(localStorage["fallidos"]);
             var correcta;
             var contador = 1;
             var timeLeft;
@@ -26,14 +35,14 @@
                 }else if(puntaje > 0){
                     puntaje -= 50;
                 }
-                
+
                 document.getElementById("puntos").innerHTML = puntaje;
                 contador++;
                 if(contador < 13){
                     changeQuestion();
                 }else{
                     puntaje += (timeLeft / 10);
-                    
+
                     if(timeLeft / 1000 > 30){
                         if(localStorage.getItem("logros_" + usuario) === null){
                             var logros = {
@@ -67,9 +76,10 @@
                             }
                         }
                     }
-                    
+
                     localStorage["fallidos"] = 0;
                     localStorage["puntaje"] = puntaje;
+                    safeToLeave = true;
                     location.replace("bonusQuestion.html");
                 }
             }
@@ -95,9 +105,9 @@
                 var contador = 1;
                 var pregunta;
                 var respuesta;
-                
+
                 $('#nivel').html("Nivel " + nivel);
-                
+
                 $.getJSON(jName, function (contenidoArchivo) {
                     var indice = Math.floor((Math.random()*12));
                     preguntasMostradas[contador-1] = indice;
@@ -157,9 +167,10 @@
                                             localStorage.setItem("logros_" + usuario, JSON.stringify(logros));
                                             alert("¡Desbloqueaste un logro!");
                                         }
-                                    }   
+                                    }
                                 }
                             }
+                            safeToLeave = true;
                             location.replace("ResultadosNivel1.html");
 
                         }
@@ -193,6 +204,7 @@
 
                         guardar();
                         localStorage["nivel"] = 1;
+                        safeToLeave = true;
                         location.replace("ResultadosNivel1.html");
                     }
                 });
@@ -221,7 +233,7 @@
                     bono:0
                 };
                 localStorage ["resultados"] = JSON.stringify(resultados);
-                
+
                 if(localStorage.getItem("max_puntuaciones") === null){
                     var puntuaciones = {
                         puntuaciones:[{
@@ -241,7 +253,7 @@
                                 puntuacion: 0
                         }]
                     };
-                    
+
                     localStorage.setItem("max_puntuaciones", JSON.stringify(puntuaciones));
                 }else{
                     var max = {};
@@ -257,7 +269,7 @@
                             break;
                         }
                     }
-                    
+
                     if(start === 0){
                         if(localStorage.getItem("logros_" + usuario) === null){
                             var logros = {
@@ -291,7 +303,7 @@
                             }
                         }
                     }
-                    
+
                     for(var i = start + 1; i < 5; i++){
                         var temp3 = max.puntuaciones[i].puntuacion;
                         var temp4 = max.puntuaciones[i].usuario;
@@ -300,7 +312,7 @@
                         temp1 = temp3;
                         temp2 = temp4;
                     }
-                
+
                     localStorage.setItem("max_puntuaciones", JSON.stringify(max));
                 }
             }
