@@ -1,0 +1,160 @@
+{  
+   "Preguntas":[  
+      {  
+         "materia":"Historia",
+         "pregunta":"&iquest;Semillas cultivadas en México desde hace 5000 mil años y que continuan siendo la base de la piramide alimenticia? ",
+         "Opciones":[  
+            "Arroz y Trigo",
+            "Ma&iacute;z y Frijol",
+            "Lentejas y habas",
+            "Chicharo y garbanzo "
+         ],
+         "Respuesta":"2",
+         "explicacion":"Hace acerca de 500 mil años, en el M&eacute;xico Prehisp&aacute;nico se cultivaban -prioritariamente- el ma&iacute;z y el frijol."
+      },
+      {  
+         "materia":"Historia",
+         "pregunta":"&iquest;Civilizaci&oacute;n precolombina mesoam&eacute;ricana, conocida por haber desarrollado uno de los unicos lenguaje escrito en la Am&eacute;rica Precolombina?",
+         "Opciones":[  
+            "Tolteca",
+            "Olmeca",
+            "Azteca",
+            "Maya"
+         ],
+         "Respuesta":"4",
+         "explicacion":"La cultura Maya fue una de las únicas civilizaciones que tenía por un lenguaje escrito; también se detaca por su arte, su arqitecura, sistemas matemáticos y astronómicos."
+      },
+      {  
+         "materia":"Historia",
+         "pregunta":"&iquest;Es considerada por muchos historiadores, como la cultura madre mesoamericana?",
+         "Opciones":[  
+            "Tolteca",
+            "Olmeca",
+            "Maya",
+            "Zapoteca"
+         ],
+         "Respuesta":"2",
+         "explicacion":"La cultura Olmeca, habit&oacute; en las tierras bajas del centro-sur de M&eacute;xico (Veracruz y Tabasco); entre los años 1200 a.c y 400 a.c"
+      },
+      {  
+         "materia":"Historia",
+         "pregunta":"&iquest;Cultura mesoam&eacute;ricana que no pudo ser conquistada por los Aztecas, a pesar de varios intentos? ",
+         "Opciones":[  
+            "Tolteca",
+            "Zapoteca",
+            "Taraumara",
+            "Pur&eacute;pecha / Tarasca"
+         ],
+         "Respuesta":"4",
+         "explicacion":"La cuntura Pur&eacute;pecha/Tarasca nunca fue conquistada por los Aztecas. Esto se debe probablemente a su conocimiento sobre el moldeo de armas hechas con metal "
+      },
+      {  
+         "materia":"Ciencias Naturales",
+         "pregunta":"&iquest; T&eacute;rmino que se refiere a la interacci&oacute;n entre los seres vivos, su ambiente y los ciclos de materia y energ&iacute;a?",
+         "Opciones":[  
+            "Nicho",
+            "Ambiente",
+            "Ecosistema",
+            "Poblaci&oacute;n"
+         ],
+         "Respuesta":"3",
+         "explicacion":"El t&eacute;rmino ecosistema ha evolucionado, m&aacute;s recientemente se le da un &eacute;nfasis geogr&aacute;fico; por ejemplo: bosque de pinos, pastizal, etc."
+      },
+      {  
+         "materia":"Ciencias Naturales",
+         "pregunta":"&iquest; Es una de las causas principales de la modificaci&oacute;n de los ecosistemas de forma acelerada y no prevista?",
+         "Opciones":[  
+            "Mutaciones",
+            "Evaluci&oacute;n",
+            "Actividades humanas",
+            "Desastres Naturales"
+         ],
+         "Respuesta":"3",
+         "explicacion":"Las actividades humanas, como la extracci&oacute;n de madera, plantas, fauna, la agricultura, ect.; modifican las caracter&iacute;sticas originales de los ecosistemas, a tal grado de romper su equilibrio y causar su desaparición."
+      },
+      {  
+         "materia":"Ciencias Naturales",
+         "pregunta":"&iquest; Cuál es la principal complicación para conocer el estado original de un ecositema?",
+         "Opciones":[  
+            "Ubicación",
+            "Clima",
+            "Suelo",
+            "Influencia de actividades humanas"
+         ],
+         "Respuesta":"4",
+         "explicacion":"La amplia gama de artr&oacute;podos incluye insectos, cangrejos, ara&ntilde;as y escorpiones. La mayoria se reproduce mediante huevos."
+      },
+      {  
+         "materia":"Ciencias Naturales",
+         "pregunta":"&iquest; Estudia los procesos de renovación de los ecosistemas degradados o destruidos? ",
+         "Opciones":[  
+            "Ecolog&iacute;a de la Restauraci&oacute;n",
+            "Zoolog&iacute;a",
+            "Hertetolog&iacute;a",
+            "Bioqu&iacute;mica"
+         ],
+         "Respuesta":"1",
+         "explicacion":"La ecolog&iacute;a de la restauraci&oacute;n estudia los procesos de perturbaci&oacute;n natural de la regi&oacute;n y la estructura animal y vegetal que devuelve las funciones a un ecosistema"
+      },
+      {  
+         "materia":"Matem&aacute;ticas",
+         "pregunta":"Jos&eacute; quiere regalarle flores a su mam&aacute; y a su abuelita. Compr&oacute; 36 flores, &iquest; C&oacute;mo puede dividirlas en dos partes iguales? ",
+         "Opciones":[  
+            "36 / 2 = 18",
+            "36 / 2 = 14",
+            "36 / 2 = 13",
+            "36 / 2 = 17"
+         ],
+         "Respuesta":"1",
+         "explicacion":" 36 (flores) / 2 (mam&aacute; y abuelita) = 18. 18 (flores para mam&aacute;) + 18 (flores para la abuelita) = 36 flores"
+      },
+      {  
+         "materia":"Matem&aacute;ticas",
+         "pregunta":"Amanda hizo 20 sandwich para sus 5 amigos. En partes iguales, ¿cu&acute;ntos sandwich se comerá cada quien? ",
+         "Opciones":[  
+            "9",
+            "6",
+            "4",
+            "2"
+         ],
+         "Respuesta":"3",
+         "explicacion":" 20 sandwich / 5 amigos = 4. 4(n&uacute&uacute;mero de sandwich) * 5 (n&uacute;mero de Amigos) = 20 Sandwich."
+      },
+      {  
+         "materia":"Matem&aacute;ticas",
+         "pregunta":"Evel&iacute;n tiene 15 muñecas con las que jugaba cuando era niña. Ella quiere regalarlas a sus 3 sobrinas. En partes iguales ¿Cu&aacute;ntas muñnecas tendr&aacute; cada una de sus sobrinas ?",
+         "Opciones":[  
+            "7",
+            "8",
+            "4",
+            "5"
+         ],
+         "Respuesta":"4",
+         "explicacion":" 15 muñecas / 3 sobrinas = 5. 5(n&uacute;mero de muñecas) * 3 (n&uacute;mero de sobrinas) = 15 muñecas. "
+      },
+      {  
+         "materia":"Matem&aacute;ticas",
+         "pregunta":"Mateo compro 40 canicas y las quiere guardar en 8 botes. En partes iguales, ¿cu&aacute;ntas debe guardar en cada bote?",
+         "Opciones":[  
+            "5",
+            "7",
+            "8",
+            "10"
+         ],
+         "Respuesta":"1",
+         "Explicacion":" 5 (botes) x 4 (canicas) = 20 canicas."
+      }
+   ],
+   "Referencias":[  
+      {  
+         "Historia":"http://www.historiacultural.com/2011/10/cultura-purepecha-o-tarasca.html"
+      },
+      {  
+         "Matematicas":"http://www.gcfaprendelibre.org/matematicas/curso/como_dividir/dividir_por_una_cifra/1.do"
+      },
+      {  
+         "Ciencias Naturales":"http://www.biodiversidad.gob.mx/ecosistemas/quees.html"
+      }
+   ],
+   "tiempo":"90"
+}
