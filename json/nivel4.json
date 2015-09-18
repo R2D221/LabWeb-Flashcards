@@ -1,0 +1,160 @@
+{  
+   "Preguntas":[  
+      {  
+         "materia":"Historia",
+         "pregunta":"&iquest;En qu&eacute; consistian las \"Leyes de Reforma\"de 1859? ",
+         "Opciones":[  
+            "Definici&oacute; de derechos humanos",
+            "Grant&iacute;s individuales",
+            "Sistema penal judicial",
+            "Fijaron los términos de la relación Iglesia - Estado"
+         ],
+         "Respuesta":"4",
+         "explicacion":"El 7 de Julio de 1859, el presindente Ju&aacute;rez expidi&oacute; las leyes de reforma"
+      },
+      {  
+         "materia":"Historia",
+         "pregunta":"&iquest; Ley que obligaba a las corporaciones civiles a vender sus propiedades en desuso?",
+         "Opciones":[  
+            "Ley Lerdo",
+            "Ley Ju&aacute;rez",
+            "Ley Iglesias",
+            "Ley G&oacute;mez Far&iacute;s"
+         ],
+         "Respuesta":"1",
+         "explicacion":"La Ley Lerdo ten&iacute;a por objetivo la redistribu&oacute;n de la riqueza a beneficio de m&aacute;s personas."
+      },
+      {  
+         "materia":"Historia",
+         "pregunta":"&iquest; Ley que obligaba a las corporaciones civiles a no intervenir en asuntos del Estado?",
+         "Opciones":[  
+            "Ley Lerdo",
+            "Ley Iglesias",
+            "Ley D&iacute;az",
+            "Ley Ju&aacute;z"
+         ],
+         "Respuesta":"4",
+         "explicacion":"La Ley Ju&aacute;z trat&oacute; de suprimir los privilegios de la Iglesia y el Ejercito en los asuntos del Estado."
+      },
+      {  
+         "materia":"Historia",
+         "pregunta":"&iquest; Ley que prohibi&oacute; el cobro de derechos, obtenciones parroquiales y el diezmo?",
+         "Opciones":[  
+            "Ley Toledo",
+            "Ley D&iacute;az",
+            "Derecho de asociaci&oacute;n",
+            "Ley Iglesias"
+         ],
+         "Respuesta":"4",
+         "explicacion":"La Ley Iglesias, buscaba eliminar el pago de cuotas al cl&eacute;ro. "
+      },
+      {  
+         "materia":"Ciencias Naturales",
+         "pregunta":"&iquest;Cu&aacute;ntos m&uacute;sculos tiene tu cuerpo?",
+         "Opciones":[  
+            "M&aacute;s de 600",
+            "M&aacute;s de 800",
+            "M&aacute;s de 1000",
+            "M&aacute;s de 700"
+         ],
+         "Respuesta":"1",
+         "explicacion":"El Cuerpo humano tiene m&aacute;s de 600 m&uacute;sculos."
+      },
+      {  
+         "materia":"Ciencias Naturales",
+         "pregunta":"&iquest; Cu&aacute;l de los siguientes organos tiene m&uacute;sculos lisos? ",
+         "Opciones":[  
+            "El est&oacute;mago",
+            "Piel",
+            "Higado",
+            "Ri&ntilde;on"
+         ],
+         "Respuesta":"1",
+         "explicacion":"Los m&uacute;sculos lisos(involuntarios) permiten al est&oacute;mago transportar y digerir la comida."
+      },
+      {  
+         "materia":"Ciencias Naturales",
+         "pregunta":"Nombre de las c&eacute;lulas que forman el tejido c&aacute;rdiaco?",
+         "Opciones":[  
+            "Card&iacute;cas",
+            "Latentes",
+            "Sangu&iacute;neas",
+            "Marcapasos"
+         ],
+         "Respuesta":"4",
+         "explicacion":"Las c&eacute;lulas marcapasos son un grupo especial de c&eacute;lulas que controlan el latido card&iacute;aco."
+      },
+      {  
+         "materia":"Ciencias Naturales",
+         "pregunta":"&iquest; Los m&uacute;sculos esquel&eacute;ticos, te permiten ...? ",
+         "Opciones":[  
+            "Transportar la comida en los intestinos",
+            "Latir el coraz&oacute;n",
+            "Mover los ojos",
+            "Mover tu cuerpo y extremidades"
+         ],
+         "Respuesta":"1",
+         "explicacion":"Los m&uacute;sculos esquel&eacute;ticos est&aacute;n unidos a los huesos a trav&eacute;s de los tendones. Esta combinaci&oacute;n te permite moverte."
+      },
+      {  
+         "materia":"Matem&aacute;ticas",
+         "pregunta":"&iquest; Qu&eacute; nombre recibe la figura geom&eacute;trica de 12 lados? ",
+         "Opciones":[  
+            "hexagono",
+            "hept&aacute;gono",
+            "cuadrado",
+            "dodec&aacute;gono"
+         ],
+         "Respuesta":"1",
+         "explicacion":"El dodec&aacute;gono es una figura compuesta por 12 lados."
+      },
+      {  
+         "materia":"Matem&aacute;ticas",
+         "pregunta":"&iquest; Cu&aacute;anto suman los &aacute;ngulos internos de un tri&aacute;ngulo? ",
+         "Opciones":[  
+            "180 grados",
+            "90 grados",
+            "120 grados",
+            "200 grados"
+         ],
+         "Respuesta":"1",
+         "explicacion":"Los &aacute;ngulos internos de un tri&aacute;ngulo suman 180 grados"
+      },
+      {  
+         "materia":"Matem&aacute;ticas",
+         "pregunta":"&iquest; Cu&aacute;anto suman los &aacute;ngulos internos de un Hex&aacute;gono? ",
+         "Opciones":[  
+            "600 grados",
+            "700 grados",
+            "800 grados",
+            "720 grados"
+         ],
+         "Respuesta":"4",
+         "explicacion":"Los &aacute;ngulos internos de un Hex&aacute;gono suman 720 grados"
+      },
+      {  
+         "materia":"Matem&aacute;ticas",
+         "pregunta":"&iquest; Cu&aacute;l es la form&uacute;la para calcular la suma de los &aacute;ngulos internos de cualquier pol&iacute;gono?",
+         "Opciones":[  
+            " (n - 7) * 180",
+            "(n - 3) * (n - 2)",
+            "(n - 2) * 180",
+            "360 / n"
+         ],
+         "Respuesta":"2",
+         "Explicacion":" Ejemplo: Tri&aacute;ngulo: ( 3 - 2) * 180 = 180, Hex&aacute;gono: (6 - 2) * 180 = 720"
+      }
+   ],
+   "Referencias":[  
+      {  
+         "Historia":"http://web.segobver.gob.mx/juridico/var/presentacion.pdf"
+      },
+      {  
+         "Matematicas":"http://www.disfrutalasmatematicas.com/geometria/angulos-interiores-poligonos.html"
+      },
+      {  
+         "Ciencias Naturales":"http://kidshealth.org/kid/en_espanol/cuerpo/muscles_esp.html#"
+      }
+   ],
+   "tiempo":"90"
+}

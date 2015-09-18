@@ -1,0 +1,160 @@
+{  
+   "Preguntas":[  
+      {  
+         "materia":"Historia",
+         "pregunta":"&iquest; Paises que desataron la Segunda Guerra Mundial? ",
+         "Opciones":[  
+            "Austria y Uruguay",
+            "Alemania y Jap&oacute;n",
+            "EUA y UK",
+            "Italia y Alemania"
+         ],
+         "Respuesta":"2",
+         "explicacion":"La alemania nazi y el imperio japon&eacute;s desataron la segunda guerra mundial, buscado un dominio permanente sobre Europa y Asia."
+      },
+      {  
+         "materia":"Historia",
+         "pregunta":"&iquest; Evento que marco el inicio de la Segunda Guerra Mundial en Asia?",
+         "Opciones":[  
+            "La invasi&oaacute; de Jap&oacute;n a China",
+            "La invasi&oaacute; de Jap&oacute;n a Korea",
+            "La invasi&oaacute; de Korea a India",
+            "La invasi&oaacute; de India a China"
+         ],
+         "Respuesta":"1",
+         "explicacion":"En Julio de 1937 Jap&oacute;n invadi&oacute; China, desatando la segunda guerra mundial en Asia."
+      },
+      {  
+         "materia":"Historia",
+         "pregunta":"&iquest; Evento que marco el inicio de la segunda guerra mundial en Europa?",
+         "Opciones":[  
+            "Alemania invade Polonia",
+            "Austria invade Francia",
+            "Polonia invade España",
+            "Alemania invade Rusia"
+         ],
+         "Respuesta":"1",
+         "explicacion":"La invasi&oacute;n del 1 de Septiembre de 1939, inici&oacute; la Sgunda Guerra Mundial en Europa."
+      },
+      {  
+         "materia":"Historia",
+         "pregunta":"&iquest; En que fecha termin&oacute; la segunda guerra mundial? ",
+         "Opciones":[  
+            "14 de Agosto de 1945",
+            "20 de Septiembre del 1945",
+            "20 de Noviembre del 1945",
+            "15 de Octubre de 1945"
+         ],
+         "Respuesta":"1",
+         "explicacion":"El 14 de Agosto de 1945, Jap&oacute;n acept&oacute; rendirse, terminando as&iacute; la segunda guerra mundial"
+      },
+      {  
+         "materia":"Ciencias Naturales",
+         "pregunta":"&iquest;Cu&aacute;ntos huesos tiene el cuerpo humano?",
+         "Opciones":[  
+            "300",
+            "200",
+            "280",
+            "306"
+         ],
+         "Respuesta":"4",
+         "explicacion":"El Cuerpo humano tiene 206 huesos"
+      },
+      {  
+         "materia":"Ciencias Naturales",
+         "pregunta":"&iquest; A qu&eacute; edad aproximadamente, los huesos dejan de crecer? ",
+         "Opciones":[  
+            "18",
+            "20",
+            "30",
+            "25"
+         ],
+         "Respuesta":"1",
+         "explicacion":"A los 25 a&ntilde;s aproximadamente, los huesos dejan de crecer."
+      },
+      {  
+         "materia":"Ciencias Naturales",
+         "pregunta":"&iquest; Cu&aacute;ntos huesos forman la columna vertebral?",
+         "Opciones":[  
+            "15",
+            "22",
+            "26",
+            "30"
+         ],
+         "Respuesta":"3",
+         "explicacion":"La columna est&aacute; compuesta por 26 huesos, te permite girarte, doblarte y mantenerte erguido."
+      },
+      {  
+         "materia":"Ciencias Naturales",
+         "pregunta":"&iquest; La uni&oacute;n de dos huesos adyacentes recibe el nombre de ...? ",
+         "Opciones":[  
+            "Articulaci&oacute;n",
+            "Tend&oacute;n",
+            "C&aacute;rtilago",
+            "Puente"
+         ],
+         "Respuesta":"1",
+         "explicacion":"Las articulaciones son el punto de uni&oacute;n entre dos huesos adyacentes. Ellas te permiten tener movilidad."
+      },
+      {  
+         "materia":"Matem&aacute;ticas",
+         "pregunta":"&iquest; Form&uacute;la para calcular el &aacute;rea de un circulo?  ",
+         "Opciones":[  
+            "A = &Pi; r&Circ;2 ",
+            "A = &Pi; r&Circ;3",
+            "A = &Pi; / r&Circ;2",
+            "A = &Pi; / 2r"
+         ],
+         "Respuesta":"1",
+         "explicacion":"La form&uacute;la para calcular el &aacute;rea de un circulo es  A = &Pi; / r&Circ;2"
+      },
+      {  
+         "materia":"Matem&aacute;ticas",
+         "pregunta":"&iquest; Form&uacute;la para calcular el &aacute;rea de un romboide? ",
+         "Opciones":[  
+            "A = D x h",
+            "A = b x h",
+            "A = D x h / d  x 2",
+            "A = (b x h) / 2"
+         ],
+         "Respuesta":"1",
+         "explicacion":"La form&uacute;la para calcular el &aacute;rea de un romboide es  A = B x h"
+      },
+      {  
+         "materia":"Matem&aacute;ticas",
+         "pregunta":"&iquest; Form&uacute;la para calcular el &aacute;rea de un rombo? ",
+         "Opciones":[  
+            "A = D x h / d  x 2",
+            "A = (D x d) / 2",
+            "A = (B + b) x h / 2",
+            "A = &Pi; / 2r"
+         ],
+         "Respuesta":"3",
+         "explicacion":"La form&uacute;la para calcular el &aacute;rea de un rombo es  A =(D x d) / 2"
+      },
+      {  
+         "materia":"Matem&aacute;ticas",
+         "pregunta":"&iquest; Form&uacute;la para calcular el &aacute;rea de un trapecio?",
+         "Opciones":[  
+            "A = D x h",
+            "A = b x h",
+            "A = (B + b) x h /  2",
+            "A = (b x h) / 2"
+         ],
+         "Respuesta":"2",
+         "Explicacion":"La form&uacute;la para calcular el &aacute;rea de un trapecio es A = (B + b) x h /  2 "
+      }
+   ],
+   "Referencias":[  
+      {  
+         "Historia":"http://www.ushmm.org/wlc/es/article.php?ModuleId=10007799"
+      },
+      {  
+         "Matematicas":"http://www.ditutor.com/geometria/areas.html"
+      },
+      {  
+         "Ciencias Naturales":"http://kidshealth.org/kid/en_espanol/cuerpo/bones_esp.htm"
+      }
+   ],
+   "tiempo":"90"
+}
