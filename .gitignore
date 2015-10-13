@@ -5,3 +5,4 @@
 *.csproj.user
 bin/
 obj/
+/nbproject/private/

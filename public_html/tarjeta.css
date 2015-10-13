@@ -1,0 +1,40 @@
+#card {
+	width: 400px;
+	height: 560px;
+	position: absolute;
+	top: calc(50% - 280px);
+	left: calc(50% - 200px);
+}
+
+.front, .back {
+	background-color: whitesmoke;
+	border-radius: 16px;
+	box-sizing: border-box;
+	padding: 32px;
+}
+
+#question {
+	width: 336px;
+	height: 336px;
+}
+
+#options {
+	margin: 0;
+	padding: 0;
+}
+
+.option {
+	width: 50%;
+	float: left;
+	list-style-position: inside;
+	height: 80px;
+}
+
+	.option:hover {
+		background-color: lightpink;
+	}
+
+	.option::before {
+		content: "";
+		margin-left: -0.75em;
+	}
