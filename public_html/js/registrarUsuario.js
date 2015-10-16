@@ -6,3 +6,20 @@ function entrar(){
     localStorage["puntaje"] = 0;
     location.replace("Home.html");
 }
+
+$(document).ready(function(){
+        var miUsuario, miContra;
+        $("#inicio").click(function(){
+            miUsuario=$("#usuario").val();
+            miContra=$("#pass").val();
+            $.ajax({
+                type: 'POST',
+                url: '/login',
+                data: {usuario: miUsuario,
+                    password: miContra},
+                success: function(data){
+                    window.location = "entrada";
+                }
+            });
+        });
+    });

@@ -6,13 +6,15 @@ $(document).ready(function(){
             miContra=$("#contra1").val();
             miCnfrm=$("#contra2").val();
             if(miCnfrm === miContra){
-                $.post("http://localhost:3000/nuevoProfesor",
-                {nombre: miNombre,
-                    usuario: miUsuario,
-                    password: miContra}, function(data){
-                    if(data==='done')
-                    {
-                        alert("Maestro registrado");
+                $.ajax({
+                    type: 'POST',
+                    url: '/nuevoProfesor',
+                    data: {nombre: miNombre,
+                        usuario: miUsuario,
+                        password: miContra},
+                    success: function(data){
+                        alert("Registro aceptado.");
+                        window.location = "Inicio.html";
                     }
                 });
             }else{

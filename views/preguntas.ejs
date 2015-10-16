@@ -1,0 +1,22 @@
+<head>
+    <title>Flashcards</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/jquery-1.11.3.js" type="text/javascript"></script>
+    <script src="js/pregunta.js" type="text/javascript"></script>
+</head>
+<body>
+    Grupo: <select id="grupo">
+        <% for(var i=0; i < grupos.length; i++) { %>
+            <option value="<%= grupos[i].id_grupo%>"><%= grupos[i].nombre %></option>
+        <% } %>
+    </select><br />
+    Descripci&oacute;n:<br /><textarea id="descrip" rows="5"></textarea><br />
+    Opci&oacute;n 1:<br /><textarea id="op1" rows="5"></textarea><br />
+    Opci&oacute;n 2:<br /><textarea id="op2" rows="5"></textarea><br />
+    Opci&oacute;n 3:<br /><textarea id="op3" rows="5"></textarea><br />
+    Opci&oacute;n 4:<br /><textarea id="op4" rows="5"></textarea><br />
+    Respuesta: <input type="text" id="respuesta" maxlenght="4" /><br />
+    Categor&iacute;a: <input type="text" id="categoria" maxlenght="50" /><br />
+    <input type="submit" value="Registrar" id="alta" />
+</body>
