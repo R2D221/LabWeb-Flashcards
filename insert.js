@@ -1,7 +1,7 @@
 var express    = require('express');
 var bodyParser = require('body-parser')
 var mysql      = require('mysql');
-var session    = require('express-session');
+var session    = require('client-sessions');
 
 var pool = mysql.createPool({
     connectionLimit : 50,
@@ -13,13 +13,15 @@ var pool = mysql.createPool({
 });
 
 var app = express();
-
-app.use(session({secret: 'secretoDeChola'}));
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(__dirname + '/public_html'));
-
-var sess;
+app.use(session({
+  cookieName: 'session',
+  secret: 'SeCRet0DeCh0l4',
+  duration: 20 * 60 * 1000,
+  activeDuration: 10 * 60 * 1000,
+}));
 
 app.get('/', function(req, res){
    res.sendFile(__dirname + '/public_html/Inicio.html'); 
@@ -27,7 +29,7 @@ app.get('/', function(req, res){
 
 
 app.get('/entrada', function(req, res){
-    res.render('homeProfesor.ejs', {usuario: sess.usuario});
+    res.render('homeProfesor.ejs', {usuario: req.session.usuario});
 });
 
 app.get('/agregarPregunta', function(req, res){
@@ -39,7 +41,7 @@ app.get('/agregarPregunta', function(req, res){
           return;
         }   
 
-        connection.query('SELECT * FROM Grupo WHERE id_profesor = ?', sess.idProfesor, function(err,rows){
+        connection.query('SELECT * FROM Grupo WHERE id_profesor = ?', req.session.idProfesor, function(err,rows){
             connection.release();
             if(!err){
                 res.render('preguntas.ejs', {grupos:rows});
@@ -56,7 +58,6 @@ app.get('/agregarPregunta', function(req, res){
 });
 
 app.post('/login', function(req, res){
-    sess = req.session;
     var user = req.body.usuario;
     var idProf;
     pool.getConnection(function(err,connection){
@@ -70,9 +71,11 @@ app.post('/login', function(req, res){
             connection.release();
             if(!err){
                 idProf = rows[0].id_profesor;
-                sess.idProfesor = idProf;
+                req.session.idProfesor = idProf;
+                req.session.usuario = user;
+                res.render('homeProfesor.ejs', {usuario: req.session.idProfesor});
             }else{
-                console.log('Hubo error.');
+                console.log('Error al realizar log-in.');
             }
         });
 
@@ -81,8 +84,6 @@ app.post('/login', function(req, res){
               return;     
         });
     });
-    sess.usuario = user;
-    res.render('homeProfesor.ejs', {usuario: sess.usuario});
 });
 
 app.post('/nuevoProfesor', function(req, res){
@@ -114,7 +115,7 @@ app.post('/nuevoProfesor', function(req, res){
 });
 
 app.post('/nuevoGrupo', function(req, res){
-    var prof = sess.idProfesor;
+    var prof = req.session.idProfesor;
     var nom = req.body.nombre;
     var descrip = req.body.descripcion;
     var clave = req.body.clave;
@@ -152,44 +153,46 @@ app.post('/nuevoGrupo', function(req, res){
 
 app.post('/nuevaPregunta', function(req, res){
     var grupo = req.body.grupo;
-    var descrip = req.body.descripcion;
-    var opA = req.body.opcionA;
-    var opB = req.body.opcionB;
-    var opC = req.body.opcionC;
-    var opD = req.body.opcionD;
-    var respuesta = req.body.respuesta;
-    var categoria = req.body.categoria;
-    var pregunta = {id_grupo: grupo,
-        descripcion: descrip,
-        categoria: categoria,
-        A: opA,
-        B: opB,
-        C: opC,
-        D: opD,
-        respuesta: respuesta};
-    
-    pool.getConnection(function(err,connection){
-        if (err) {
-          connection.release();
-          res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
-          return;
-        }   
-
-        var query = connection.query('insert into Pregunta set ?', pregunta, function(err,rows){
-            connection.release();
-            if(!err){
-                console.log('Se guardo la pregunta.');
-                res.send('success');
-            }else{
-                console.log('Hubo error en el insertado.');
-            }
-        });
-
-        connection.on('error', function(err) {      
-              res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
-              return;     
-        });
-    });
+    var respuestas = req.body.resps;
+    console.log(respuestas);
+    res.send('success');
+//    var opA = req.body.opcionA;
+//    var opB = req.body.opcionB;
+//    var opC = req.body.opcionC;
+//    var opD = req.body.opcionD;
+//    var respuesta = req.body.respuesta;
+//    var categoria = req.body.categoria;
+//    var pregunta = {id_grupo: grupo,
+//        descripcion: descrip,
+//        categoria: categoria,
+//        A: opA,
+//        B: opB,
+//        C: opC,
+//        D: opD,
+//        respuesta: respuesta};
+//    
+//    pool.getConnection(function(err,connection){
+//        if (err) {
+//          connection.release();
+//          res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+//          return;
+//        }   
+//
+//        var query = connection.query('insert into Pregunta set ?', pregunta, function(err,rows){
+//            connection.release();
+//            if(!err){
+//                console.log('Se guardo la pregunta.');
+//                res.send('success');
+//            }else{
+//                console.log('Hubo error en el insertado.');
+//            }
+//        });
+//
+//        connection.on('error', function(err) {      
+//              res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+//              return;     
+//        });
+//    });
 });
 
 app.listen(3000);
