@@ -153,46 +153,43 @@ app.post('/nuevoGrupo', function(req, res){
 
 app.post('/nuevaPregunta', function(req, res){
     var grupo = req.body.grupo;
-    var respuestas = req.body.resps;
-    console.log(respuestas);
-    res.send('success');
-//    var opA = req.body.opcionA;
-//    var opB = req.body.opcionB;
-//    var opC = req.body.opcionC;
-//    var opD = req.body.opcionD;
-//    var respuesta = req.body.respuesta;
-//    var categoria = req.body.categoria;
-//    var pregunta = {id_grupo: grupo,
-//        descripcion: descrip,
-//        categoria: categoria,
-//        A: opA,
-//        B: opB,
-//        C: opC,
-//        D: opD,
-//        respuesta: respuesta};
-//    
-//    pool.getConnection(function(err,connection){
-//        if (err) {
-//          connection.release();
-//          res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
-//          return;
-//        }   
-//
-//        var query = connection.query('insert into Pregunta set ?', pregunta, function(err,rows){
-//            connection.release();
-//            if(!err){
-//                console.log('Se guardo la pregunta.');
-//                res.send('success');
-//            }else{
-//                console.log('Hubo error en el insertado.');
-//            }
-//        });
-//
-//        connection.on('error', function(err) {      
-//              res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
-//              return;     
-//        });
-//    });
+    var preguntas = parseInt(req.body.noPreguntas);
+    var respuestas = JSON.parse(req.body.resps);
+    
+    var values = [];
+    var insertQuery  = 'insert into Pregunta(id_grupo, descripcion, categoria, A, B, C, D, respuesta) values ?';
+    
+    for(var i = 0; i < preguntas; i++){
+        var pregunta = [grupo,respuestas.preguntas[i].descripcion,respuestas.preguntas[i].categoria,respuestas.preguntas[i].opcionA,
+            respuestas.preguntas[i].opcionB, respuestas.preguntas[i].opcionC, respuestas.preguntas[i].opcionD, respuestas.preguntas[i].respuesta];
+        
+        values[i] = pregunta;
+    }
+        
+    pool.getConnection(function(err,connection){
+        if (err) {
+          connection.release();
+          res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+          return;
+        }   
+
+        var query = connection.query(insertQuery, [values], function(err,rows){
+            connection.release();
+            console.log(values);
+            if(!err){
+                console.log('Se guardaron las preguntas.');
+                res.send('success');
+            }else{
+                console.log('Hubo error en el insertado.');
+                console.log(err);
+            }
+        });
+
+        connection.on('error', function(err) {      
+              res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+              return;     
+        });
+    });
 });
 
 app.listen(3000);

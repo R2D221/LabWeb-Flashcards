@@ -4,46 +4,6 @@ var respuestas = [];
 var miGrupo = "";
 
 $(document).ready(function(){
-        var miDescripcion,miOpA,miOpB,miOpC,miOpD,miRespuesta,miCategoria;
-        $("#alta").click(function(){
-            miDescripcion=$("#descrip").val();
-            miOpA=$("#op1").val();
-            miOpB=$("#op2").val();
-            miOpC=$("#op3").val();
-            miOpD=$("#op4").val();
-            miRespuesta=$("#respuesta").val();
-            miCategoria=$("#categoria").val();
-
-            if(miDescripcion != "" && miOpA != "" && miOpB != "" && miOpC != "" && miOpD != "" && miCategoria != ""){
-                respuestas[actual - 1] = {descripcion: miDescripcion,
-                            opcionA: miOpA,
-                            opcionB: miOpB,
-                            opcionC: miOpC,
-                            opcionD: miOpD,
-                            respuesta: miRespuesta,
-                            categoria: miCategoria};
-            
-                $.ajax({
-                    type: 'POST',
-                    url: '/nuevaPregunta',
-                    data: {grupo: miGrupo,
-                        resps: respuestas},
-                    success: function(data){
-                        if(data === "success"){
-                            alert("Preguntas guardada.");
-                            window.location = "agregarPregunta";
-                        }else{
-                            window.location = "entrada";
-                        }
-                    }
-                });
-            }else{
-                alert("Todos los campos son necesarios.");
-            }
-        });
-    });
-
-$(document).ready(function(){
         $("#acepta").click(function(){
             miGrupo=$("#grupo").val();
             preguntas = parseInt($("#noPreguntas").val());
@@ -177,14 +137,17 @@ function alta(){
                     respuesta: miRespuesta,
                     categoria: miCategoria};
 
+        var elJSON = JSON.stringify({preguntas: respuestas});
+
         $.ajax({
             type: 'POST',
             url: '/nuevaPregunta',
             data: {grupo: miGrupo,
-                resps: respuestas[0]},
+                resps: elJSON,
+                noPreguntas: preguntas},
             success: function(data){
                 if(data === "success"){
-                    alert("Preguntas guardada.");
+                    alert("Preguntas guardadas.");
                     window.location = "agregarPregunta";
                 }else{
                     window.location = "entrada";
