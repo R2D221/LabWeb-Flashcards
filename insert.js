@@ -1,7 +1,11 @@
 var express    = require('express');
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
 var mysql      = require('mysql');
 var session    = require('client-sessions');
+var multer     = require('multer');
+var fs         = require('fs');
+
+var downdir = __dirname + '/public_html/uploads';
 
 var pool = mysql.createPool({
     connectionLimit : 50,
@@ -20,8 +24,9 @@ app.use(session({
   cookieName: 'session',
   secret: 'SeCRet0DeCh0l4',
   duration: 20 * 60 * 1000,
-  activeDuration: 10 * 60 * 1000,
+  activeDuration: 10 * 60 * 1000
 }));
+app.use(multer({ dest: downdir}).single('archivo'));
 
 app.get('/', function(req, res){
    res.sendFile(__dirname + '/public_html/Inicio.html'); 
@@ -45,6 +50,31 @@ app.get('/agregarPregunta', function(req, res){
             connection.release();
             if(!err){
                 res.render('preguntas.ejs', {grupos:rows});
+            }else{
+                console.log('Hubo error.');
+            }
+        });
+
+        connection.on('error', function(err) {      
+              res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+              return;     
+        });
+    });
+});
+
+app.get('/agregarMaterial', function(req, res){
+    
+    pool.getConnection(function(err,connection){
+        if (err) {
+          connection.release();
+          res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+          return;
+        }   
+
+        connection.query('SELECT * FROM Grupo WHERE id_profesor = ?', req.session.idProfesor, function(err,rows){
+            connection.release();
+            if(!err){
+                res.render('materiales.ejs', {grupos:rows});
             }else{
                 console.log('Hubo error.');
             }
@@ -182,6 +212,48 @@ app.post('/nuevaPregunta', function(req, res){
             }else{
                 console.log('Hubo error en el insertado.');
                 console.log(err);
+            }
+        });
+
+        connection.on('error', function(err) {      
+              res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+              return;     
+        });
+    });
+});
+
+app.post('/subirMaterial', function(req, res){
+    console.log(req.body.nombre);
+    var archivoDir = 'uploads/' + Date.now() + req.file.originalname;
+    fs.readFile(req.file.path, function(err, data){
+        var nuevoDir = __dirname + '/public_html/uploads/' + Date.now() + req.file.originalname;
+        fs.writeFile(nuevoDir, data, function (err) { });
+    });
+    
+    fs.unlink(req.file.path, function(err){ });
+    
+    var material = {id_grupo: req.body.grupo,
+        nombre: req.body.nombre,
+        descripcion: req.body.descripcion,
+        archivo: archivoDir,
+        fecha_inicio: req.body.inicio,
+        fecha_fin: req.body.fin
+    }
+    
+    pool.getConnection(function(err,connection){
+        if (err) {
+          connection.release();
+          res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+          return;
+        }   
+
+        var query = connection.query('insert into Referencias set ?', material, function(err,rows){
+            connection.release();
+            if(!err){
+                console.log('Se guardo la referencia.');
+                res.render('homeProfesor.ejs', {usuario: req.session.usuario});
+            }else{
+                console.log('Hubo error en el insertado.');
             }
         });
 
