@@ -1,19 +1,46 @@
+
 <head>
     <title>Flashcards</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/preguntas.css" />
     <script src="js/jquery-1.11.3.js" type="text/javascript"></script>
     <script src="js/pregunta.js" type="text/javascript"></script>
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu:500italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
+    <script src="js/jquery-1.11.3.js" type="text/javascript"></script>
 </head>
 <body>
-    <div id="inicial">
-    Grupo: <select id="grupo">
+    <div align=left id="header">
+        <img src="img/small-logo.png"/> <label id="title">CEREBRATÓN</label>
+        <label id="nusuario"> Bienvenido</label>
+    </div>
+    <div id="menu">
+        <table id="lista">
+        <td class="seccion"><a href="entrada">Inicio</a></td>
+        <td class="seccion"><a href="perfilProfesor.ejs">Perfil</a></td>
+        <td class="seccion"><a href="grupos.ejs">Grupos</a></td>
+        <td class="seccion"><a href="materiales.ejs">Materiales</a></td>
+        <td class="seccion"><a href="estadisticas.ejs">Estadisticas</a></td>
+        </table>
+    </div>
+    <div id="body" align=center>
+        <div id="tituloSeccion">
+        Preguntas
+        </div>
+        <div id="inicial">
+        <div id="gpo"> 
+        Grupo: <select id="grupo">
         <% for(var i=0; i < grupos.length; i++) { %>
             <option value="<%= grupos[i].id_grupo%>"><%= grupos[i].nombre %></option>
         <% } %>
-    </select><br />
-    N&uacute;mero de preguntas: <input type="number" id="noPreguntas"/> <br />
-    <input type="submit" value="Aceptar" id="acepta">
+        </select><br />
+        </div>
+        <div id="generarPreguntas">
+        N&uacute;mero de preguntas: <input type="number" id="noPreguntas"/> <br />
+        <input type="submit" value="Aceptar" id="acepta">
+        </div>
+        </div>
+    <div id="preguntas" align=center></div>
     </div>
-    <div id="preguntas"></div>
 </body>

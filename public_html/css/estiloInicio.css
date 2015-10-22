@@ -1,7 +1,9 @@
-body{
-	background-image: url('../img/horizontal_lines.png');
-	background-color: #7ABAFF;
-	background-repeat: repeat;
+html {
+    background: url('../img/back.jpg') no-repeat fixed center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 table{
@@ -27,8 +29,14 @@ th{
     margin-right: 20px;
 }
 
+#title{
+    font-family: 'Oswald', sans-serif;
+    font-size: 50px;
+}
+
 #direccion{
     font-size: small;
+    position: relative;
 }
 
 .datos{
@@ -40,13 +48,12 @@ th{
 }
 
 #usuario, #pass{
-    margin-top: 10px;
     width: 500px;
     height: 40px;
     -webkit-border-radius: 10px; 
     -moz-border-radius: 10px; 
     border-radius: 10px;
-    font-family: "Pusab";
+    font-family: 'Abel', sans-serif;
     font-size: 36px;
 }
 
@@ -57,24 +64,31 @@ th{
     border-radius: 7px;
     height: 50px;
     width: 200px;
-    font-family: "Pusab";
+    font-family: 'Ubuntu', sans-serif;
     font-size: 25px; 
     color: #ededed;
+    position: relative;
+    left: 200px;
 }
 
 .submit{
     width: 50%;
     text-align: center;
+    position: relative;
+    top: 10px;
 }
 
 .perfil{
-    font-family: "Pusab";
+    font-family: 'Ubuntu', sans-serif;
     text-align: center;
 }
 
 .titulo{
-    font-family: "Comic Sans MS";
+    font-family: 'Ubuntu', sans-serif;
     font-size: 20px;
+    text-align: left;
+    position: relative;
+    left: 100px;
 }
 
 #imagen_perfil{
@@ -95,7 +109,6 @@ th{
 }
 
 #creditos{
-    position: absolute;
-    bottom: 25px;
-    align: center;
+   position: relative;
+    top: 40px;
 }

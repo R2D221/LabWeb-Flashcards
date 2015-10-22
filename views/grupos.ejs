@@ -1,0 +1,28 @@
+<head>
+    <title>Flashcards</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/style.css" />
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu:500italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
+    <script src="js/jquery-1.11.3.js" type="text/javascript"></script>
+</head>
+<body>
+	<div align=left id="header">
+		<img src="img/small-logo.png"/> <label id="title">CEREBRATÓN</label>
+        <label id="nusuario"> Bienvenido <%= usuario %> </label>
+    </div>
+    <div id="menu">
+        <table id="lista">
+        <td class="seccion"> Inicio </td>
+        <td class="seccion"> Perfil </td>
+        <td class="seccion"> Grupos </td>
+        <td class="seccion"> Materiales </td>
+        <td class="seccion"> Estadisticas </td>
+        </table>
+    </div>
+    <div id="body" align=center>
+        <a href="registrarGrupo.html">Crear nuevo grupo</a><br />
+        <a href="agregarPregunta">Agregar pregunta a grupo</a>
+    </div>
+</body>

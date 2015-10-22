@@ -131,99 +131,146 @@ td{
     background-color: #f5f3AB;
 }
 
-#perfil{
+#tituloSeccion{
     position: relative;
-    width: 100px;
-    height: 60px;
-    left: 50%;
-    background-color: red;
-    text-align: baseline;
-}
-
-#grupos{
-    vertical-align: top;
-    position: relative;
-    width: 100px;
-    height: 60px;
-    top: -60px;
-    left: 70%;
-    background-color: yellow;
-}
-
-#estadisticas{
-    position: relative;
-    width: 200px;
-    height: 60px;
-    left: 90%;
-    top: -120px;
-    background-color: orange;
-}
-
-#flashCard{
-    position: absolute;
-    text-align: bottom;
-    width: 44%;
-    height: 80%;
-    left: 5%;
-    top: 50px;
-}
-
-#mision{
-    position: relative;
-    top: 60%;
-}
-
-#infoPerfil{
-    position: absolute;
-    width: 22.5%;
-    height: 40%;
-    left: 50%;
-    top: 50px;
-}
-
-#infoGrupos{
-    position: absolute;
-    width: 22.5%;
-    height: 40%;
-    left: 73%;
-    top: 50px;
-}
-
-#infoMateriales{
-    position: absolute;
-    width: 22.5%;
-    height: 40%;
-    left: 50%;
-    top: 250px;
-}
-
-#infoEstadisticas{
-    position: absolute;
-    width: 22.5%;
-    height: 40%;
-    left: 73%;
-    top: 250px;
-}
-
-.info{
+    top: 30px;
     font-family: 'Oswald', sans-serif;
-    font-size: 20px;
-    border: 5px solid;
-    border-left-color: #124963;
-    border-top-color: #124963;
-    border-right-color: #124963;
-    border-bottom-color: #124963;
-    vertical-align: middle;
-    background-color: #f8f6c4;
+    font-size: 40px;
 }
 
-.descripcionInfo{
-    font-family: 'Ubuntu', sans-serif;
-    font-size: 15px;
-    margin-left: 10px;
+#gpo{
     text-align: left;
     position: relative;
-    top: 40%;
+    left: 30px;
+    top: 50px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 20px;
+}
+
+#grupo{
+    width: 200px;
+    height: 50px;
+    font-size: 20px;
+}
+
+#generarPreguntas{
+    text-align: left;
+    position: absolute;
+    left: 450px;
+    top: 110px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 20px;
+}
+
+#acepta{
+    position: relative;
+    top: -22px;
+    left: 350px;
+}
+
+#alta{
+    position: relative;
+    left: 460px;
+    top: 30px;
+}
+
+#preguntas{
+    background-color: #f8f6c4;
+    width: 90%;
+    height: 68%;
+    position: relative;
+    top: 50px;
+}
+
+.descripcionPregunta{
+    text-align: left;
+    font-family: 'Oswald', sans-serif;
+    font-size: 20px;
+}
+
+#descrip{
+    position: absolute;
+    left: 100px;
+    width: 300px;
+    height: 50px;
+}
+
+#categoriaPregunta{
+    position: absolute;
+    top: 40px;
+    left: 430px;
+    width: 300px;
+    height: 50px;
+}
+
+#categoria{
+    position: relative;
+    left: 550px;
+    top: 50px;
+}
+
+#opcion1Text{
+    text-align: left;
+    position: relative;
+    top: 30px;
+}
+
+#opcion2Text{
+    text-align: left;
+    position: relative;
+    top: 50px;
+}
+
+#opcion3Text{
+    text-align: left;
+    position: absolute;
+    left: 430px;
+    top: 120px;
+}
+
+#opcion4Text{
+    text-align: left;
+    position: absolute;
+    left: 430px;
+    top: 210px;
+}
+
+#op1,#op2,#op3,#op4{
+    width: 300px;
+    height: 50px;
+}
+
+#op1, #op2{
+    position: absolute;
+    left: 100px;
+}
+
+#op3, #op4{
+    position: absolute;
+    left: 550px;
+}
+
+#op3{
+    position: absolute;
+    left: 520px;
+    top: 140px;
+}
+
+#op4{
+    position: absolute;
+    left: 520px;
+    top: 205px;
+}
+
+#respuesta{
+    text-align: left;
+    position: absolute;
+    left: 90px;
+}
+
+#alta{
+    position: absolute;
+    top: 350px;
 }
 
 li{
