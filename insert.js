@@ -144,6 +144,35 @@ app.post('/nuevoProfesor', function(req, res){
     res.send('Inicio.html');
 });
 
+app.post('/nuevoAlumno', function(req, res){
+    var nom = req.body.nombre;
+    var cor = req.body.correo;
+    var user = req.body.usuario;
+    var pass = req.body.password;
+    var alumno = {nombre: nom, correo: cor, usuario: user, contrasena: pass};
+    pool.getConnection(function(err,connection){
+        if (err) {
+          connection.release();
+          res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+          return;
+        }   
+
+        connection.query('insert into Alumno set ?', alumno, function(err,rows){
+            connection.release();
+            if(!err) 
+                console.log('Se registro al alumno.');
+            else
+                console.log('Hubo error.');
+        });
+
+        connection.on('error', function(err) {      
+              res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+              return;     
+        });
+    });
+    res.send('Inicio.html');
+});
+
 app.post('/nuevoGrupo', function(req, res){
     var prof = req.session.idProfesor;
     var nom = req.body.nombre;
