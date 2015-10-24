@@ -23,9 +23,7 @@ $(document).ready(function(){
                             respuesta: miRespuesta,
                             categoria: miCategoria};
 
-            var elJSON = JSON.stringify(respuestas);
-            alert(elJSON);
-            
+            var elJSON = JSON.stringify(respuestas);            
                 $.ajax({
                     type: 'POST',
                     url: '/nuevaPregunta',
@@ -174,8 +172,6 @@ function alta(){
     miRespuesta=$("#respuesta")[0].selectedIndex + 1;
     miCategoria=$("#categoria").val();
     preguntas = parseInt($("#noPreguntas").val());
-    alert(miRespuesta);
-
     if(miDescripcion != "" && miOpA != "" && miOpB != "" && miOpC != "" && miOpD != "" && miCategoria != ""){
         respuestas[actual - 1] = {descripcion: miDescripcion,
                     opcionA: miOpA,
