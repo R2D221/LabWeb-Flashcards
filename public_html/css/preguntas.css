@@ -170,8 +170,8 @@ td{
 
 #alta{
     position: relative;
-    left: 460px;
-    top: 30px;
+    left: 480px;
+    top: 50px;
 }
 
 #preguntas{
@@ -270,7 +270,7 @@ td{
 
 #alta{
     position: absolute;
-    top: 350px;
+    top: 600px;
 }
 
 li{

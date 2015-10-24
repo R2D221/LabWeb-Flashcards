@@ -22,12 +22,15 @@ $(document).ready(function(){
                             opcionD: miOpD,
                             respuesta: miRespuesta,
                             categoria: miCategoria};
+
+            var elJSON = JSON.stringify(respuestas);
+            alert(elJSON);
             
                 $.ajax({
                     type: 'POST',
                     url: '/nuevaPregunta',
                     data: {grupo: miGrupo,
-                        resps: respuestas},
+                        resps: elJSON},
                     success: function(data){
                         if(data === "success"){
                             alert("Preguntas guardada.");
@@ -160,15 +163,18 @@ function prev(){
 }
 
 function alta(){
-    var miDescripcion,miOpA,miOpB,miOpC,miOpD,miRespuesta,miCategoria;
+    var miDescripcion,miOpA,miOpB,miOpC,miOpD,miRespuesta,miCategoria,miGrupo,preguntas;
     
+    miGrupo=$("#grupo").val();
     miDescripcion=$("#descrip").val();
     miOpA=$("#op1").val();
     miOpB=$("#op2").val();
     miOpC=$("#op3").val();
     miOpD=$("#op4").val();
-    miRespuesta=$("#respuesta").val();
+    miRespuesta=$("#respuesta")[0].selectedIndex + 1;
     miCategoria=$("#categoria").val();
+    preguntas = parseInt($("#noPreguntas").val());
+    alert(miRespuesta);
 
     if(miDescripcion != "" && miOpA != "" && miOpB != "" && miOpC != "" && miOpD != "" && miCategoria != ""){
         respuestas[actual - 1] = {descripcion: miDescripcion,
@@ -179,11 +185,13 @@ function alta(){
                     respuesta: miRespuesta,
                     categoria: miCategoria};
 
+        var elJSON = JSON.stringify(respuestas);
+        
         $.ajax({
             type: 'POST',
             url: '/nuevaPregunta',
-            data: {grupo: miGrupo,
-                resps: respuestas[0]},
+            data: {grupo: miGrupo,noPreguntas:preguntas,
+                resps: elJSON},
             success: function(data){
                 if(data === "success"){
                     alert("Preguntas guardada.");

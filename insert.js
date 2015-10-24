@@ -302,18 +302,19 @@ app.post('/nuevoGrupo', function(req, res){
 app.post('/nuevaPregunta', function(req, res){
     var grupo = req.body.grupo;
     var preguntas = parseInt(req.body.noPreguntas);
+    console.log(req.body.noPreguntas);
     var respuestas = JSON.parse(req.body.resps);
+    console.log(respuestas[0].descripcion);
     
     var values = [];
     var insertQuery  = 'insert into Pregunta(id_grupo, descripcion, categoria, A, B, C, D, respuesta) values ?';
     
     for(var i = 0; i < preguntas; i++){
-        var pregunta = [grupo,respuestas.preguntas[i].descripcion,respuestas.preguntas[i].categoria,respuestas.preguntas[i].opcionA,
-            respuestas.preguntas[i].opcionB, respuestas.preguntas[i].opcionC, respuestas.preguntas[i].opcionD, respuestas.preguntas[i].respuesta];
-        
+        var pregunta = [grupo,respuestas[i].descripcion,respuestas[i].categoria,respuestas[i].opcionA,
+            respuestas[i].opcionB, respuestas[i].opcionC, respuestas[i].opcionD, respuestas[i].respuesta];
         values[i] = pregunta;
     }
-        
+    
     pool.getConnection(function(err,connection){
         if (err) {
           connection.release();
@@ -321,6 +322,7 @@ app.post('/nuevaPregunta', function(req, res){
           return;
         }   
 
+        console.log(values);
         var query = connection.query(insertQuery, [values], function(err,rows){
             connection.release();
             console.log(values);
