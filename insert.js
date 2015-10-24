@@ -4,6 +4,7 @@ var mysql      = require('mysql');
 var session    = require('client-sessions');
 var multer     = require('multer');
 var fs         = require('fs');
+var dateFormat = require('dateformat');
 
 var downdir = __dirname + '/public_html/uploads';
 
@@ -35,6 +36,94 @@ app.get('/', function(req, res){
 
 app.get('/entrada', function(req, res){
     res.render('homeProfesor.ejs', {usuario: req.session.usuario});
+});
+
+app.post('/cambiosGrupo', function(req, res){
+  pool.getConnection(function(err,connection){
+        if (err) {
+          connection.release();
+          res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+          return;
+        } 
+        connection.query('SELECT * FROM Grupo WHERE id_grupo = ?', req.body.idGrupo, function(err, rows){
+            connection.release();
+            if(!err){
+                var inicio=dateFormat(rows[0].fecha_inicio, "yyyy-mm-dd");
+                var fin=dateFormat(rows[0].fecha_fin, "yyyy-mm-dd");
+                rows[0].fecha_inicio = inicio;
+                rows[0].fecha_fin = fin;
+                res.render('cambiosGrupo.ejs', {grupos:rows, usuario:req.session.usuario});
+            }else{
+                console.log('Hubo error.');
+            }
+        });
+
+        connection.on('error', function(err) {      
+              res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+              return;     
+        });
+    });
+});
+
+app.post('/actualizarGrupo', function(req, res){
+    var prof = req.session.idProfesor;
+    var id_grupo = req.body.idgpo;
+    var nom = req.body.nombre;
+    var descrip = req.body.descripcion;
+    var clave = req.body.clave;
+    var ini = req.body.inicio;
+    var fin = req.body.fin;
+
+    console.log(ini);
+    
+    pool.getConnection(function(err,connection){
+        if (err) {
+          connection.release();
+          res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+          return;
+        }   
+
+        var query = connection.query('Update Grupo SET ? where id_grupo = ?',[{nombre:nom, descripcion:descrip, clave_acceso:clave, fecha_inicio:ini, fecha_fin:fin},id_grupo],function(err,rows){
+            connection.release();
+            if(!err) {
+                console.log('Se guardo el grupo.');
+            } else {
+                console.log('Hubo error en el insertado de actualizacion.');
+                console.log(query);
+              }
+        });
+
+        connection.on('error', function(err) {      
+              res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+              return;     
+        });
+    });
+    res.send('entrada');
+});
+
+app.get('/grupos', function(req, res){
+
+    pool.getConnection(function(err,connection){
+        if (err) {
+          connection.release();
+          res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+          return;
+        }   
+
+        connection.query('SELECT * FROM Grupo WHERE id_profesor = ?', req.session.idProfesor, function(err, rows){
+            connection.release();
+            if(!err){
+                res.render('grupos.ejs', {grupos:rows, usuario:req.session.usuario});
+            }else{
+                console.log('Hubo error.');
+            }
+        });
+
+        connection.on('error', function(err) {      
+              res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+              return;     
+        });
+    });
 });
 
 app.get('/agregarPregunta', function(req, res){

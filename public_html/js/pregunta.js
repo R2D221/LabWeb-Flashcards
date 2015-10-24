@@ -71,7 +71,7 @@ $(document).ready(function(){
             }
         });
     });
-    
+
 function next(){
     var miDescripcion,miOpA,miOpB,miOpC,miOpD,miRespuesta,miCategoria;
 
@@ -97,25 +97,27 @@ function next(){
         var htmls = actual + " / " + preguntas + "<br />";
         
         if(typeof respuestas[actual - 1] !== 'undefined'){
-            htmls = htmls + "Descripci&oacute;n:<br /><textarea id=\"descrip\" rows=\"5\">" + respuestas[actual - 1].descripcion + "</textarea><br />" +
-            "Opci&oacute;n 1:<br /><textarea id=\"op1\" rows=\"5\">" + respuestas[actual - 1].opcionA + "</textarea><br />" +
-            "Opci&oacute;n 2:<br /><textarea id=\"op2\" rows=\"5\">" + respuestas[actual - 1].opcionB + "</textarea><br />" + 
-            "Opci&oacute;n 3:<br /><textarea id=\"op3\" rows=\"5\">" + respuestas[actual - 1].opcionC + "</textarea><br />" +
-            "Opci&oacute;n 4:<br /><textarea id=\"op4\" rows=\"5\">" + respuestas[actual - 1].opcionD + "</textarea><br />" +
-            "Respuesta: <select id=\"respuesta\"><option value=\"1\">1</option>" +
+            htmls = htmls + 
+            "<div class='descripcionPregunta'><div class='descripcionPregunta' id='categoriaPregunta'>Categor&iacute;a:</div><input type=\"text\" value=\"" + respuestas[actual - 1].categoria + "\" id=\"categoria\" maxlenght=\"50\" /><br />" +
+            "Descripci&oacute;n:</div><br /><textarea id=\"descrip\" rows=\"5\">" + respuestas[actual - 1].descripcion + "</textarea><br />" +
+            "<div class='descripcionPregunta' id='opcion1Text' > Opci&oacute;n 1:</div><br /><textarea id=\"op1\" rows=\"5\">" + respuestas[actual - 1].opcionA + "</textarea><br />" +
+            "<div class='descripcionPregunta' id='opcion2Text' >Opci&oacute;n 2:</div><br /><textarea id=\"op2\" rows=\"5\">" + respuestas[actual - 1].opcionB + "</textarea><br />" + 
+            "<div class='descripcionPregunta' id='opcion3Text' >Opci&oacute;n 3:</div><br /><textarea id=\"op3\" rows=\"5\">" + respuestas[actual - 1].opcionC + "</textarea><br />" +
+            "<div class='descripcionPregunta' id='opcion4Text' >Opci&oacute;n 4:</div><br /><textarea id=\"op4\" rows=\"5\">" + respuestas[actual - 1].opcionD + "</textarea><br />" +
+            "<div class='descripcionPregunta' id='res'> Respuesta:</div><select id=\"respuesta\"><option value=\"1\">1</option>" +
             "<option value=\"2\">2</option><option value=\"3\">3</option>" +
-            "<option value=\"4\">4</option></select><br />" +
-            "Categor&iacute;a: <input type=\"text\" value=\"" + respuestas[actual - 1].categoria + "\" id=\"categoria\" maxlenght=\"50\" /><br />";
+            "<option value=\"4\">4</option></select><br />";
         }else{
-            htmls = htmls + "Descripci&oacute;n:<br /><textarea id=\"descrip\" rows=\"5\"></textarea><br />" +
-                    "Opci&oacute;n 1:<br /><textarea id=\"op1\" rows=\"5\"></textarea><br />" +
-                    "Opci&oacute;n 2:<br /><textarea id=\"op2\" rows=\"5\"></textarea><br />" + 
-                    "Opci&oacute;n 3:<br /><textarea id=\"op3\" rows=\"5\"></textarea><br />" +
-                    "Opci&oacute;n 4:<br /><textarea id=\"op4\" rows=\"5\"></textarea><br />" +
-                    "Respuesta: <select id=\"respuesta\"><option value=\"1\">1</option>" +
+            htmls = htmls + 
+                    "<div class='descripcionPregunta'><div class='descripcionPregunta' id='categoriaPregunta'>Categor&iacute;a:</div><input type=\"text\" id=\"categoria\" maxlenght=\"50\" /><br />"+
+                    "Descripci&oacute;n:</div><br /><textarea id=\"descrip\" rows=\"5\"></textarea><br />" +
+                    "<div class='descripcionPregunta' id='opcion1Text'> Opci&oacute;n 1:</div><br /><textarea id=\"op1\" rows=\"5\"></textarea><br />" +
+                    "<div class='descripcionPregunta' id='opcion2Text'>Opci&oacute;n 2:</div></div><br /><textarea id=\"op2\" rows=\"5\"></textarea><br />" + 
+                    "<div class='descripcionPregunta' id='opcion3Text'>Opci&oacute;n 3:</div><br /><textarea id=\"op3\" rows=\"5\"></textarea><br />" +
+                    "<div class='descripcionPregunta' id='opcion4Text'>Opci&oacute;n 4:</div><br /><textarea id=\"op4\" rows=\"5\"></textarea><br />" +
+                    "<div class='descripcionPregunta' id='res'>Respuesta:</div><select id=\"respuesta\"><option value=\"1\">1</option>" +
                     "<option value=\"2\">2</option><option value=\"3\">3</option>" +
-                    "<option value=\"4\">4</option></select><br />" +
-                    "Categor&iacute;a: <input type=\"text\" id=\"categoria\" maxlenght=\"50\" /><br />";
+                    "<option value=\"4\">4</option></select><br />";
         }
 
         if(actual < preguntas){
@@ -137,15 +139,15 @@ function prev(){
     actual--;
     
     var htmls = actual + " / " + preguntas + "<br />" +
-            "Descripci&oacute;n:<br /><textarea id=\"descrip\" rows=\"5\">" + respuestas[actual - 1].descripcion + "</textarea><br />" +
-            "Opci&oacute;n 1:<br /><textarea id=\"op1\" rows=\"5\">" + respuestas[actual - 1].opcionA + "</textarea><br />" +
-            "Opci&oacute;n 2:<br /><textarea id=\"op2\" rows=\"5\">" + respuestas[actual - 1].opcionB + "</textarea><br />" + 
-            "Opci&oacute;n 3:<br /><textarea id=\"op3\" rows=\"5\">" + respuestas[actual - 1].opcionC + "</textarea><br />" +
-            "Opci&oacute;n 4:<br /><textarea id=\"op4\" rows=\"5\">" + respuestas[actual - 1].opcionD + "</textarea><br />" +
-            "Respuesta: <select id=\"respuesta\"><option value=\"1\">1</option>" +
+            "<div class='descripcionPregunta'><div class='descripcionPregunta' id='categoriaPregunta'>Categor&iacute;a:</div><input type=\"text\" value=\"" + respuestas[actual - 1].categoria + "\" id=\"categoria\" maxlenght=\"50\" /><br />" +
+            "Descripci&oacute;n:</div><br /><textarea id=\"descrip\" rows=\"5\">" + respuestas[actual - 1].descripcion + "</textarea><br />" +
+            "<div class='descripcionPregunta' id='opcion1Text'>Opci&oacute;n 1:</div><br /><textarea id=\"op1\" rows=\"5\">" + respuestas[actual - 1].opcionA + "</textarea><br />" +
+            "<div class='descripcionPregunta' id='opcion2Text'>Opci&oacute;n 2:</div><br /><textarea id=\"op2\" rows=\"5\">" + respuestas[actual - 1].opcionB + "</textarea><br />" + 
+            "<div class='descripcionPregunta' id='opcion3Text'>Opci&oacute;n 3:</div><br /><textarea id=\"op3\" rows=\"5\">" + respuestas[actual - 1].opcionC + "</textarea><br />" +
+            "<div class='descripcionPregunta' id='opcion4Text'>Opci&oacute;n 4:</div><br /><textarea id=\"op4\" rows=\"5\">" + respuestas[actual - 1].opcionD + "</textarea><br />" +
+            "<div class='descripcionPregunta' id='res'>Respuesta:</div><select id=\"respuesta\"><option value=\"1\">1</option>" +
             "<option value=\"2\">2</option><option value=\"3\">3</option>" +
-            "<option value=\"4\">4</option></select><br />" +
-            "Categor&iacute;a: <input type=\"text\" value=\"" + respuestas[actual - 1].categoria + "\" id=\"categoria\" maxlenght=\"50\" /><br />";
+            "<option value=\"4\">4</option></select><br />";
                 
     if(1 < actual){
         htmls = htmls + "<input type=\"submit\" value=\"Regresar\" id=\"regresar\" onClick=\"prev();\"/>" +
