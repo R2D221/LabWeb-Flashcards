@@ -29,21 +29,25 @@
                     <form action="/tomarExamen" method="POST">
                     <tr>
                         <td> 
-                             <input type="text" value=<%= grupos[i].id_grupo%> name="idGrupo" readonly></input> 
+                            <%= grupos[i].id_grupo%>
                         </td>
                         <td>
-                            <input type="text" value=<%= grupos[i].nombre%> name=<%= grupos[i].nombre%>></input>
+                            <%= grupos[i].nombre%>
                         </td>
                         <td>
-                            <input type="text" value=<%= grupos[i].descripcion%> name=<%= grupos[i].descripcion%> readonly></input>
+                            <%= grupos[i].descripcion%>
                         </td>
                         <td>
-                                <input type="submit" value="Ingresar"/> &nbsp;
+                            <input type="hidden" value=<%= grupos[i].id_grupo%> name="idGrupo" />
+                            <input type="hidden" value=<%= grupos[i].nombre%> name=<%= grupos[i].nombre%> />
+                            <input type="hidden" value=<%= grupos[i].descripcion%> name=<%= grupos[i].descripcion%> />
+                            <input type="submit" value="Ingresar"/> &nbsp;
                         </td>
                     </tr>
                     </form>
                 <% } %>
             </table>
+            <a href="Home.html" style="color: #000;">Regresar</a>
         </div>
         </div>
     </div>

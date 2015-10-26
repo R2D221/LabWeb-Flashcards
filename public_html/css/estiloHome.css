@@ -4,6 +4,24 @@ body{
 	background-repeat: repeat;
 }
 
+#header{
+    position: relative;
+    left: 5%;
+    width: 400px;
+}
+
+#title{
+    font-family: 'Oswald', sans-serif;
+    font-size: 50px;
+}
+
+#nusuario{
+    position: absolute;
+    left: 250%;
+    font-family: 'Oswald', sans-serif;
+    font-size: 20px;
+}
+
 table{
 -webkit-border-radius: 10px; 
 -moz-border-radius: 10px; 
