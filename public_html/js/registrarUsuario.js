@@ -18,7 +18,10 @@ $(document).ready(function(){
                 data: {usuario: miUsuario,
                     password: miContra},
                 success: function(data){
-                    window.location = "entrada";
+                    if(data === 'Inicio.html'){
+                        alert("Usuario/contrasena incorrectas.");
+                    }
+                    window.location = data;
                 }
             });
         });

@@ -18,7 +18,7 @@
         <table id="lista">
         <td class="seccion"><a href="entrada">Inicio</a></td>
         <td class="seccion"><a href="perfilProfesor.ejs">Perfil</a></td>
-        <td class="seccion"><a href="grupos.ejs">Grupos</a></td>
+        <td class="seccion"><a href="grupos">Grupos</a></td>
         <td class="seccion"><a href="materiales.ejs">Materiales</a></td>
         <td class="seccion"><a href="estadisticas.ejs">Estadisticas</a></td>
         </table>
@@ -29,6 +29,7 @@
         </div>
         <div id="inicial">
         <div id="gpo"> 
+            <a href="crearGrupo">Agregar nuevo grupo</a>
             <table id="concentrado">
                 <th> Clave </th>
                 <th> Nombre </th>
@@ -55,7 +56,7 @@
                                 </form>
                             <form action="/eliminarGrupo" method="post"> 
                                 <input type="hidden" value=<%= grupos[i].id_grupo%> name="idGrupo" ></input>
-                                <input type="submit" value="Detalle"/> &nbsp;
+                                <input type="submit" value="Borrar"/> &nbsp;
                             </form> 
                         </td>
                     </tr>

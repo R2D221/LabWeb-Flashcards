@@ -5,6 +5,7 @@ var session    = require('client-sessions');
 var multer     = require('multer');
 var fs         = require('fs');
 var dateFormat = require('dateformat');
+var async      = require('async');
 
 var downdir = __dirname + '/public_html/uploads';
 
@@ -33,9 +34,108 @@ app.get('/', function(req, res){
    res.sendFile(__dirname + '/public_html/Inicio.html'); 
 });
 
+app.get('/crearGrupo', function(req, res){
+   res.render('registrarGrupo.ejs', {usuario: req.session.usuario});
+});
 
 app.get('/entrada', function(req, res){
     res.render('homeProfesor.ejs', {usuario: req.session.usuario});
+});
+
+app.get('/grupos', function(req, res){
+    pool.getConnection(function(err,connection){
+        if (err) {
+          connection.release();
+          res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+          return;
+        }   
+
+        connection.query('SELECT * FROM Grupo WHERE id_profesor = ?', req.session.idProfesor, function(err, rows){
+            connection.release();
+            if(!err){
+                res.render('grupos.ejs', {grupos:rows, usuario:req.session.usuario});
+            }else{
+                console.log('Hubo error.');
+            }
+        });
+
+        connection.on('error', function(err) {      
+              res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+              return;     
+        });
+    });
+});
+
+app.get('/grupo_alumno', function(req, res){
+    pool.getConnection(function(err,connection){
+        if (err) {
+          connection.release();
+          res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+          return;
+        }   
+
+        connection.query('SELECT gru.id_grupo, nombre, descripcion FROM grupo AS gru, grupo_alumno AS gal WHERE gru.id_grupo = gal.id_grupo AND gal.id_alumno = ?;', req.session.idAlumno, function(err, rows){
+            connection.release();
+            if(!err){
+                res.render('misGrupos.ejs', {grupos:rows, usuario:req.session.usuario});
+            }else{
+                console.log('Hubo error.');
+            }
+        });
+
+        connection.on('error', function(err) {      
+              res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+              return;     
+        });
+    });
+});
+
+app.get('/agregarPregunta', function(req, res){
+    pool.getConnection(function(err,connection){
+        if (err) {
+          connection.release();
+          res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+          return;
+        }   
+
+        connection.query('SELECT * FROM Grupo WHERE id_profesor = ?', req.session.idProfesor, function(err,rows){
+            connection.release();
+            if(!err){
+                res.render('preguntas.ejs', {grupos:rows});
+            }else{
+                console.log('Hubo error.');
+            }
+        });
+
+        connection.on('error', function(err) {      
+              res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+              return;     
+        });
+    });
+});
+
+app.get('/agregarMaterial', function(req, res){
+    pool.getConnection(function(err,connection){
+        if (err) {
+          connection.release();
+          res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+          return;
+        }   
+
+        connection.query('SELECT * FROM Grupo WHERE id_profesor = ?', req.session.idProfesor, function(err,rows){
+            connection.release();
+            if(!err){
+                res.render('materiales.ejs', {grupos:rows});
+            }else{
+                console.log('Hubo error.');
+            }
+        });
+
+        connection.on('error', function(err) {      
+              res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+              return;     
+        });
+    });
 });
 
 app.post('/cambiosGrupo', function(req, res){
@@ -101,107 +201,78 @@ app.post('/actualizarGrupo', function(req, res){
     res.send('entrada');
 });
 
-app.get('/grupos', function(req, res){
-
-    pool.getConnection(function(err,connection){
-        if (err) {
-          connection.release();
-          res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
-          return;
-        }   
-
-        connection.query('SELECT * FROM Grupo WHERE id_profesor = ?', req.session.idProfesor, function(err, rows){
-            connection.release();
-            if(!err){
-                res.render('grupos.ejs', {grupos:rows, usuario:req.session.usuario});
-            }else{
-                console.log('Hubo error.');
-            }
-        });
-
-        connection.on('error', function(err) {      
-              res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
-              return;     
-        });
-    });
-});
-
-app.get('/agregarPregunta', function(req, res){
-    
-    pool.getConnection(function(err,connection){
-        if (err) {
-          connection.release();
-          res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
-          return;
-        }   
-
-        connection.query('SELECT * FROM Grupo WHERE id_profesor = ?', req.session.idProfesor, function(err,rows){
-            connection.release();
-            if(!err){
-                res.render('preguntas.ejs', {grupos:rows});
-            }else{
-                console.log('Hubo error.');
-            }
-        });
-
-        connection.on('error', function(err) {      
-              res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
-              return;     
-        });
-    });
-});
-
-app.get('/agregarMaterial', function(req, res){
-    
-    pool.getConnection(function(err,connection){
-        if (err) {
-          connection.release();
-          res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
-          return;
-        }   
-
-        connection.query('SELECT * FROM Grupo WHERE id_profesor = ?', req.session.idProfesor, function(err,rows){
-            connection.release();
-            if(!err){
-                res.render('materiales.ejs', {grupos:rows});
-            }else{
-                console.log('Hubo error.');
-            }
-        });
-
-        connection.on('error', function(err) {      
-              res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
-              return;     
-        });
-    });
-});
-
 app.post('/login', function(req, res){
     var user = req.body.usuario;
-    var idProf;
-    pool.getConnection(function(err,connection){
-        if (err) {
-          connection.release();
-          res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
-          return;
-        }   
+    var pass = req.body.password;
+    var idProf, idAlum;
+    async.waterfall([
+        function(callback) {
+            pool.getConnection(function(err,connection){
+                if (err) {
+                  connection.release();
+                  res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+                  return;
+                }   
 
-        connection.query('SELECT * FROM Profesor WHERE usuario = ?', user, function(err,rows){
-            connection.release();
-            if(!err){
-                idProf = rows[0].id_profesor;
-                req.session.idProfesor = idProf;
-                req.session.usuario = user;
-                res.render('homeProfesor.ejs', {usuario: req.session.idProfesor});
+                connection.query('SELECT * FROM Profesor WHERE usuario = ? AND contrasena = ?', [user, pass], function(err,rows){
+                    connection.release();
+                    if(!err){
+                        if(typeof rows[0] !== 'undefined'){
+                            idProf = rows[0].id_profesor;
+                            req.session.idProfesor = idProf;
+                            req.session.usuario = user;
+                            callback(null, 'profesor', 'entrada');
+                        }else{
+                            callback(null, 'none', 'Inicio.html');
+                        }
+                    }else{
+                        console.log('Error al realizar log-in.');
+                    }
+                });
+
+                connection.on('error', function(err) {      
+                      res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+                      return;     
+                });
+            });     
+        }, function(arg1, arg2, callback){
+            if(arg1 === 'profesor'){
+                callback(null, arg2);
             }else{
-                console.log('Error al realizar log-in.');
-            }
-        });
+                pool.getConnection(function(err,connection){
+                    if (err) {
+                      connection.release();
+                      res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+                      return;
+                    }   
 
-        connection.on('error', function(err) {      
-              res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
-              return;     
-        });
+                    connection.query('SELECT * FROM Alumno WHERE usuario = ? AND contrasena = ?', [user, pass], function(err,rows){
+                        connection.release();
+                        if(!err){
+                            if(typeof rows[0] !== 'undefined'){
+                                idAlum = rows[0].id_alumno;
+                                req.session.idAlumno = idAlum;
+                                req.session.usuario = user;
+                                callback(null, 'Home.html');
+                            }else{
+                                callback(null, 'Inicio.html');
+                            }
+                        }else{
+                            console.log('Error al realizar log-in.');
+                        }
+                    });
+
+                    connection.on('error', function(err) {      
+                          res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+                          return;     
+                    });
+                });
+            }
+        }
+    ], function(err, result){
+        if(!err){
+            res.send(result);
+        }
     });
 });
 

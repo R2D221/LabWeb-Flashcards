@@ -1,0 +1,50 @@
+<head>
+    <title>Flashcards</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/grupos_alumno.css" />
+    <script src="js/jquery-1.11.3.js" type="text/javascript"></script>
+    <script src="js/pregunta.js" type="text/javascript"></script>
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu:500italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
+    <script src="js/jquery-1.11.3.js" type="text/javascript"></script>
+</head>
+<body>
+	<div align=left id="header">
+		<img src="img/small-logo.png"/> <label id="title">CEREBRATON</label>
+        <label id="nusuario"> Bienvenido </label>
+    </div>
+    <div id="body" align=center>
+        <div id="tituloSeccion">
+        Grupos
+        </div>
+        <div id="inicial">
+        <div id="gpo">
+            <table id="concentrado">
+                <th> Clave </th>
+                <th> Nombre </th>
+                <th> Descripción </th>
+                <th>  </th>        
+                <% for(var i=0; i < grupos.length; i++) { %>
+                    <form action="/tomarExamen" method="POST">
+                    <tr>
+                        <td> 
+                             <input type="text" value=<%= grupos[i].id_grupo%> name="idGrupo" readonly></input> 
+                        </td>
+                        <td>
+                            <input type="text" value=<%= grupos[i].nombre%> name=<%= grupos[i].nombre%>></input>
+                        </td>
+                        <td>
+                            <input type="text" value=<%= grupos[i].descripcion%> name=<%= grupos[i].descripcion%> readonly></input>
+                        </td>
+                        <td>
+                                <input type="submit" value="Ingresar"/> &nbsp;
+                        </td>
+                    </tr>
+                    </form>
+                <% } %>
+            </table>
+        </div>
+        </div>
+    </div>
+</body>
