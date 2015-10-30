@@ -1,7 +1,7 @@
 <head>
-    <title>Flashcards - Profesor</title>
+    <title>Flashcards - Admin</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/adminStyle.css" />
     <link href='https://fonts.googleapis.com/css?family=Ubuntu:500italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
@@ -14,11 +14,11 @@
     </div>
     <div id="menu">
         <table id="lista">
-        <td class="seccion"><a href="entrada">Inicio</a></td>
-        <td class="seccion"><a href="perfilProfesor.ejs">Perfil</a></td>
-        <td class="seccion"><a href="/grupos">Grupos</a></td>
-        <td class="seccion"><a href="materiales.ejs">Materiales</a></td>
-        <td class="seccion"><a href="estadisticas.ejs">Estadisticas</a></td>
+        <td class="seccion"><a href="administrador">Inicio</a></td>
+        <td class="seccion"><a href="alumnos">Registrar Alumno</a></td>
+        <td class="seccion"><a href="profesor">Registrar Profesor</a></td>
+        <td class="seccion"><a href="asigAlum">Asignar Alumnos</a></td>
+        <td class="seccion"></td>
         </table>
     </div>
     <div id="body" align=center>
@@ -30,32 +30,16 @@
             La ense&ntilde;anza no es labor f&aacute;cil. Los cambios generacionales de los nuevos alumnos que se integran a las aulas, presenta nuevos desafios para los docentes. <b>Cerebrat&oacute;n</b> propone una solución para incorporar a estudiantes y docentes al uso de tecnolog&iacute;as educativas desde niveles de educaci&oacute;n b&aacute;sica; ahora  la educaci&oacute;n y la inovaci&oacute;n tecnolog&iacute;ca crecen juntas. 
         </div>
         <div class="info" id="infoPerfil">
-            Perfil
+            Profesores
             <br>
-            <p class="descripcionInfo"> Manten actualizada la informaci&oacute;n de tu perfil. </p>
+            <p class="descripcionInfo" id="mision"> Administra a los profesores que forman parte de tu planta de docente.
+            </p>
         </div>
         <div class="info" id="infoGrupos">
-            Grupos
+            Alumnos
             <br>
-            <p class="descripcionInfo"> Administra los contenidos de tus grupos,
-                crea nuevos cuestionarios 
-                y compartelos con tus alumnos 
+            <p class="descripcionInfo" id="mision"> Registra a cualquier nuevo alumno dentro de la instituci&oacute;n y asigna los grupos en los que se encuentra participando.
             </p>
         </div>
-        <div class="info" id="infoMateriales">
-            Materiales
-            <br>
-            <p class="descripcionInfo"> Incorpora contenido de apoyo para tus alumnos,
-                carga las referencias que ayuden a comprender los temas.
-            </p>
-        </div>
-        <div  class="info" id="infoEstadisticas">
-            Estadisticas
-            <br>
-            <p class="descripcionInfo"> Conoce el desempe&ntilde;o de tus alumnos,
-                genera reportes para dar seguimiento a su aprendizaje.
-            </p>
-        </div>
-        <a href="agregarPregunta">Agregar pregunta a grupo</a>
     </div>
 </body>

@@ -40,8 +40,86 @@ app.get('/crearGrupo', function(req, res){
    res.render('registrarGrupo.ejs', {usuario: req.session.usuario});
 });
 
+app.get('/alumnos', function(req, res){
+   res.render('registrarAlumno.ejs', {usuario: req.session.usuario});
+});
+
+app.get('/profesor', function(req, res){
+   res.render('registrarProfesor.ejs', {usuario: req.session.usuario});
+});
+
+app.get('/asigAlum', function(req, res){
+    async.waterfall([
+        function(callback) {
+            pool.getConnection(function(err,connection){
+                if (err) {
+                  connection.release();
+                  res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+                  return;
+                }   
+
+                connection.query('SELECT * FROM Grupo', function(err,rows){
+                    connection.release();
+                    if(!err){
+                        if(typeof rows[0] !== 'undefined'){
+                            callback(null, rows);
+                        }else{
+                            callback(null, 'none');
+                        }
+                    }else{
+                        console.log('Error al obtener grupos.');
+                    }
+                });
+
+                connection.on('error', function(err) {      
+                      res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+                      return;     
+                });
+            });     
+        }, function(arg1, callback){
+            if(arg1 === 'none'){
+                callback(null, 'none', 'none');
+            }else{
+                pool.getConnection(function(err,connection){
+                    if (err) {
+                      connection.release();
+                      res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+                      return;
+                    }   
+
+                    connection.query('SELECT * FROM Alumno', function(err,rows){
+                        connection.release();
+                        if(!err){
+                            if(typeof rows[0] !== 'undefined'){
+                                callback(null, arg1, rows);
+                            }else{
+                                callback(null, 'none', 'none');
+                            }
+                        }else{
+                            console.log('Error al conseguir alumnos.');
+                        }
+                    });
+
+                    connection.on('error', function(err) {      
+                          res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+                          return;     
+                    });
+                });
+            }
+        }
+    ], function(err, res1, res2){
+        if(!err){
+            res.render('asignaAlumno.ejs', {grupos: res1, alumnos: res2});
+        }
+    });
+});
+
 app.get('/entrada', function(req, res){
     res.render('homeProfesor.ejs', {usuario: req.session.usuario});
+});
+
+app.get('/administrador', function(req, res){
+    res.render('homeAdministrador.ejs', {usuario: req.session.usuario});
 });
 
 app.get('/grupos', function(req, res){
@@ -265,7 +343,7 @@ app.post('/actualizarGrupo', function(req, res){
 app.post('/login', function(req, res){
     var user = req.body.usuario;
     var pass = req.body.password;
-    var idProf, idAlum;
+    var idProf, idAlum, idAdmin;
     async.waterfall([
         function(callback) {
             pool.getConnection(function(err,connection){
@@ -298,7 +376,7 @@ app.post('/login', function(req, res){
             });     
         }, function(arg1, arg2, callback){
             if(arg1 === 'profesor'){
-                callback(null, arg2);
+                callback(null, 'profesor', arg2);
             }else{
                 pool.getConnection(function(err,connection){
                     if (err) {
@@ -314,12 +392,45 @@ app.post('/login', function(req, res){
                                 idAlum = rows[0].id_alumno;
                                 req.session.idAlumno = idAlum;
                                 req.session.usuario = user;
-                                callback(null, 'Home.html');
+                                callback(null, 'alumno', 'Home.html');
+                            }else{
+                                callback(null, 'none', 'Inicio.html');
+                            }
+                        }else{
+                            console.log('Error al realizar log-in alumno.');
+                        }
+                    });
+
+                    connection.on('error', function(err) {      
+                          res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+                          return;     
+                    });
+                });
+            }
+        }, function(arg1, arg2, callback){
+            if(arg1 === 'alumno' || arg1 === 'alumno' ){
+                callback(null, arg2);
+            }else{
+                pool.getConnection(function(err,connection){
+                    if (err) {
+                      connection.release();
+                      res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+                      return;
+                    }   
+
+                    connection.query('SELECT * FROM Administrador WHERE usuario = ? AND password = ?', [user, pass], function(err,rows){
+                        connection.release();
+                        if(!err){
+                            if(typeof rows[0] !== 'undefined'){
+                                idAdmin = rows[0].idadministrador;
+                                req.session.idAdministrador = idAdmin;
+                                req.session.usuario = user;
+                                callback(null, 'administrador');
                             }else{
                                 callback(null, 'Inicio.html');
                             }
                         }else{
-                            console.log('Error al realizar log-in.');
+                            console.log('Error al realizar log-in administrador.');
                         }
                     });
 
@@ -474,6 +585,45 @@ app.post('/nuevaPregunta', function(req, res){
     });
 });
 
+app.post('/asignaAlumnos', function(req, res){
+    var grupo = req.body.idGrupo;
+    var alumnos = JSON.parse(req.body.alumnos);
+    
+    var values = [];
+    var insertQuery  = 'insert into Grupo_alumno(id_grupo, id_alumno) values ?';
+    
+    for(var i = 0; i < alumnos.length; i++){
+        var gru_al = [grupo,alumnos[i]];
+        values[i] = gru_al;
+    }
+    
+    pool.getConnection(function(err,connection){
+        if (err) {
+          connection.release();
+          res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+          return;
+        }   
+
+        console.log(values);
+        var query = connection.query(insertQuery, [values], function(err,rows){
+            connection.release();
+            console.log(values);
+            if(!err){
+                console.log('Se guardo la asignacion.');
+                res.send('success');
+            }else{
+                console.log('Hubo error en el insertado.');
+                console.log(err);
+            }
+        });
+
+        connection.on('error', function(err) {      
+              res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+              return;     
+        });
+    });
+});
+
 app.post('/subirMaterial', function(req, res){
     console.log(req.body.nombre);
     var dateStuff = Date.now();
@@ -517,5 +667,6 @@ app.post('/subirMaterial', function(req, res){
     });
 });
 
-app.listen(3000);
-console.log("Running on port 3000...");
+app.listen(3000, function(){
+    console.log("Running on port 3000...");
+});
