@@ -135,7 +135,7 @@ td{
     position: relative;
     top: 30px;
     font-family: 'Oswald', sans-serif;
-    font-size: 40px;
+    font-size: 20px;
 }
 
 #gpo{
@@ -203,3 +203,16 @@ a:link{
 .descripcionGrupo{
     width: 400px;
 }
+
+#categoria{
+    width: 200px;
+}
+
+#idPregunta{
+    width: 50px;   
+}
+
+#descPregunta{
+    width: 500px;
+}
+

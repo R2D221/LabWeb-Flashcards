@@ -16,7 +16,7 @@ var pool = mysql.createPool({
     host     : '127.0.0.1',
     user     : 'root',
     password : 'ldmpt24*',
-    database : 'Flashcards',
+    database : 'FlashCards',
     debug    :  false
 });
 
@@ -245,6 +245,33 @@ app.post('/cambiosGrupo', function(req, res){
     });
 });
 
+app.post('/detalle', function(req, res){
+  pool.getConnection(function(err,connection){
+        if (err) {
+          connection.release();
+          res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+          return;
+        } 
+        connection.query('SELECT * FROM Grupo WHERE id_grupo = ?', req.body.idGrupo, function(err, rows){
+            connection.release();
+            if(!err){
+                var inicio=dateFormat(rows[0].fecha_inicio, "yyyy-mm-dd");
+                var fin=dateFormat(rows[0].fecha_fin, "yyyy-mm-dd");
+                rows[0].fecha_inicio = inicio;
+                rows[0].fecha_fin = fin;
+                res.render('detalleGrupo.ejs', {grupos:rows, usuario:req.session.usuario});
+            }else{
+                console.log('Hubo error.');
+            }
+        });
+
+        connection.on('error', function(err) {      
+              res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+              return;     
+        });
+    });
+});
+
 app.post('/tomarExamen', function(req, res){
     var idGpo = req.body.idGrupo;
     pool.getConnection(function(err,connection){
@@ -337,7 +364,7 @@ app.post('/actualizarGrupo', function(req, res){
               return;     
         });
     });
-    res.send('entrada');
+    res.send('/grupos');
 });
 
 app.post('/login', function(req, res){
@@ -353,15 +380,17 @@ app.post('/login', function(req, res){
                   return;
                 }   
 
-                connection.query('SELECT * FROM Profesor WHERE usuario = ? AND contrasena = ?', [user, pass], function(err,rows){
+              var query =  connection.query('SELECT * FROM Profesor WHERE usuario = ? AND contrasena = ?', [user, pass], function(err,rows){
                     connection.release();
                     if(!err){
                         if(typeof rows[0] !== 'undefined'){
+                            console.log('Si entra');
                             idProf = rows[0].id_profesor;
                             req.session.idProfesor = idProf;
-                            req.session.usuario = user;
+                            req.session.usuario = user;                 
                             callback(null, 'profesor', 'entrada');
                         }else{
+                            console.log('Error en usuario');
                             callback(null, 'none', 'Inicio.html');
                         }
                     }else{
@@ -408,7 +437,7 @@ app.post('/login', function(req, res){
                 });
             }
         }, function(arg1, arg2, callback){
-            if(arg1 === 'alumno' || arg1 === 'alumno' ){
+            if(arg1 === 'alumno' || arg1 === 'profesor' ){
                 callback(null, arg2);
             }else{
                 pool.getConnection(function(err,connection){
@@ -425,6 +454,7 @@ app.post('/login', function(req, res){
                                 idAdmin = rows[0].idadministrador;
                                 req.session.idAdministrador = idAdmin;
                                 req.session.usuario = user;
+                                console.log("Si entra");
                                 callback(null, 'administrador');
                             }else{
                                 callback(null, 'Inicio.html');
@@ -575,6 +605,90 @@ app.post('/nuevaPregunta', function(req, res){
             }else{
                 console.log('Hubo error en el insertado.');
                 console.log(err);
+            }
+        });
+
+        connection.on('error', function(err) {      
+              res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+              return;     
+        });
+    });
+});
+
+app.post('/cambiosPregunta', function(req, res){
+  pool.getConnection(function(err,connection){
+        if (err) {
+          connection.release();
+          res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+          return;
+        } 
+        connection.query('SELECT * FROM Pregunta WHERE id_pregunta = ?', req.body.idPregunta, function(err, rows){
+            connection.release();
+            if(!err){
+                res.render('Cambiospreguntas.ejs', {pregunta: rows, usuario:req.session.usuario});
+            }else{
+                console.log('Hubo error.');
+            }
+        });
+
+        connection.on('error', function(err) {      
+              res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+              return;     
+        });
+    });
+});
+
+app.post('/actualizarPregunta', function(req, res){
+    var pregunta = req.body.idPregunta;
+    var categoria = req.body.categoria;
+    var descripcion = req.body.descripcion;
+    var o1 = req.body.opcionA;
+    var o2 = req.body.opcionB;
+    var o3 = req.body.opcionC;
+    var o4 = req.body.opcionD;
+    var respuesta = req.body.respuesta;
+    console.log(pregunta);
+    
+    pool.getConnection(function(err,connection){
+        if (err) {
+          connection.release();
+          res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+          return;
+        }   
+
+        var query = connection.query('Update Pregunta SET ? where id_pregunta = ?',[{descripcion:descripcion,categoria:categoria,respuesta:respuesta, A:o1, B:o2, C:o3, D:o4},pregunta],function(err,rows){
+            connection.release();
+            if(!err) {
+                console.log('Se guardo la pregunta.');
+                //console.log(query);
+            } else {
+                console.log('Hubo error en el insertado de actualizacion.');
+                console.log(query);
+              }
+        });
+
+        connection.on('error', function(err) {      
+              res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+              return;     
+        });
+    });
+    res.send('grupos');
+});
+
+app.post('/preguntasGrupo', function(req, res){
+   var id_grupo = req.body.idGrupo;
+  pool.getConnection(function(err,connection){
+        if (err) {
+          connection.release();
+          res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+          return;
+        } 
+        connection.query('SELECT * FROM Pregunta WHERE id_grupo = ?', id_grupo, function(err, rows){
+            connection.release();
+            if(!err){
+                res.render('preguntasGrupo.ejs',{rows:rows, usuario:req.session.usuario});
+            }else{
+                console.log('Hubo error.' + id_grupo);
             }
         });
 

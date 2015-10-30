@@ -6,8 +6,9 @@ $(document).ready(function(){
             miClave=$("#clave").val();
             miInicio=$("#inicio").val();
             miFin=$("#fin").val();
-            
-            $.ajax({
+
+            if(miNombre !="" && miDescripcion !="" && miClave !="" && miInicio != ""){
+             $.ajax({
                 type: 'POST',
                 url: '/nuevoGrupo',
                 data: {nombre: miNombre,
@@ -18,7 +19,11 @@ $(document).ready(function(){
                 success: function(data){
                     window.location = "entrada";
                 }
-            });
+                });
+            }else{
+                alert("Todos los campos son requeridos");
+            }
+            
         });
 
         $("#actualizar").click(function(){
@@ -29,7 +34,10 @@ $(document).ready(function(){
             miInicio=$("#inicio").val();
             miFin=$("#fin").val();
             
-            $.ajax({
+            var bandera = true;
+
+            if(miId != "" && miNombre != "" && miDescripcion != "" && miClave != "" && miFin != "" ){
+                            $.ajax({
                 type: 'POST',
                 url: '/actualizarGrupo',
                 data: {
@@ -43,5 +51,8 @@ $(document).ready(function(){
                     window.location = "entrada";
                 }
             });
+            }else{
+                alert(" Todos los campos son requeridos");
+            }
         });
     });

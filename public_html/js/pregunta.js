@@ -1,3 +1,4 @@
+
 var preguntas = 0;
 var actual = 1;
 var respuestas = [];
@@ -147,6 +148,44 @@ function alta(){
             url: '/nuevaPregunta',
             data: {grupo: miGrupo,noPreguntas:preguntas,
                 resps: elJSON},
+            success: function(data){
+                if(data === "success"){
+                    alert("Preguntas guardada.");
+                    window.location = "agregarPregunta";
+                }else{
+                    window.location = "entrada";
+                }
+            }
+        });
+    }else{
+        alert("Todos los campos son necesarios.");
+    }
+}
+
+function actualizar(){
+    var miPregunta,miCategoria,miDescripcion,miOpA,miOpB,miOpC,miOpD,miRespuesta,miCategoria,pregunta;
+    
+    miPregunta=$("#idPregunta").val();
+    miCategoria=$("#categoria").val();
+    miDescripcion=$("#descrip").val();
+    miOpA=$("#op1").val();
+    miOpB=$("#op2").val();
+    miOpC=$("#op3").val();
+    miOpD=$("#op4").val();
+    miRespuesta=$("#respuesta")[0].selectedIndex + 1;
+    miCategoria=$("#categoria").val();
+    if(miDescripcion != "" && miOpA != "" && miOpB != "" && miOpC != "" && miOpD != "" && miCategoria != ""){
+        $.ajax({
+            type: 'POST',
+            url: '/actualizarPregunta',
+            data: {idPregunta: miPregunta,
+                    descripcion: miDescripcion,
+                    opcionA: miOpA,
+                    opcionB: miOpB,
+                    opcionC: miOpC,
+                    opcionD: miOpD,
+                    respuesta: miRespuesta,
+                    categoria: miCategoria},
             success: function(data){
                 if(data === "success"){
                     alert("Preguntas guardada.");

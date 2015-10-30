@@ -131,60 +131,73 @@ td{
     background-color: #f5f3AB;
 }
 
-#tituloSeccion{
-    position: relative;
-    top: 30px;
+#TituloSeccion{
     font-family: 'Oswald', sans-serif;
-    font-size: 40px;
+    font-size: 20px;
+    vertical-align: 20px;
 }
 
-#gpo{
-    text-align: left;
-    position: relative;
-    left: 30px;
-    top: 50px;
+#inputNombre{
+    position: absolute;
+    top: 20%;
+    left: 5%;
     font-family: 'Oswald', sans-serif;
     font-size: 20px;
 }
 
-#concentrado{
-    width: 90%;
-    background-color: #f8f6c4;
-}
-
-.claveGrupo{
-    width: 20px;
-}
-
-.nombreGrupo{
-    width: 100px;
-}
-
-.descGrupo{
-    width: 450px;
-}
-
-.editar{
-    background-color: #214bcb;
-}
-
-.detalle{
-    background-color: #7cba4e;
-}
-
-.eliminar{
-    background-color: #f03a3b;
-}
-
-#respuesta{
-    text-align: left;
+#nombre, #clave, #inicio, #fin{
+    font-family: 'Abel', sans-serif;
+    font-size: 20px;
     position: absolute;
-    left: 90px;
+    left: 200px;
+}
+
+#descrip{
+    position: absolute;
+    font-family: 'Abel', sans-serif;
+    top: 10px;
+    left: 200px;
+    font-size: 20px;
+    width: 300px;
+    height: 100px;
+}
+
+#inputDescripcion{
+    position: absolute;
+    top: 30%;
+    left: 5%;
+    font-family: 'Oswald', sans-serif;
+    font-size: 20px;
+}
+
+#inputClave{
+    position: absolute;
+    top: 55%;
+    left: 5%;
+    font-family: 'Oswald', sans-serif;
+    font-size: 20px;
+}
+
+#inputFechaIn{
+    position: absolute;
+    top: 65%;
+    left: 5%;
+    font-family: 'Oswald', sans-serif;
+    font-size: 20px;
+}
+
+#inputFechaFin{
+    position: absolute;
+    top: 75%;
+    left: 5%;
+    font-family: 'Oswald', sans-serif;
+    font-size: 20px;
 }
 
 #alta{
-    position: absolute;
-    top: 350px;
+    position: relative;
+    left: 400px;
+    top: 30px;
 }
 
 li{
@@ -199,7 +212,18 @@ a:link{
     text-decoration: none;
 }
 
-
-.descripcionGrupo{
+#nombre{
     width: 400px;
+}
+
+.detalle{
+    background-color: #fdffbd;  
+    border: none;  
+}
+
+
+#actualizar{
+    position: relative;
+    left: 20%;
+    top:75px;
 }
