@@ -1,7 +1,7 @@
 body{
-	background-color: #7ABAFF;
- 	background-size: 100%;
- 	border-image-repeat: no-repeat;
+    background-image: url('../img/horizontal_lines.png');
+    background-color: #7ABAFF;
+    background-repeat: repeat;
 }
 
 table{
@@ -20,18 +20,6 @@ th{
 	margin-right: 20px;
 }
 
-.logo{
-	width: 60px;
-	height: 60px;
-}
-
-#header{
-    position: relative;
-    top: 0px;
-    height: 65px;
-    width: 600px;
-}
-
 #subtitulo{
 	color: blue;
 	margin-top: 20px;
@@ -45,11 +33,11 @@ th{
 }
 
 .opciones{
-	width: 1000px;
-	height: 550px;
-        left: 560px;
-        background-color: #FCF5a7;
-        margin-left: 200px;
+    width: 600px;
+    height: 350px;
+    background-color: #FCF5a7;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .menus{
@@ -75,19 +63,17 @@ th{
 }
 
 #infoNivel{
-	margin: 0 auto;
-        background-color: #f57e00;
-	width: 60px;
-	height: 90px;
-	width: 800px;
-	text-align: center;
-        position: relative;
-        left: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #f57e00;
+    height: 50px;
+    width: 400px;
+    text-align: center;
 }
 
 #resNivel{
-	font-family: "Pusab";
-	font-size: 20px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 30px;
 }
 
 #resNivel > td{
@@ -100,13 +86,13 @@ th{
 #ac{
     position: relative;
     top: 50px;
-    font-size: 40px;
+    font-size: 20px;
 }
 
 #ti{
     position: relative;
     top: 100px;
-    font-size: 40px;
+    font-size: 20px;
 }
 
 #bo{

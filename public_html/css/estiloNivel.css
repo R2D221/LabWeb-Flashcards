@@ -1,7 +1,7 @@
 body {
+    background-image: url('../img/horizontal_lines.png');
     background-color: #7ABAFF;
-    background-size: 100%;
-    border-image-repeat: no-repeat;
+    background-repeat: repeat;
 }
 
 td {
@@ -38,11 +38,11 @@ th {
     float: left;
 }
 
-    #infoNivel h2 {
-        height: 100%;
-        width: 50%;
-        float: left;
-    }
+#infoNivel h2 {
+    height: 100%;
+    width: 50%;
+    float: left;
+}
 
 #subtitulo {
     color: blue;
@@ -105,7 +105,7 @@ th {
 }
 
 #texto {
-    font-family: 'Lobster', cursive;
+    font-family: 'Abel', sans-serif;
     font-weight: bold;
     font-size: 30px;
     display: inline-block;
@@ -127,7 +127,7 @@ th {
 }
 
 .opcion {
-    font-family: 'Lobster', cursive;
+    font-family: 'Abel', sans-serif;
     font-weight: bold;
     font-size: 20px;
     position: relative;

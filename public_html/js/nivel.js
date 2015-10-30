@@ -5,7 +5,7 @@ window.onbeforeunload = function () {
         if (!safeToLeave) return "Si sales de esta página, perderás tu progreso.";
 };
 
-var puntaje = parseInt(localStorage["puntaje"]);
+var puntaje = 0;
 var nivel = parseInt(localStorage["nivel"]);
 var fallos = parseInt(localStorage["fallidos"]);
 var correcta;
@@ -29,16 +29,14 @@ function evaluarOpcion(opcion){
     if(contador < (preguntas.length + 1)){
         changeQuestion();
     }else{
-
         checkAchievement2();
 
         if(aciertos > (preguntas.length * 0.9)){
             puntaje += (timeLeft / 10);
-            
             localStorage["fallidos"] = 0;
             localStorage["puntaje"] = puntaje;
             safeToLeave = true;
-            location.replace("bonusQuestion.html");
+            location.replace("ResultadosNivel1.html");
         }else{
             guardar();
             checkAchievement();
@@ -85,39 +83,25 @@ $(document).ready(function () {
      document.getElementById("opcion3").innerHTML = preguntas[indice].C;
      document.getElementById("opcion4").innerHTML = preguntas[indice].D;
 
-//    $.getJSON(jName, function (contenidoArchivo) {
-//        var indice = Math.floor((Math.random()*12));
-//        preguntasMostradas[contador-1] = indice;
-//        document.getElementById("tema").innerHTML = contenidoArchivo.Preguntas[indice].materia;
-//        document.getElementById("numero").innerHTML = contador;
-//        document.getElementById("texto").innerHTML = contenidoArchivo.Preguntas[indice].pregunta;
-//
-//        correcta = contenidoArchivo.Preguntas[indice].Respuesta;
-//        for (var i = 0; i < 4; i++) {
-//            var opcion = document.getElementById("opcion" + (i + 1));
-//            opcion.innerHTML = contenidoArchivo.Preguntas[indice].Opciones[i];
-//        }
-//
-        var deadline = Date.now() + 1000 * 60; //60 segundos
-        function timer()
-        {
-            timeLeft = deadline - Date.now();
-            var $timerElement = $("#timer");
-            $timerElement.text(formatTime(timeLeft / 1000));
+    var deadline = Date.now() + 1000 * 60; //60 segundos
+    function timer()
+    {
+        timeLeft = deadline - Date.now();
+        var $timerElement = $("#timer");
+        $timerElement.text(formatTime(timeLeft / 1000));
 
-            if (timeLeft > 0) {
-                setTimeout(timer, 50);
-            } else {
-                guardar();
-                checkAchievement();
-                safeToLeave = true;
-                location.replace("ResultadosNivel1.html");
+        if (timeLeft > 0) {
+            setTimeout(timer, 50);
+        } else {
+            guardar();
+            checkAchievement();
+            safeToLeave = true;
+            location.replace("ResultadosNivel1.html");
 
-            }
         }
+    }
 
-        timer();
-//    });
+    timer();
 });
 
 function checkAchievement(){
@@ -217,32 +201,6 @@ function changeQuestion(){
         safeToLeave = true;
         location.replace("ResultadosNivel1.html");
     }
-//    var jName = "json/nivel" + nivel + ".json";
-//    $.getJSON(jName, function (contenidoArchivo) {
-//        if(contador <= 12){
-//
-//        do{
-//            var indice = Math.floor((Math.random()*12));
-//        }while(verificarPregunta(indice));
-//
-//        preguntasMostradas[contador-1] = indice;
-//        document.getElementById("tema").innerHTML = contenidoArchivo.Preguntas[indice].materia;
-//        document.getElementById("numero").innerHTML = contador;
-//        document.getElementById("texto").innerHTML = contenidoArchivo.Preguntas[indice].pregunta;
-//
-//        correcta = contenidoArchivo.Preguntas[indice].Respuesta;
-//        for (var i = 0; i < 4; i++) {
-//            var opcion = document.getElementById("opcion" + (i + 1));
-//            opcion.innerHTML = contenidoArchivo.Preguntas[indice].Opciones[i];
-//        }
-//
-//        }else{
-//            guardar();
-//            localStorage["nivel"] = 1;
-//            safeToLeave = true;
-//            location.replace("ResultadosNivel1.html");
-//        }
-//    });
 }
 
 function verificarPregunta(numero){
