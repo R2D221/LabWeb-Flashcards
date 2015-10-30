@@ -6,6 +6,8 @@ var multer     = require('multer');
 var fs         = require('fs');
 var dateFormat = require('dateformat');
 var async      = require('async');
+var path       = require('path');
+var mime       = require('mime');
 
 var downdir = __dirname + '/public_html/uploads';
 
@@ -163,6 +165,65 @@ app.post('/cambiosGrupo', function(req, res){
               return;     
         });
     });
+});
+
+app.post('/tomarExamen', function(req, res){
+    var idGpo = req.body.idGrupo;
+    pool.getConnection(function(err,connection){
+        if (err) {
+          connection.release();
+          res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+          return;
+        } 
+        connection.query('SELECT * FROM Pregunta WHERE id_grupo = ?', idGpo, function(err, rows){
+            connection.release();
+            if(!err){
+                res.send(JSON.stringify(rows));
+            }else{
+                console.log('Hubo error.');
+            }
+        });
+
+        connection.on('error', function(err) {      
+              res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+              return;     
+        });
+    });
+});
+
+app.post('/verMaterial', function(req, res){
+  pool.getConnection(function(err,connection){
+        if (err) {
+          connection.release();
+          res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+          return;
+        } 
+        connection.query('SELECT * FROM Referencias WHERE id_grupo = ?', req.body.idGrupo, function(err, rows){
+            connection.release();
+            if(!err){
+                res.render('misMateriales.ejs', {referencias:rows, usuario:req.session.usuario});
+            }else{
+                console.log('Hubo error.');
+            }
+        });
+
+        connection.on('error', function(err) {      
+              res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+              return;     
+        });
+    });
+});
+
+app.post('/descargarMaterial', function(req, res){
+    var file = __dirname + '/public_html/' + req.body.archivo;
+    var nomAr = path.basename(file);
+    var mimeTipo = mime.lookup(file);
+    
+    res.setHeader('Content-disposition', 'attachment; filename=' + nomAr);
+    res.setHeader('Content-type', mimeTipo);
+    
+    var filestream = fs.createReadStream(file);
+    filestream.pipe(res);
 });
 
 app.post('/actualizarGrupo', function(req, res){
@@ -415,9 +476,10 @@ app.post('/nuevaPregunta', function(req, res){
 
 app.post('/subirMaterial', function(req, res){
     console.log(req.body.nombre);
-    var archivoDir = 'uploads/' + Date.now() + req.file.originalname;
+    var dateStuff = Date.now();
+    var archivoDir = 'uploads/' + dateStuff + req.file.originalname;
     fs.readFile(req.file.path, function(err, data){
-        var nuevoDir = __dirname + '/public_html/uploads/' + Date.now() + req.file.originalname;
+        var nuevoDir = __dirname + '/public_html/uploads/' + dateStuff + req.file.originalname;
         fs.writeFile(nuevoDir, data, function (err) { });
     });
     

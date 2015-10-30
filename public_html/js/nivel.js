@@ -1,8 +1,5 @@
 var safeToLeave = false;
-
-if (window.name != "juego") {
-        location.replace("Home.html");
-}
+var preguntas = {};
 
 window.onbeforeunload = function () {
         if (!safeToLeave) return "Si sales de esta página, perderás tu progreso.";
@@ -14,7 +11,7 @@ var fallos = parseInt(localStorage["fallidos"]);
 var correcta;
 var contador = 1;
 var timeLeft;
-var preguntasMostradas = new Array(12);
+var preguntasMostradas;
 var aciertos = 0;
 var usuario = localStorage["usuario_actual"];
 
@@ -29,13 +26,13 @@ function evaluarOpcion(opcion){
 
     document.getElementById("puntos").innerHTML = puntaje;
     contador++;
-    if(contador < 13){
+    if(contador < (preguntas.length + 1)){
         changeQuestion();
     }else{
 
         checkAchievement2();
 
-        if(aciertos > 10){
+        if(aciertos > (preguntas.length * 0.9)){
             puntaje += (timeLeft / 10);
             
             localStorage["fallidos"] = 0;
@@ -74,21 +71,34 @@ $(document).ready(function () {
     var contador = 1;
 
     $('#nivel').html("Nivel " + nivel);
+    
+    preguntas = JSON.parse(localStorage["preguntas"]);
+    preguntasMostradas = new Array(preguntas.length);
+    var indice = Math.floor((Math.random()*preguntas.length));
+    preguntasMostradas[contador-1] = indice;
+    
+    document.getElementById("texto").innerHTML = preguntas[indice].descripcion;
+    correcta = preguntas[indice].respuesta;
+    
+     document.getElementById("opcion1").innerHTML = preguntas[indice].A;
+     document.getElementById("opcion2").innerHTML = preguntas[indice].B;
+     document.getElementById("opcion3").innerHTML = preguntas[indice].C;
+     document.getElementById("opcion4").innerHTML = preguntas[indice].D;
 
-    $.getJSON(jName, function (contenidoArchivo) {
-        var indice = Math.floor((Math.random()*12));
-        preguntasMostradas[contador-1] = indice;
-        document.getElementById("tema").innerHTML = contenidoArchivo.Preguntas[indice].materia;
-        document.getElementById("numero").innerHTML = contador;
-        document.getElementById("texto").innerHTML = contenidoArchivo.Preguntas[indice].pregunta;
-
-        correcta = contenidoArchivo.Preguntas[indice].Respuesta;
-        for (var i = 0; i < 4; i++) {
-            var opcion = document.getElementById("opcion" + (i + 1));
-            opcion.innerHTML = contenidoArchivo.Preguntas[indice].Opciones[i];
-        }
-
-        var deadline = Date.now() + 1000 * parseInt(contenidoArchivo.tiempo); //60 segundos
+//    $.getJSON(jName, function (contenidoArchivo) {
+//        var indice = Math.floor((Math.random()*12));
+//        preguntasMostradas[contador-1] = indice;
+//        document.getElementById("tema").innerHTML = contenidoArchivo.Preguntas[indice].materia;
+//        document.getElementById("numero").innerHTML = contador;
+//        document.getElementById("texto").innerHTML = contenidoArchivo.Preguntas[indice].pregunta;
+//
+//        correcta = contenidoArchivo.Preguntas[indice].Respuesta;
+//        for (var i = 0; i < 4; i++) {
+//            var opcion = document.getElementById("opcion" + (i + 1));
+//            opcion.innerHTML = contenidoArchivo.Preguntas[indice].Opciones[i];
+//        }
+//
+        var deadline = Date.now() + 1000 * 60; //60 segundos
         function timer()
         {
             timeLeft = deadline - Date.now();
@@ -107,11 +117,10 @@ $(document).ready(function () {
         }
 
         timer();
-    });
+//    });
 });
 
 function checkAchievement(){
-    
     if(nivel === 1){
         fallos++;
         if(fallos === 3){
@@ -151,7 +160,6 @@ function checkAchievement(){
 }
 
 function checkAchievement2(){
-
     if(timeLeft / 1000 > 30){
         if(localStorage.getItem("logros_" + usuario) === null){
             var logros = {
@@ -189,32 +197,52 @@ function checkAchievement2(){
 }
 
 function changeQuestion(){
-    var jName = "json/nivel" + nivel + ".json";
-    $.getJSON(jName, function (contenidoArchivo) {
-        if(contador <= 12){
-
+    if(contador <= preguntas.length){
+        var indice;
         do{
-            var indice = Math.floor((Math.random()*12));
+            indice = Math.floor((Math.random()*preguntas.length));
         }while(verificarPregunta(indice));
-
         preguntasMostradas[contador-1] = indice;
-        document.getElementById("tema").innerHTML = contenidoArchivo.Preguntas[indice].materia;
-        document.getElementById("numero").innerHTML = contador;
-        document.getElementById("texto").innerHTML = contenidoArchivo.Preguntas[indice].pregunta;
 
-        correcta = contenidoArchivo.Preguntas[indice].Respuesta;
-        for (var i = 0; i < 4; i++) {
-            var opcion = document.getElementById("opcion" + (i + 1));
-            opcion.innerHTML = contenidoArchivo.Preguntas[indice].Opciones[i];
-        }
+        document.getElementById("texto").innerHTML = preguntas[indice].descripcion;
+        correcta = preguntas[indice].respuesta;
 
-        }else{
-            guardar();
-            localStorage["nivel"] = 1;
-            safeToLeave = true;
-            location.replace("ResultadosNivel1.html");
-        }
-    });
+        document.getElementById("opcion1").innerHTML = preguntas[indice].A;
+        document.getElementById("opcion2").innerHTML = preguntas[indice].B;
+        document.getElementById("opcion3").innerHTML = preguntas[indice].C;
+        document.getElementById("opcion4").innerHTML = preguntas[indice].D;
+    }else{
+        guardar();
+        localStorage["nivel"] = 1;
+        safeToLeave = true;
+        location.replace("ResultadosNivel1.html");
+    }
+//    var jName = "json/nivel" + nivel + ".json";
+//    $.getJSON(jName, function (contenidoArchivo) {
+//        if(contador <= 12){
+//
+//        do{
+//            var indice = Math.floor((Math.random()*12));
+//        }while(verificarPregunta(indice));
+//
+//        preguntasMostradas[contador-1] = indice;
+//        document.getElementById("tema").innerHTML = contenidoArchivo.Preguntas[indice].materia;
+//        document.getElementById("numero").innerHTML = contador;
+//        document.getElementById("texto").innerHTML = contenidoArchivo.Preguntas[indice].pregunta;
+//
+//        correcta = contenidoArchivo.Preguntas[indice].Respuesta;
+//        for (var i = 0; i < 4; i++) {
+//            var opcion = document.getElementById("opcion" + (i + 1));
+//            opcion.innerHTML = contenidoArchivo.Preguntas[indice].Opciones[i];
+//        }
+//
+//        }else{
+//            guardar();
+//            localStorage["nivel"] = 1;
+//            safeToLeave = true;
+//            location.replace("ResultadosNivel1.html");
+//        }
+//    });
 }
 
 function verificarPregunta(numero){

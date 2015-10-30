@@ -2,11 +2,12 @@
     <title>Flashcards</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/grupos_alumno.css" />
+    <script src="js/jquery-1.11.3.js" type="text/javascript"></script>
+    <script src="js/pregunta.js" type="text/javascript"></script>
     <link href='https://fonts.googleapis.com/css?family=Ubuntu:500italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
     <script src="js/jquery-1.11.3.js" type="text/javascript"></script>
-    <script src="js/misGrupos.js" type="text/javascript"></script>
 </head>
 <body>
 	<div align=left id="header">
@@ -24,31 +25,27 @@
                 <th> Nombre </th>
                 <th> Descripción </th>
                 <th>  </th>
-                <th>  </th>
-                <% for(var i=0; i < grupos.length; i++) { %>
+                <% for(var i=0; i < referencias.length; i++) { %>
                     <tr>
+                        <form action="/descargarMaterial" method="POST">
                         <td> 
-                            <%= grupos[i].id_grupo%>
+                            <%= referencias[i].id_referencia%>
                         </td>
                         <td>
-                            <%= grupos[i].nombre%>
+                            <%= referencias[i].nombre%>
                         </td>
                         <td>
-                            <%= grupos[i].descripcion%>
+                            <%= referencias[i].descripcion%>
                         </td>
                         <td>
-                            <input type="submit" value="Tomar Examen" onclick="examen('<%= grupos[i].id_grupo%>');"/> &nbsp;
-                        </td>
-                        <form action="/verMaterial" method="POST">
-                        <td>
-                            <input type="hidden" value=<%= grupos[i].id_grupo%> name="idGrupo" />
-                            <input type="submit" value="Ver Materiales"/> &nbsp;
+                            <input type="hidden" value=<%= referencias[i].archivo%> name="archivo" />
+                            <input type="submit" value="Detalle"/> &nbsp;
                         </td>
                         </form>
                     </tr>
                 <% } %>
             </table>
-            <a href="Home.html" style="color: #000;">Regresar</a>
+            <a href="grupo_alumno" style="color: #000;">Regresar</a>
         </div>
         </div>
     </div>
