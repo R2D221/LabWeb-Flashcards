@@ -109,7 +109,7 @@ app.get('/asigAlum', function(req, res){
         }
     ], function(err, res1, res2){
         if(!err){
-            res.render('asignaAlumno.ejs', {grupos: res1, alumnos: res2});
+            res.render('asignaAlumno.ejs', {grupos: res1, alumnos: res2, usuario: req.session.usuario});
         }
     });
 });
@@ -181,7 +181,7 @@ app.get('/agregarPregunta', function(req, res){
         connection.query('SELECT * FROM Grupo WHERE id_profesor = ?', req.session.idProfesor, function(err,rows){
             connection.release();
             if(!err){
-                res.render('preguntas.ejs', {grupos:rows});
+                res.render('preguntas.ejs', {grupos:rows, usuario:req.session.usuario});
             }else{
                 console.log('Hubo error.');
             }
@@ -205,7 +205,7 @@ app.get('/agregarMaterial', function(req, res){
         connection.query('SELECT * FROM Grupo WHERE id_profesor = ?', req.session.idProfesor, function(err,rows){
             connection.release();
             if(!err){
-                res.render('materiales.ejs', {grupos:rows});
+                res.render('materiales.ejs', {grupos:rows, usuario:req.session.usuario});
             }else{
                 console.log('Hubo error.');
             }

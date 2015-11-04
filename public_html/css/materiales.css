@@ -29,14 +29,6 @@ html {
     font-size: 50px;
 }
 
-#tituloSeccion{
-    text-align: center;
-    position: relative;
-    top: 10px;
-    font-family: 'Oswald', sans-serif;
-    font-size: 25px;
-}
-
 .answer
 {
     font-family: 'Patua One', cursive;
@@ -125,6 +117,72 @@ td{
     background-color: #62babb;
 }
 
+#tituloSeccion{
+    text-align: center;
+    position: relative;
+    top: 30px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 25px;
+}
+
+.infoMaterial{
+    text-align: left;
+    position: relative;
+    left: 5%;
+    top: 50px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 20px;
+}
+
+#grupo, #nombre, #descripcion, #archivo, #inicio, #fin, #acepta{
+    font-family: 'Abel', sans-serif;
+    font-size: 20px;
+}
+
+#grupo{
+    position: relative;
+    top: 45px;
+    left: 150px;
+}
+
+#nombre{
+    position: relative;
+    top: 45px;
+    left: 140px;
+}
+
+#descripcion{
+    position: relative;
+    top: 45px;
+    left: 205px;
+    width: 300px;
+    height: 100px;
+}
+
+#archivo{
+    position: relative;
+    top: 45px;
+    left: 135px;
+}
+
+#inicio{
+    position: relative;
+    top: 45px;
+    left: 80px;   
+}
+
+#fin{
+    position: relative;
+    top: 45px;
+    left: 107.5px;
+}
+
+#acepta{
+    position: relative;
+    top: 45px;
+    left: 50%;   
+}
+
 .seccion{
     vertical-align: middle;
 }
@@ -184,7 +242,7 @@ td{
 #infoPerfil{
     position: absolute;
     width: 22.5%;
-    height: 80%;
+    height: 40%;
     left: 50%;
     top: 50px;
 }
@@ -192,9 +250,25 @@ td{
 #infoGrupos{
     position: absolute;
     width: 22.5%;
-    height: 80%;
+    height: 40%;
     left: 73%;
     top: 50px;
+}
+
+#infoMateriales{
+    position: absolute;
+    width: 22.5%;
+    height: 40%;
+    left: 50%;
+    top: 250px;
+}
+
+#infoEstadisticas{
+    position: absolute;
+    width: 22.5%;
+    height: 40%;
+    left: 73%;
+    top: 250px;
 }
 
 .info{

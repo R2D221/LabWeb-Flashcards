@@ -1,15 +1,35 @@
 <head>
-    <title>Flashcards</title>
+    <title>Flashcards - Administrador</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/alumno.css" />
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu:500italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/alumno.css" />
     <script src="js/jquery-1.11.3.js" type="text/javascript"></script>
     <script src="js/alumno.js"></script>
 </head>
 <body>
-    Nombre: <input type="text" id="nombre" maxlength="125"/><br />
-    Correo: <input type="email" id="correo" maxlength="100"/><br />
-    Usuario: <input type="text" id="usuario" maxlength="25"/><br />
-    Contrase&ntilde;a <input type="password" id="contra1" maxlength="125"/><br />
-    Confirma tu contrase&ntilde;a <input type="password" id="contra2" maxlength="125"/><br />
+    <div align=left id="header">
+        <img src="img/small-logo.png"/> <label id="title">CEREBRATÓN</label>
+        <label id="nusuario"> Bienvenido <%= usuario %> </label>
+    </div>
+    <div id="menu">
+        <table id="lista">
+        <td class="seccion"><a href="administrador">Inicio</a></td>
+        <td class="seccion"><a href="alumnos">Registrar Alumno</a></td>
+        <td class="seccion"><a href="profesor">Registrar Profesor</a></td>
+        <td class="seccion"><a href="asigAlum">Asignar Alumnos</a></td>
+        <td class="seccion"></td>
+        </table>
+    </div>
+    <div id="body">
+    <div id="TituloSeccion" text-align=center> Registrar Alumno </div>
+    <div id="infoNombre" class="forma" >Nombre: <input type="text" id="nombre" maxlength="125"/></div><br />
+    <div id="infoCorreo" class="forma" > Correo: <input type="email" id="correo" maxlength="100"/></div><br />
+    <div id="infoUsuario" class="forma" > Usuario: <input type="text" id="usuario" maxlength="25"/> </div><br />
+     <div id="infoPass" class="forma" > Contrase&ntilde;a <input type="password" id="contra1" maxlength="125"/></div><br />
+     <div id="infoPass1" class="forma" > Confirma tu contrase&ntilde;a <input type="password" id="contra2" maxlength="125"/></div><br />
     <input type="submit" value="Registrar" id="alta" />
+    </div>
 </body>

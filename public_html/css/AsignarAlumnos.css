@@ -29,14 +29,6 @@ html {
     font-size: 50px;
 }
 
-#tituloSeccion{
-    text-align: center;
-    position: relative;
-    top: 10px;
-    font-family: 'Oswald', sans-serif;
-    font-size: 25px;
-}
-
 .answer
 {
     font-family: 'Patua One', cursive;
@@ -139,83 +131,122 @@ td{
     background-color: #f5f3AB;
 }
 
-#perfil{
+#tituloSeccion{
+    text-align: center;
     position: relative;
-    width: 100px;
-    height: 60px;
-    left: 50%;
-    background-color: red;
-    text-align: baseline;
+    top: 30px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 25px;
 }
 
-#grupos{
-    vertical-align: top;
-    position: relative;
-    width: 100px;
-    height: 60px;
-    top: -60px;
-    left: 70%;
-    background-color: yellow;
-}
-
-#estadisticas{
-    position: relative;
-    width: 200px;
-    height: 60px;
-    left: 90%;
-    top: -120px;
-    background-color: orange;
-}
-
-#flashCard{
-    position: absolute;
-    text-align: bottom;
-    width: 44%;
-    height: 80%;
-    left: 5%;
-    top: 50px;
-}
-
-#mision{
-    position: relative;
-    top: 60%;
-}
-
-#infoPerfil{
-    position: absolute;
-    width: 22.5%;
-    height: 80%;
-    left: 50%;
-    top: 50px;
-}
-
-#infoGrupos{
-    position: absolute;
-    width: 22.5%;
-    height: 80%;
-    left: 73%;
-    top: 50px;
-}
-
-.info{
+#registroGrupos{
+    text-align: center;
     font-family: 'Oswald', sans-serif;
     font-size: 20px;
-    border: 5px solid;
-    border-left-color: #124963;
-    border-top-color: #124963;
-    border-right-color: #124963;
-    border-bottom-color: #124963;
-    vertical-align: middle;
+    position: relative;
+    top: 50px;
+    left: 5%;
+
+}
+
+.alumnos{
+    text-align: left;
+    font-family: 'Oswald', sans-serif;
+    font-size: 20px;
+    position: relative;
+    top: 30px;
+    left: 20%;
+}
+
+#asignar{
+    position: relative;
+    top: 50px;
+    left: 10%;
+}
+
+#nombre, #correo, #usuario, #contra1, #contra2{
+    font-family: 'Abel', sans-serif;
+    font-size: 20px;
+}
+
+#nombre{
+    position: relative;
+    left: 150px;
+}
+
+ #correo{
+    position: relative;
+    left: 155px;
+} 
+
+#usuario{
+    position: relative;
+    left: 145px;
+} 
+
+#contra1{
+    position: relative;
+    left: 120px;
+}
+
+#contra2{
+    position: relative;
+    left: 25px;
+}
+
+#alta{
+    position: relative;
+    left: 60%;
+}
+
+
+#gpo{
+    text-align: left;
+    position: relative;
+    left: 30px;
+    top: 50px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 20px;
+}
+
+#concentrado{
+    width: 90%;
     background-color: #f8f6c4;
 }
 
-.descripcionInfo{
-    font-family: 'Ubuntu', sans-serif;
-    font-size: 15px;
-    margin-left: 10px;
+.claveGrupo{
+    width: 20px;
+}
+
+.nombreGrupo{
+    width: 100px;
+}
+
+.descGrupo{
+    width: 450px;
+}
+
+.editar{
+    background-color: #214bcb;
+}
+
+.detalle{
+    background-color: #7cba4e;
+}
+
+.eliminar{
+    background-color: #f03a3b;
+}
+
+#respuesta{
     text-align: left;
-    position: relative;
-    top: 40%;
+    position: absolute;
+    left: 90px;
+}
+
+#alta{
+    position: absolute;
+    top: 350px;
 }
 
 li{
@@ -230,3 +261,7 @@ a:link{
     text-decoration: none;
 }
 
+
+.descripcionGrupo{
+    width: 400px;
+}
