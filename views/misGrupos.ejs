@@ -47,6 +47,27 @@
                         </form>
                     </tr>
                 <% } %>
+                <% for(var i=0; i < consultas.length; i++) { %>
+                    <tr>
+                        <td> 
+                            <%= consultas[i].id_grupo%>
+                        </td>
+                        <td>
+                            <%= consultas[i].nombre%>
+                        </td>
+                        <td>
+                            <%= consultas[i].descripcion%>
+                        </td>
+                        <form action="/verMaterial" method="POST">
+                        <td>
+                            <input type="hidden" value=<%= consultas[i].id_grupo%> name="idGrupo" />
+                            <input type="submit" value="Ver Materiales"/> &nbsp;
+                        </td>
+                        </form>
+                        <td>
+                        </td>
+                    </tr>
+                <% } %>
             </table>
             <a href="Home.html" style="color: #000;">Regresar</a>
         </div>

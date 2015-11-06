@@ -146,27 +146,68 @@ app.get('/grupos', function(req, res){
     });
 });
 
-app.get('/grupo_alumno', function(req, res){
-    pool.getConnection(function(err,connection){
-        if (err) {
-          connection.release();
-          res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
-          return;
-        }   
+app.get('/grupo_alumno', function(req, res){async.waterfall([
+        function(callback) {
+            pool.getConnection(function(err,connection){
+                if (err) {
+                  connection.release();
+                  res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+                  return;
+                }   
 
-        connection.query('SELECT gru.id_grupo, nombre, descripcion FROM grupo AS gru, grupo_alumno AS gal WHERE gru.id_grupo = gal.id_grupo AND gal.id_alumno = ?;', req.session.idAlumno, function(err, rows){
-            connection.release();
-            if(!err){
-                res.render('misGrupos.ejs', {grupos:rows, usuario:req.session.usuario});
-            }else{
-                console.log('Hubo error.');
-            }
-        });
+                connection.query('SELECT DISTINCT gru.id_grupo, nombre, descripcion FROM grupo AS gru, grupo_alumno AS gal WHERE gru.id_grupo = gal.id_grupo AND gal.id_alumno = ?' + 
+                        ' AND NOT exists(SELECT DISTINCT gru.id_grupo, nombre, descripcion FROM grupo AS gru, grupo_alumno AS gal, alumno_pregunta AS ap WHERE gru.id_grupo = gal.id_grupo AND ap.id_alumno = ? AND ap.id_grupo = gru.id_grupo);;',
+                        [req.session.idAlumno,req.session.idAlumno], function(err, rows){
+                    connection.release();
+                    if(!err){
+                        if(typeof rows[0] !== 'undefined'){
+                            callback(null, rows);
+                        }else{
+                            var empty = [];
+                            callback(null, empty);
+                        }
+                    }else{
+                        console.log('Hubo error.');
+                    }
+                });
 
-        connection.on('error', function(err) {      
-              res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
-              return;     
-        });
+                connection.on('error', function(err) {      
+                      res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+                      return;     
+                });
+            });
+        }, function(arg1, callback){
+            pool.getConnection(function(err,connection){
+                if (err) {
+                  connection.release();
+                  res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+                  return;
+                }   
+
+                connection.query('SELECT DISTINCT gru.id_grupo, nombre, descripcion FROM grupo AS gru, grupo_alumno AS gal, alumno_pregunta AS ap WHERE gru.id_grupo = gal.id_grupo AND ap.id_alumno = ? AND ap.id_grupo = gru.id_grupo;', req.session.idAlumno, function(err, rows){
+                    connection.release();
+                    if(!err){
+                        if(typeof rows[0] !== 'undefined'){
+                            callback(null, arg1, rows);
+                        }else{
+                            var empty = [];
+                            callback(null, arg1, empty);
+                        }
+                    }else{
+                        console.log('Error al recopilar grupos respondidos.');
+                    }
+                });
+
+                connection.on('error', function(err) {      
+                      res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+                      return;     
+                });
+            });
+        }
+    ], function(err, res1, res2){
+        if(!err){
+            res.render('misGrupos.ejs', {grupos:res1, consultas:res2, usuario:req.session.usuario});
+        }
     });
 });
 
@@ -384,13 +425,11 @@ app.post('/login', function(req, res){
                     connection.release();
                     if(!err){
                         if(typeof rows[0] !== 'undefined'){
-                            console.log('Si entra');
                             idProf = rows[0].id_profesor;
                             req.session.idProfesor = idProf;
                             req.session.usuario = user;                 
                             callback(null, 'profesor', 'entrada');
                         }else{
-                            console.log('Error en usuario');
                             callback(null, 'none', 'Inicio.html');
                         }
                     }else{
@@ -454,7 +493,6 @@ app.post('/login', function(req, res){
                                 idAdmin = rows[0].idadministrador;
                                 req.session.idAdministrador = idAdmin;
                                 req.session.usuario = user;
-                                console.log("Si entra");
                                 callback(null, 'administrador');
                             }else{
                                 callback(null, 'Inicio.html');
