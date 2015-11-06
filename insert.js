@@ -598,9 +598,48 @@ app.post('/nuevaPregunta', function(req, res){
         console.log(values);
         var query = connection.query(insertQuery, [values], function(err,rows){
             connection.release();
-            console.log(values);
             if(!err){
                 console.log('Se guardaron las preguntas.');
+                res.send('success');
+            }else{
+                console.log('Hubo error en el insertado.');
+                console.log(err);
+            }
+        });
+
+        connection.on('error', function(err) {      
+              res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+              return;     
+        });
+    });
+});
+
+app.post('/guardarRespuestas', function(req, res){
+    var idAlum = req.session.idAlumno;
+    var noPreg = parseInt(req.body.noPreguntas) - 1;
+    var respuestas = JSON.parse(req.body.resps);
+    var preguntas = JSON.parse(req.body.pregs);
+    
+    var values = [];
+    var insertQuery  = 'insert into Alumno_pregunta(id_alumno, id_pregunta, respuesta) values ?';
+    
+    for(var i = 0; i < noPreg; i++){
+        var pregunta = [idAlum,preguntas[i],respuestas[i]];
+        values[i] = pregunta;
+    }
+    
+    pool.getConnection(function(err,connection){
+        if (err) {
+          connection.release();
+          res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+          return;
+        }   
+
+        console.log(values);
+        var query = connection.query(insertQuery, [values], function(err,rows){
+            connection.release();
+            if(!err){
+                console.log('Se guardaron las respuestas.');
                 res.send('success');
             }else{
                 console.log('Hubo error en el insertado.');

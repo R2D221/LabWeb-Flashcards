@@ -1,4 +1,3 @@
-
 var preguntas = 0;
 var actual = 1;
 var respuestas = [];

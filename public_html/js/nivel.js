@@ -1,5 +1,7 @@
 var safeToLeave = false;
 var preguntas = {};
+var respuestas = [];
+var preguntasR = [];
 
 window.onbeforeunload = function () {
         if (!safeToLeave) return "Si sales de esta página, perderás tu progreso.";
@@ -17,6 +19,7 @@ var usuario = localStorage["usuario_actual"];
 
 
 function evaluarOpcion(opcion){
+    respuestas.push(opcion);
     if(opcion === correcta){
         puntaje += 100;
         aciertos++;
@@ -33,19 +36,29 @@ function evaluarOpcion(opcion){
 
         if(aciertos > (preguntas.length * 0.9)){
             puntaje += (timeLeft / 10);
-            localStorage["fallidos"] = 0;
-            localStorage["puntaje"] = puntaje;
-            safeToLeave = true;
-            location.replace("ResultadosNivel1.html");
         }else{
             guardar();
             checkAchievement();
             localStorage["nivel"] = 1;
-            localStorage["fallidos"] = 0;
-            localStorage["puntaje"] = puntaje;
-            safeToLeave = true;
-            location.replace("ResultadosNivel1.html");
         }
+        localStorage["fallidos"] = 0;
+        localStorage["puntaje"] = puntaje;
+        safeToLeave = true;
+        
+        var elJSONr = JSON.stringify(respuestas);
+        var elJSONp = JSON.stringify(preguntasR);
+        
+        $.ajax({
+            type: 'POST',
+            url: '/guardarRespuestas',
+            data: {resps: elJSONr,
+                pregs: elJSONp,
+                noPreguntas: contador},
+            success: function(data){
+                location.replace("ResultadosNivel1.html");
+            }
+        });
+        
     }
 }
 
@@ -77,6 +90,7 @@ $(document).ready(function () {
     
     document.getElementById("texto").innerHTML = preguntas[indice].descripcion;
     correcta = preguntas[indice].respuesta;
+    preguntasR.push(preguntas[indice].id_pregunta);
     
      document.getElementById("opcion1").innerHTML = preguntas[indice].A;
      document.getElementById("opcion2").innerHTML = preguntas[indice].B;
@@ -190,6 +204,7 @@ function changeQuestion(){
 
         document.getElementById("texto").innerHTML = preguntas[indice].descripcion;
         correcta = preguntas[indice].respuesta;
+        preguntasR.push(preguntas[indice].id_pregunta);
 
         document.getElementById("opcion1").innerHTML = preguntas[indice].A;
         document.getElementById("opcion2").innerHTML = preguntas[indice].B;
