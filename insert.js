@@ -8,6 +8,7 @@ var dateFormat = require('dateformat');
 var async      = require('async');
 var path       = require('path');
 var mime       = require('mime');
+var _          = require('underscore');
 
 var downdir = __dirname + '/public_html/uploads';
 
@@ -17,6 +18,7 @@ var pool = mysql.createPool({
     user     : 'root',
     password : 'ldmpt24*',
     database : 'FlashCards',
+    multipleStatements: true,
     debug    :  false
 });
 
@@ -146,7 +148,32 @@ app.get('/grupos', function(req, res){
     });
 });
 
-app.get('/grupo_alumno', function(req, res){async.waterfall([
+app.get('/estadisticas', function(req, res){
+    pool.getConnection(function(err,connection){
+        if (err) {
+          connection.release();
+          res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+          return;
+        }   
+
+        connection.query('SELECT * FROM Grupo WHERE id_profesor = ?', req.session.idProfesor, function(err, rows){
+            connection.release();
+            if(!err){
+                res.render('estadisticas.ejs', {grupos:rows, usuario:req.session.usuario});
+            }else{
+                console.log('Hubo error.');
+            }
+        });
+
+        connection.on('error', function(err) {      
+              res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+              return;     
+        });
+    });
+});
+
+app.get('/grupo_alumno', function(req, res){
+    async.waterfall([
         function(callback) {
             pool.getConnection(function(err,connection){
                 if (err) {
@@ -315,6 +342,8 @@ app.post('/detalle', function(req, res){
 
 app.post('/tomarExamen', function(req, res){
     var idGpo = req.body.idGrupo;
+    req.session.grupoAct = idGpo;
+    
     pool.getConnection(function(err,connection){
         if (err) {
           connection.release();
@@ -618,7 +647,8 @@ app.post('/nuevaPregunta', function(req, res){
     console.log(respuestas[0].descripcion);
     
     var values = [];
-    var insertQuery  = 'insert into Pregunta(id_grupo, descripcion, categoria, A, B, C, D, respuesta) values ?';
+    var insertQuery = 'insert into Pregunta(id_grupo, descripcion, categoria, A, B, C, D, respuesta) values ?';
+    var insertEstad = 'INSERT INTO Estadisticas_grupo(id_pregunta, respuesta, id_grupo, conteo) values ?'; 
     
     for(var i = 0; i < preguntas; i++){
         var pregunta = [grupo,respuestas[i].descripcion,respuestas[i].categoria,respuestas[i].opcionA,
@@ -626,69 +656,231 @@ app.post('/nuevaPregunta', function(req, res){
         values[i] = pregunta;
     }
     
-    pool.getConnection(function(err,connection){
-        if (err) {
-          connection.release();
-          res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
-          return;
-        }   
+    async.waterfall([
+        function(callback) {
+            pool.getConnection(function(err,connection){
+                if (err) {
+                  connection.release();
+                  res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+                  return;
+                }   
 
-        console.log(values);
-        var query = connection.query(insertQuery, [values], function(err,rows){
-            connection.release();
-            if(!err){
-                console.log('Se guardaron las preguntas.');
-                res.send('success');
-            }else{
-                console.log('Hubo error en el insertado.');
-                console.log(err);
-            }
-        });
+                var query = connection.query(insertQuery, [values], function(err,rows){
+                    connection.release();
+                    if(!err){
+                        console.log('Se guardaron las preguntas.');
+                        callback(null, 'success');
+                    }else{
+                        console.log('Hubo error en el insertado.');
+                        console.log(err);
+                    }
+                });
 
-        connection.on('error', function(err) {      
-              res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
-              return;     
-        });
+                connection.on('error', function(err) {      
+                      res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+                      return;     
+                });
+            });
+        }, function(arg1, callback){
+            pool.getConnection(function(err,connection){
+                if (err) {
+                  connection.release();
+                  res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+                  return;
+                }   
+
+                var query = connection.query("SELECT * FROM Pregunta WHERE id_grupo = ?;", grupo, function(err,rows){
+                    connection.release();
+                    if(!err){
+                        _.each(rows, function(row){
+                            var conteos = [];
+                            for(var j = 1; j <= 4; j++){
+                                var c = [row.id_pregunta, j, grupo, 0];
+                                conteos[j - 1] = c;
+                            }
+                            pool.getConnection(function(err,connection){
+                                if (err) {
+                                  connection.release();
+                                  res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+                                  return;
+                                }   
+
+                                var query = connection.query(insertEstad, [conteos], function(err,rows){
+                                    connection.release();
+                                    if(!err){
+                                        console.log('Conteo inicializado.');
+                                    }else{
+                                        console.log('Hubo error en el insertado del conteo.');
+                                        console.log(err);
+                                    }
+                                });
+
+                                connection.on('error', function(err) {      
+                                      res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+                                      return;     
+                                });
+                            });
+                        });
+                        callback(null, 'done');
+                    }else{
+                        console.log('Hubo error en el insertado.');
+                        console.log(err);
+                    }
+                });
+
+                connection.on('error', function(err) {      
+                      res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+                      return;     
+                });
+            });
+        }
+    ], function(err, result){
+        if(!err){
+            res.send('success');
+        }
     });
+    
 });
 
 app.post('/guardarRespuestas', function(req, res){
     var idAlum = req.session.idAlumno;
+    var idGpo = req.session.grupoAct;
     var noPreg = parseInt(req.body.noPreguntas) - 1;
     var respuestas = JSON.parse(req.body.resps);
     var preguntas = JSON.parse(req.body.pregs);
     
     var values = [];
-    var insertQuery  = 'insert into Alumno_pregunta(id_alumno, id_pregunta, respuesta) values ?';
+    var insertQuery  = 'insert into Alumno_pregunta(id_alumno, id_pregunta, respuesta, id_grupo) values ?;';
+    var updateQuery  = 'UPDATE Estadisticas_grupo SET conteo = (conteo + 1) WHERE respuesta = ? AND id_pregunta = ?;';
+    var queries = '';
     
     for(var i = 0; i < noPreg; i++){
-        var pregunta = [idAlum,preguntas[i],respuestas[i]];
+        var pregunta = [idAlum,preguntas[i],respuestas[i], idGpo];
         values[i] = pregunta;
+        queries += 'UPDATE Estadisticas_grupo SET conteo = (conteo + 1) WHERE respuesta = '
+                +  respuestas[i] + ' AND id_pregunta = ' + preguntas[i] + ';';
     }
     
-    pool.getConnection(function(err,connection){
-        if (err) {
-          connection.release();
-          res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
-          return;
-        }   
+    async.waterfall([
+        function(callback) {
+            pool.getConnection(function(err,connection){
+                if (err) {
+                  connection.release();
+                  res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+                  return;
+                }   
 
-        console.log(values);
-        var query = connection.query(insertQuery, [values], function(err,rows){
-            connection.release();
-            if(!err){
-                console.log('Se guardaron las respuestas.');
-                res.send('success');
-            }else{
-                console.log('Hubo error en el insertado.');
-                console.log(err);
-            }
-        });
+                var query = connection.query(queries, function(err,rows){
+                    connection.release();
+                    if(!err){
+                        console.log('Se actualizaron las estadisticas.');
+                        callback(null, 'done');
+                    }else{
+                        console.log('Hubo error en la actualización de resultados.');
+                        console.log(err);
+                    }
+                });
 
-        connection.on('error', function(err) {      
-              res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
-              return;     
-        });
+                connection.on('error', function(err) {      
+                      res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+                      return;     
+                });
+            });
+        }, function(arg1, callback){
+            pool.getConnection(function(err,connection){
+                if (err) {
+                  connection.release();
+                  res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+                  return;
+                }   
+
+                var query = connection.query(insertQuery, [values], function(err,rows){
+                    connection.release();
+                    if(!err){
+                        console.log('Se guardaron las respuestas.');
+                        req.session.grupoAct = 0;
+                        callback(null, 'done');
+                    }else{
+                        console.log('Hubo error en el insertado.');
+                        console.log(err);
+                    }
+                });
+
+                connection.on('error', function(err) {      
+                      res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+                      return;     
+                });
+            });
+        }
+    ], function(err, result){
+        if(!err){
+            res.send('success');
+        }
+    });
+});
+
+app.post('/estadisticas', function(req, res){
+    var grupo = req.body.grupo;
+    
+    async.waterfall([
+        function(callback) {
+            pool.getConnection(function(err,connection){
+                if (err) {
+                  connection.release();
+                  res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+                  return;
+                }   
+
+                connection.query('SELECT * FROM estadisticas_grupo WHERE id_grupo = ? ORDER BY respuesta, id_pregunta ASC;', grupo, function(err, rows){
+                    connection.release();
+                    if(!err){
+                        if(typeof rows[0] !== 'undefined'){
+                            callback(null, rows);
+                        }else{
+                            callback(null, "No hay informacion.");
+                        }
+                    }else{
+                        console.log('Error al recopilar grupos respondidos.');
+                    }
+                });
+
+                connection.on('error', function(err) {      
+                      res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+                      return;     
+                });
+            });
+        }, function(arg1, callback){
+            pool.getConnection(function(err,connection){
+                if (err) {
+                  connection.release();
+                  res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+                  return;
+                }   
+
+                connection.query('SELECT DISTINCT id_pregunta FROM estadisticas_grupo WHERE id_grupo = ?;', grupo, function(err, rows){
+                    connection.release();
+                    if(!err){
+                        if(typeof rows[0] !== 'undefined'){
+                            callback(null, arg1, rows);
+                        }else{
+                            var empty = [];
+                            callback(null, arg1, empty);
+                        }
+                    }else{
+                        console.log('Error al recopilar grupos respondidos.');
+                    }
+                });
+
+                connection.on('error', function(err) {      
+                      res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+                      return;     
+                });
+            });
+        }
+    ], function(err, res1, res2){
+        if(!err){
+            res.send({datos:res1, titulos:res2});
+        }
     });
 });
 
