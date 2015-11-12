@@ -47,12 +47,18 @@ function evaluarOpcion(opcion){
         
         var elJSONr = JSON.stringify(respuestas);
         var elJSONp = JSON.stringify(preguntasR);
+        var elJSONl = JSON.stringify("{\"logros\":[]");
+        
+        if(localStorage.getItem("logros_" + usuario) !== null){
+            elJSONl = localStorage.getItem("logros_" + usuario);
+        }
         
         $.ajax({
             type: 'POST',
             url: '/guardarRespuestas',
             data: {resps: elJSONr,
                 pregs: elJSONp,
+                logros: elJSONl,
                 noPreguntas: contador},
             success: function(data){
                 location.replace("ResultadosNivel1.html");

@@ -578,7 +578,8 @@ app.post('/nuevoAlumno', function(req, res){
     var cor = req.body.correo;
     var user = req.body.usuario;
     var pass = req.body.password;
-    var alumno = {nombre: nom, correo: cor, usuario: user, contrasena: pass};
+    var logr = "{}";
+    var alumno = {nombre: nom, correo: cor, usuario: user, contrasena: pass, logros:logr};
     pool.getConnection(function(err,connection){
         if (err) {
           connection.release();
@@ -748,10 +749,12 @@ app.post('/guardarRespuestas', function(req, res){
     var noPreg = parseInt(req.body.noPreguntas) - 1;
     var respuestas = JSON.parse(req.body.resps);
     var preguntas = JSON.parse(req.body.pregs);
+    var logros = JSON.parse(req.body.logros);
+    
+    console.log(JSON.stringify(logros));
     
     var values = [];
     var insertQuery  = 'insert into Alumno_pregunta(id_alumno, id_pregunta, respuesta, id_grupo) values ?;';
-    var updateQuery  = 'UPDATE Estadisticas_grupo SET conteo = (conteo + 1) WHERE respuesta = ? AND id_pregunta = ?;';
     var queries = '';
     
     for(var i = 0; i < noPreg; i++){
@@ -795,6 +798,31 @@ app.post('/guardarRespuestas', function(req, res){
                 }   
 
                 var query = connection.query(insertQuery, [values], function(err,rows){
+                    connection.release();
+                    if(!err){
+                        console.log('Se guardaron las respuestas.');
+                        req.session.grupoAct = 0;
+                        callback(null, 'done');
+                    }else{
+                        console.log('Hubo error en el insertado.');
+                        console.log(err);
+                    }
+                });
+
+                connection.on('error', function(err) {      
+                      res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+                      return;     
+                });
+            });
+        }, function(arg1, callback){
+            pool.getConnection(function(err,connection){
+                if (err) {
+                  connection.release();
+                  res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+                  return;
+                }   
+
+                var query = connection.query("update Alumno set logros=? where id_alumno=?", [JSON.stringify(logros), req.session.idAlumno], function(err,rows){
                     connection.release();
                     if(!err){
                         console.log('Se guardaron las respuestas.');

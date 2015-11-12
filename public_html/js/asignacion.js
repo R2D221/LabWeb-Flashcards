@@ -11,7 +11,7 @@ $(document).ready(function(){
                 misAlumnos.push(checkAlum[i].value);
             }
         }
-        alert(misAlumnos);
+        
         var elJSON = JSON.stringify(misAlumnos);
         $.ajax({
             type: 'POST',
@@ -19,7 +19,7 @@ $(document).ready(function(){
             data: {idGrupo: miGrupo,
                 alumnos: elJSON},
             success: function(data){
-                alert("Registro aceptado.");
+                alert("Registro exitoso.");
                 window.location = "administrador";
             }
         });
