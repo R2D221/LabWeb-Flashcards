@@ -2,6 +2,7 @@
     <title>Flashcards - Profesor</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/materiales.css" />
+    <link href="../css/datepicker.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Ubuntu:500italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
@@ -18,7 +19,7 @@
         <td class="seccion"><a href="perfilProfesor.ejs">Perfil</a></td>
         <td class="seccion"><a href="/grupos">Grupos</a></td>
         <td class="seccion"><a href="agregarMaterial">Materiales</a></td>
-        <td class="seccion"><a href="estadisticas.ejs">Estadisticas</a></td>
+        <td class="seccion"><a href="/estadisticas">Estadisticas</a></td>
         </table>
     </div>
     <div id="body">
@@ -32,10 +33,61 @@
         <label class="infoMaterial"> Nombre:</label><input type="text" id="nombre" name="nombre" maxlength="20"/> <br />
         <label class="infoMaterial">Descripci&oacute;n:</label><br /> <textarea id="descripcion" name="descripcion" rows="5"></textarea><br />
         <label class="infoMaterial">Archivo:</label> <input type="file" id="archivo" name="archivo" /><br />
-        <label class="infoMaterial">Fecha de inicio:</label> <input type="date" id="inicio" name="inicio" /><br />
-        <label class="infoMaterial">Fecha de fin:</label><input type="date" id="fin" name="fin" /><br />
+        <label class="infoMaterial">Fecha de inicio:</label> <input id="inicio" name="inicio" /><br />
+        <label class="infoMaterial">Fecha de fin:</label><input id="fin" name="fin" /><br />
         <input type="submit" value="Aceptar" id="acepta" />
     </form>
     </div>
     <div id="preguntas"></div>
 </body>
+<script src="../js/bootstrap-datepicker.js"></script>
+    <script>
+    if (top.location != location) {
+    top.location.href = document.location.href ;
+  }
+        $(function(){
+            window.prettyPrint && prettyPrint();
+            $('#inicio').datepicker({
+                format: 'yyyy-mm-dd'
+            });
+
+            $('#fin').datepicker({
+                format: 'yyyy-mm-dd'
+            });
+            
+            var startDate = new Date(2012,1,20);
+            var endDate = new Date(2012,1,25);
+            
+        // disabling dates
+        var nowTemp = new Date();
+        var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+
+        var checkin = $('#dpd1').datepicker({
+          onRender: function(date) {
+            return date.valueOf() < now.valueOf() ? 'disabled' : '';
+          }
+        }).on('changeDate', function(ev) {
+          if (ev.date.valueOf() > checkout.date.valueOf()) {
+            var newDate = new Date(ev.date)
+            newDate.setDate(newDate.getDate() + 1);
+            checkout.setValue(newDate);
+          }
+          checkin.hide();
+          $('#dpd2')[0].focus();
+        }).data('datepicker');
+        var checkout = $('#dpd2').datepicker({
+          onRender: function(date) {
+            return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
+          }
+        }).on('changeDate', function(ev) {
+          checkout.hide();
+        }).data('datepicker');
+        });
+    </script>
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-106117-1";
+urchinTracker();
+</script>
+</footer>

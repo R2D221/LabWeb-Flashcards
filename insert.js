@@ -573,6 +573,64 @@ app.post('/nuevoProfesor', function(req, res){
     res.send('Inicio.html');
 });
 
+app.get('/perfilProfesor.ejs', function(req, res){
+  pool.getConnection(function(err,connection){
+        if (err) {
+          connection.release();
+          res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+          return;
+        } 
+
+        console.log(req.session.idProfesor);
+        connection.query('SELECT * FROM Profesor WHERE id_profesor = ?', req.session.idProfesor, function(err, rows){
+            connection.release();
+            if(!err){
+                console.log(rows);
+                res.render('perfilProfesor.ejs', {profesor:rows, usuario:req.session.usuario});
+            }else{
+                console.log('Hubo error.');
+            }
+        });
+
+        connection.on('error', function(err) {      
+              res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+              return;     
+        });
+    });
+});
+
+app.post('/ActualizarProfesor', function(req, res){
+  var contra = req.body.password;
+  var idProf = req.session.idProfesor;
+
+  pool.getConnection(function(err,connection){
+        if (err) {
+          connection.release();
+          res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+          return;
+        }   
+
+        var query = connection.query('Update Profesor SET ? where  ?',[{contrasena:contra}, {id_profesor:idProf}],function(err,rows){
+            connection.release();
+            if(!err) {
+                console.log(query);
+                console.log('Contraseña Actualizada');
+                //console.log(query);
+            } else {
+                console.log('Hubo error en el insertado de actualizacion.');
+                console.log(query);
+              }
+        });
+
+        connection.on('error', function(err) {      
+              res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+              return;     
+        });
+    });
+    res.send('grupos');
+
+});
+
 app.post('/nuevoAlumno', function(req, res){
     var nom = req.body.nombre;
     var cor = req.body.correo;

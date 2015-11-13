@@ -2,6 +2,7 @@
 <head>
     <title>Flashcards</title>
     <meta charset="utf-8">
+    <link href="../css/datepicker.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/grupos.css" />
     <script src="../js/jquery-1.11.3.js" type="text/javascript"></script>
     <script src="../js/grupo.js" type="text/javascript"></script>
@@ -20,8 +21,8 @@
         <td class="seccion"><a href="entrada">Inicio</a></td>
         <td class="seccion"><a href="perfilProfesor.ejs">Perfil</a></td>
         <td class="seccion"><a href="grupos">Grupos</a></td>
-        <td class="seccion"><a href="materiales.ejs">Materiales</a></td>
-        <td class="seccion"><a href="estadisticas.ejs">Estadisticas</a></td>
+        <td class="seccion"><a href="/agregarMaterial">Materiales</a></td>
+        <td class="seccion"><a href="/estadisticas">Estadisticas</a></td>
         </table>
     </div>
     <div id="body" align=center>
@@ -39,11 +40,62 @@
         Clave de acceso: <input type="text" id="clave" maxlength="25" value='<%=grupos[0].clave_acceso%>'></input><br />
         </div>
         <div class="forma" id="inputFechaIn">
-        Fecha de inicio: <input type="date" id="inicio" value='<%=grupos[0].fecha_inicio%>' /><br />
+        Fecha de inicio: <input id="inicio" value='<%=grupos[0].fecha_inicio%>' /><br />
         </div>
         <div class="forma" id="inputFechaFin">
-        Fecha de fin: <input type="date" id="fin" value='<%=grupos[0].fecha_fin%>' /><br />
+        Fecha de fin: <input id="fin" value='<%=grupos[0].fecha_fin%>' /><br />
         <input type="submit" value="Actualizar" id="actualizar" />
         </div>
     </div>
 </body>
+<script src="../js/bootstrap-datepicker.js"></script>
+    <script>
+    if (top.location != location) {
+    top.location.href = document.location.href ;
+  }
+        $(function(){
+            window.prettyPrint && prettyPrint();
+            $('#inicio').datepicker({
+                format: 'yyyy-mm-dd'
+            });
+
+            $('#fin').datepicker({
+                format: 'yyyy-mm-dd'
+            });
+            
+            var startDate = new Date(2012,1,20);
+            var endDate = new Date(2012,1,25);
+            
+        // disabling dates
+        var nowTemp = new Date();
+        var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+
+        var checkin = $('#dpd1').datepicker({
+          onRender: function(date) {
+            return date.valueOf() < now.valueOf() ? 'disabled' : '';
+          }
+        }).on('changeDate', function(ev) {
+          if (ev.date.valueOf() > checkout.date.valueOf()) {
+            var newDate = new Date(ev.date)
+            newDate.setDate(newDate.getDate() + 1);
+            checkout.setValue(newDate);
+          }
+          checkin.hide();
+          $('#dpd2')[0].focus();
+        }).data('datepicker');
+        var checkout = $('#dpd2').datepicker({
+          onRender: function(date) {
+            return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
+          }
+        }).on('changeDate', function(ev) {
+          checkout.hide();
+        }).data('datepicker');
+        });
+    </script>
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-106117-1";
+urchinTracker();
+</script>
+</footer>
