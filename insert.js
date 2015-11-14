@@ -182,8 +182,9 @@ app.get('/grupo_alumno', function(req, res){
                   return;
                 }   
 
-                connection.query('SELECT DISTINCT gru.id_grupo, nombre, descripcion FROM grupo AS gru, grupo_alumno AS gal WHERE gru.id_grupo = gal.id_grupo AND gal.id_alumno = ?' + 
-                        ' AND NOT exists(SELECT DISTINCT gru.id_grupo, nombre, descripcion FROM grupo AS gru, grupo_alumno AS gal, alumno_pregunta AS ap WHERE gru.id_grupo = gal.id_grupo AND ap.id_alumno = ? AND ap.id_grupo = gru.id_grupo);;',
+                connection.query('SELECT DISTINCT grus.id_grupo, nombre, descripcion FROM grupo AS grus, grupo_alumno AS gals WHERE grus.id_grupo = gals.id_grupo AND gals.id_alumno = ?' + 
+                        ' AND NOT exists(SELECT DISTINCT gru.id_grupo, nombre, descripcion FROM grupo AS gru, grupo_alumno AS gal, alumno_pregunta AS ap WHERE' +
+                        '  grus.id_grupo = gru.id_grupo AND  gru.id_grupo = gal.id_grupo AND ap.id_alumno = ? AND ap.id_grupo = gru.id_grupo);',
                         [req.session.idAlumno,req.session.idAlumno], function(err, rows){
                     connection.release();
                     if(!err){
@@ -274,6 +275,32 @@ app.get('/agregarMaterial', function(req, res){
             connection.release();
             if(!err){
                 res.render('materiales.ejs', {grupos:rows, usuario:req.session.usuario});
+            }else{
+                console.log('Hubo error.');
+            }
+        });
+
+        connection.on('error', function(err) {      
+              res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+              return;     
+        });
+    });
+});
+
+app.get('/logros', function(req, res){
+    var idAlumno = req.session.idAlumno;
+    
+    pool.getConnection(function(err,connection){
+        if (err) {
+          connection.release();
+          res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+          return;
+        } 
+        connection.query('SELECT * FROM Alumno WHERE id_alumno = ?', idAlumno, function(err, rows){
+            connection.release();
+            if(!err){
+                console.log("Fui llamado.");
+                res.send(JSON.stringify(rows));
             }else{
                 console.log('Hubo error.');
             }
@@ -613,9 +640,7 @@ app.post('/ActualizarProfesor', function(req, res){
         var query = connection.query('Update Profesor SET ? where  ?',[{contrasena:contra}, {id_profesor:idProf}],function(err,rows){
             connection.release();
             if(!err) {
-                console.log(query);
                 console.log('Contraseña Actualizada');
-                //console.log(query);
             } else {
                 console.log('Hubo error en el insertado de actualizacion.');
                 console.log(query);

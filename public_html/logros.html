@@ -3,34 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <title> Cerebraton </title>
-  <link rel="stylesheet" type ="text/css"
-        href="css/estiloLogros.css">
-        <script src="js/jquery-1.11.3.js" type="text/javascript"></script>
-  	<script type="text/javascript">
-            var usuario = localStorage["usuario_actual"];
-            $(document).ready(function () {
-                    if(localStorage.getItem("logros_" + usuario) === null){
-                        $('#tablaLogros').append("Parece que no tienes ningún logro.<br />Intenta jugar un poco más.");
-                    }else{
-                        var logros = {};
-                        logros = JSON.parse(localStorage.getItem("logros_" + usuario));
-                        var htmlCosa = "";
-                        if(logros.logros.length > 0){
-                            for(var i =0; i < logros.logros.length; i++){
-                                htmlCosa += "<div class=\"opcion\">"
-                                + "<div class=\"logro-icono\"><img src=\"" + logros.logros[i].imagen + "\" /></div>"
-                                + "<div class=\"drescrip\"><b>" + logros.logros[i].nombre + "</b>"
-                                + "<p>" + logros.logros[i].descripcion + "</p></div>"
-                                + "</div>";
-                            }
-                            $('#tablaLogros').append(htmlCosa);
-                        }else{
-                            $('#tablaLogros').append("Parece que no tienes ningún logro.<br />Intenta jugar un poco más.");                            
-                        }
-                    }
-               }
-            );
-  	</script>
+    <link rel="stylesheet" type ="text/css" href="css/estiloLogros.css">
+    <script src="js/jquery-1.11.3.js" type="text/javascript"></script>
+    <script src="js/logros.js" type="text/javascript"></script>
 </head>
 <body>
     <div id="header">
