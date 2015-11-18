@@ -51,7 +51,27 @@ app.get('/profesor', function(req, res){
 });
 
 app.get('/ranking', function(req, res){
-   res.render('ranking.ejs', {usuario: req.session.usuario});
+    pool.getConnection(function(err,connection){
+        if (err) {
+          connection.release();
+          res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+          return;
+        }   
+
+        connection.query('SELECT DISTINCT g.id_grupo, nombre FROM grupo_alumno AS ga, grupo AS g WHERE id_alumno = ? AND ga.id_grupo = g.id_grupo', req.session.idAlumno, function(err, rows){
+            connection.release();
+            if(!err){
+                res.render('ranking.ejs', {grupos:rows, usuario:req.session.usuario});
+            }else{
+                console.log('Hubo error.');
+            }
+        });
+
+        connection.on('error', function(err) {      
+              res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+              return;     
+        });
+    });
 });
 
 app.get('/asigAlum', function(req, res){
@@ -359,6 +379,33 @@ app.post('/detalle', function(req, res){
                 rows[0].fecha_inicio = inicio;
                 rows[0].fecha_fin = fin;
                 res.render('detalleGrupo.ejs', {grupos:rows, usuario:req.session.usuario});
+            }else{
+                console.log('Hubo error.');
+            }
+        });
+
+        connection.on('error', function(err) {      
+              res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+              return;     
+        });
+    });
+});
+
+app.post('/ranking_grupo', function(req, res){
+    var idGpo = req.body.idGrupo;
+    req.session.grupoAct = idGpo;
+    
+    pool.getConnection(function(err,connection){
+        if (err) {
+          connection.release();
+          res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+          return;
+        } 
+        connection.query('SELECT DISTINCT a.id_alumno, nombre, puntuacion FROM grupo_alumno AS ga, alumno AS a ' +
+                'WHERE id_grupo = ? AND ga.id_alumno = a.id_alumno ORDER BY puntuacion DESC LIMIT 5;', idGpo, function(err, rows){
+            connection.release();
+            if(!err){
+                res.send(JSON.stringify(rows));
             }else{
                 console.log('Hubo error.');
             }
