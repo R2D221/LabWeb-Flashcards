@@ -77,8 +77,8 @@ function createGraph(data, container) {
             var chartYMax = this.chartYMax();
             var yLegend = [];
             var yAxisMarkings = 4;						
-            for (var i = 0; i < yAxisMarkings; i++) {
-                yLegend.unshift(((chartYMax * i) / (yAxisMarkings - 1)) / 1000);
+            for (var i = 1; i <= yAxisMarkings; i++) {
+                yLegend.unshift(chartYMax * i * (1 / yAxisMarkings));
             }
             return yLegend;
        },

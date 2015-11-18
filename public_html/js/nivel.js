@@ -59,6 +59,7 @@ function evaluarOpcion(opcion){
             data: {resps: elJSONr,
                 pregs: elJSONp,
                 logros: elJSONl,
+                puntos: puntaje,
                 noPreguntas: contador},
             success: function(data){
                 location.replace("ResultadosNivel1.html");

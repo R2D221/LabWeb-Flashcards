@@ -12,7 +12,6 @@
                     var temp1, temp2, start;
                     max = JSON.parse(localStorage.getItem("max_puntuaciones"));
                     for(var i =0; i < 5; i++){
-                        //alert("usuario " + max.puntuaciones[i].usuario + " puntuaciones " + max.puntuaciones[i].puntuacion);
                        document.getElementById('nick' + (i+1)).innerHTML = max.puntuaciones[i].usuario;
                        document.getElementById('puntaje' + (i+1)).innerHTML = max.puntuaciones[i].puntuacion;
                     }

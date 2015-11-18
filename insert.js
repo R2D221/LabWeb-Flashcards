@@ -50,6 +50,10 @@ app.get('/profesor', function(req, res){
    res.render('registrarProfesor.ejs', {usuario: req.session.usuario});
 });
 
+app.get('/ranking', function(req, res){
+   res.render('ranking.ejs', {usuario: req.session.usuario});
+});
+
 app.get('/asigAlum', function(req, res){
     async.waterfall([
         function(callback) {
@@ -830,6 +834,7 @@ app.post('/guardarRespuestas', function(req, res){
     var idAlum = req.session.idAlumno;
     var idGpo = req.session.grupoAct;
     var noPreg = parseInt(req.body.noPreguntas) - 1;
+    var puntaje = req.body.puntos;
     var respuestas = JSON.parse(req.body.resps);
     var preguntas = JSON.parse(req.body.pregs);
     var logros = JSON.parse(req.body.logros);
@@ -837,7 +842,7 @@ app.post('/guardarRespuestas', function(req, res){
     console.log(JSON.stringify(logros));
     
     var values = [];
-    var insertQuery  = 'insert into Alumno_pregunta(id_alumno, id_pregunta, respuesta, id_grupo) values ?;';
+    var insertQuery  = 'INSERT INTO Alumno_pregunta(id_alumno, id_pregunta, respuesta, id_grupo) values ?;';
     var queries = '';
     
     for(var i = 0; i < noPreg; i++){
@@ -863,6 +868,31 @@ app.post('/guardarRespuestas', function(req, res){
                         callback(null, 'done');
                     }else{
                         console.log('Hubo error en la actualización de resultados.');
+                        console.log(err);
+                    }
+                });
+
+                connection.on('error', function(err) {      
+                      res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+                      return;     
+                });
+            });
+        },function(arg1, callback) {
+            pool.getConnection(function(err,connection){
+                if (err) {
+                  connection.release();
+                  res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+                  return;
+                }   
+
+                var query = connection.query("UPDATE grupo_alumno SET puntuacion = ? WHERE id_grupo = ? AND id_alumno = ?",
+                    [puntaje, idGpo, idAlum], function(err,rows){
+                    connection.release();
+                    if(!err){
+                        console.log('Se actualizaron las estadisticas.');
+                        callback(null, 'done');
+                    }else{
+                        console.log('Hubo error en el insertado de puntos.');
                         console.log(err);
                     }
                 });

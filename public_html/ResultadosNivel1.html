@@ -15,7 +15,7 @@
                document.getElementById('aciertos').innerHTML = res.aciertos;
                document.getElementById('tiempo').innerHTML = res.tiempo;
                document.getElementById('bonus').innerHTML = res.bono;
-               document.getElementById('total').innerHTML = (res.aciertos + res.tiempo);
+               document.getElementById('total').innerHTML = ((res.aciertos * 100) + res.tiempo);
            });
         </script>
     </head>
