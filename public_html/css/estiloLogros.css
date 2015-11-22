@@ -4,6 +4,12 @@ body{
 	background-repeat: repeat;
 }
 
+#regreso{
+    float: left;
+    position: absolute;
+    top: 10%;
+}
+
 td {
     border: 0;
 }

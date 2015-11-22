@@ -10,7 +10,8 @@ $(document).ready(function(){
             url: '/ranking_grupo',
             data: {idGrupo: miGrupo},
             success: function(data){
-                rank = JSON.parse(data);
+                rank = JSON.parse(data.rank);
+                document.getElementById('puntajeMio').innerHTML = data.misPuntos[0].puntuacion;
                 actualizarRanking();
             }
         });

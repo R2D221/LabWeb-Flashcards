@@ -392,28 +392,62 @@ app.post('/detalle', function(req, res){
 
 app.post('/ranking_grupo', function(req, res){
     var idGpo = req.body.idGrupo;
-    req.session.grupoAct = idGpo;
     
-    pool.getConnection(function(err,connection){
-        if (err) {
-          connection.release();
-          res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
-          return;
-        } 
-        connection.query('SELECT DISTINCT a.id_alumno, nombre, puntuacion FROM grupo_alumno AS ga, alumno AS a ' +
-                'WHERE id_grupo = ? AND ga.id_alumno = a.id_alumno ORDER BY puntuacion DESC LIMIT 5;', idGpo, function(err, rows){
-            connection.release();
-            if(!err){
-                res.send(JSON.stringify(rows));
-            }else{
-                console.log('Hubo error.');
-            }
-        });
+    async.waterfall([
+        function(callback) {
+            pool.getConnection(function(err,connection){
+                if (err) {
+                  connection.release();
+                  res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+                  return;
+                } 
+                connection.query('SELECT DISTINCT a.id_alumno, nombre, puntuacion FROM grupo_alumno AS ga, alumno AS a ' +
+                        'WHERE id_grupo = ? AND ga.id_alumno = a.id_alumno ORDER BY puntuacion DESC LIMIT 5;', idGpo, function(err, rows){
+                    connection.release();
+                    if(!err){
+                        callback(null, JSON.stringify(rows));
+                    }else{
+                        callback(null, '{}');
+                    }
+                });
 
-        connection.on('error', function(err) {      
-              res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
-              return;     
-        });
+                connection.on('error', function(err) {      
+                      res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+                      return;     
+                });
+            });
+        }, function(arg1, callback){
+            pool.getConnection(function(err,connection){
+                if (err) {
+                  connection.release();
+                  res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+                  return;
+                }   
+
+                connection.query('SELECT * FROM grupo_alumno WHERE id_grupo = ? AND id_alumno = ?;', [idGpo, req.session.idAlumno], function(err, rows){
+                    connection.release();
+                    if(!err){
+                        if(typeof rows[0] !== 'undefined'){
+                            callback(null, arg1, rows);
+                        }else{
+                            var empty = [];
+                            callback(null, arg1, empty);
+                        }
+                    }else{
+                        console.log('Error al recopilar grupos respondidos.');
+                    }
+                });
+
+                connection.on('error', function(err) {      
+                      res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+                      return;     
+                });
+            });
+        }
+    ], function(err, res1, res2){
+        if(!err){
+            res.send({rank:res1, misPuntos:res2});
+        }
     });
 });
 

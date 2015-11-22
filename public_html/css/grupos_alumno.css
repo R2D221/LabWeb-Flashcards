@@ -4,6 +4,13 @@ body {
     background-repeat: repeat;
 }
 
+#regreso{
+    position: absolute;
+    left: 250%;
+    top: 40%;
+    font-size: 20px;
+}
+
 .table-question
 {
     font-family: 'Patua One', cursive;

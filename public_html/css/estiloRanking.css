@@ -4,6 +4,12 @@ body{
 	background-repeat: repeat;
 }
 
+#regreso{
+    float: left;
+    position: absolute;
+    top: 10%;
+}
+
 td {
     border: 0;
 }
@@ -106,7 +112,7 @@ th {
     border-radius: 10px;
 }
 
-#usuario1, #usuario2, #usuario3, #usuario4, #usuario5{
+#usuario1, #usuario2, #usuario3, #usuario4, #usuario5, #usuarioMio{
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
@@ -159,6 +165,17 @@ th {
     color: white;
 }
 
+#usuarioMio{
+    background-color: rosybrown;
+    width: 100px;
+    height: 40px;
+    position: relative;
+    left: -200px;
+    top: -30px;
+    color: white;
+    font-size: 15px;
+}
+
 #lugar1{
     top: 80px;
     height: 80px;
@@ -180,6 +197,10 @@ th {
     top: 160px;
 }
 
+#lugarMio {
+    top: 180px;
+}
+
 
 #nick1, #nick2, #nick3{
     position: relative;
@@ -187,14 +208,14 @@ th {
     top: -30px;
 }
 
-#nick4,#nick5{
+#nick4,#nick5,#nickMio{
     position: relative;
     left: -100px;
     top: 0px;
 }
 
 
-#puntaje1, #puntaje2, #puntaje3, #puntaje4, #puntaje5{
+#puntaje1, #puntaje2, #puntaje3, #puntaje4, #puntaje5, #puntajeMio{
     position: relative;
     left: 200px;
     top: -60px;
