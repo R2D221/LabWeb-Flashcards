@@ -323,7 +323,6 @@ app.get('/logros', function(req, res){
         connection.query('SELECT * FROM Alumno WHERE id_alumno = ?', idAlumno, function(err, rows){
             connection.release();
             if(!err){
-                console.log("Fui llamado.");
                 res.send(JSON.stringify(rows));
             }else{
                 console.log('Hubo error.');

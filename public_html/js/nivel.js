@@ -17,7 +17,6 @@ var preguntasMostradas;
 var aciertos = 0;
 var usuario = localStorage["usuario_actual"];
 
-
 function evaluarOpcion(opcion){
     respuestas.push(opcion);
     if(opcion === correcta){
@@ -33,6 +32,8 @@ function evaluarOpcion(opcion){
         changeQuestion();
     }else{
         checkAchievement2();
+        checkAchievement3();
+        checkAchievement4();
 
         if(aciertos > (preguntas.length * 0.9)){
             puntaje += (timeLeft / 10);
@@ -49,8 +50,8 @@ function evaluarOpcion(opcion){
         var elJSONp = JSON.stringify(preguntasR);
         var elJSONl = JSON.stringify("{\"logros\":[]");
         
-        if(localStorage.getItem("logros_" + usuario) !== null){
-            elJSONl = localStorage.getItem("logros_" + usuario);
+        if(localStorage.getItem("misLogros") !== null){
+            elJSONl = localStorage.getItem("misLogros");
         }
         
         $.ajax({
@@ -116,6 +117,9 @@ $(document).ready(function () {
         } else {
             guardar();
             checkAchievement();
+            checkAchievement3();
+            checkAchievement4();
+            checkAchievement5();
             safeToLeave = true;
             location.replace("ResultadosNivel1.html");
 
@@ -129,21 +133,21 @@ function checkAchievement(){
     if(nivel === 1){
         fallos++;
         if(fallos === 3){
-            if(localStorage.getItem("logros_" + usuario) === null){
+            if(localStorage.getItem("misLogros") === null){
                 var logros = {
                     logros:[{
                             nombre: "Ni con este puedo.",
-                            descripcion: "Fallaste el nivel 1 tres veces seguidas.",
+                            descripcion: "Fallaste tres examenes seguidos.",
                             imagen: "img/esNeta.png"
                     }]
                 };
 
-                localStorage.setItem("logros_" + usuario, JSON.stringify(logros));
+                localStorage.setItem("misLogros", JSON.stringify(logros));
                 alert("¡Desbloqueaste un logro!");
             }else{
                 var logros = {};
                 var obtenido = 0;
-                logros = JSON.parse(localStorage.getItem("logros_" + usuario));
+                logros = JSON.parse(localStorage.getItem("misLogros"));
                 for(var k = 0; k < logros.logros.length; k++){
                     if(logros.logros[k].nombre.indexOf("Ni con este puedo.") > -1){
                         obtenido = 1;
@@ -152,11 +156,11 @@ function checkAchievement(){
                 if(obtenido === 0){
                     logros.logros.push({
                             nombre: "Ni con este puedo.",
-                            descripcion: "Fallaste el nivel 1 tres veces seguidas.",
+                            descripcion: "Fallaste tres examenes seguidos.",
                             imagen: "img/esNeta.png"
                         });
 
-                    localStorage.setItem("logros_" + usuario, JSON.stringify(logros));
+                    localStorage.setItem("misLogros", JSON.stringify(logros));
                     alert("¡Desbloqueaste un logro!");
                 }
             }
@@ -166,7 +170,7 @@ function checkAchievement(){
 
 function checkAchievement2(){
     if(timeLeft / 1000 > 30){
-        if(localStorage.getItem("logros_" + usuario) === null){
+        if(localStorage.getItem("misLogros") === null){
             var logros = {
                 logros:[{
                         nombre: "Estoy en llamas.",
@@ -175,12 +179,12 @@ function checkAchievement2(){
                 }]
             };
 
-            localStorage.setItem("logros_" + usuario, JSON.stringify(logros));
+            localStorage.setItem("misLogros", JSON.stringify(logros));
             alert("¡Desbloqueaste un logro!");
         }else{
             var logros = {};
             var obtenido = 0;
-            logros = JSON.parse(localStorage.getItem("logros_" + usuario));
+            logros = JSON.parse(localStorage.getItem("misLogros"));
             for(var k = 0; k < logros.logros.length; k++){
                 if(logros.logros[k].nombre.indexOf("Estoy en llamas.") > -1){
                     obtenido = 1;
@@ -193,12 +197,119 @@ function checkAchievement2(){
                             imagen: "img/enLlamas.png"
                     });
 
-                localStorage.setItem("logros_" + usuario, JSON.stringify(logros));
+                localStorage.setItem("misLogros", JSON.stringify(logros));
                 alert("¡Desbloqueaste un logro!");
             }
         }
     }
-    
+}
+
+function checkAchievement3(){
+    if(aciertos === 0){
+        if(localStorage.getItem("misLogros") === null){
+            var logros = {
+                logros:[{
+                        nombre: "Uy, estaba muy difícil.",
+                        descripcion: "Fallaste épicamente el examen.",
+                        imagen: "img/fallaEpica.png"
+                }]
+            };
+            alert("¡Desbloqueaste un logro!");
+
+            localStorage.setItem("misLogros", JSON.stringify(logros));
+        }else{
+            var logros = {};
+            var obtenido = 0;
+            logros = JSON.parse(localStorage.getItem("misLogros"));
+            for(var k = 0; k < logros.logros.length; k++){
+                if(logros.logros[k].nombre.indexOf("Uy, estaba muy difícil.") > -1){
+                    obtenido = 1;
+                }
+            }
+            if(obtenido === 0){
+                logros.logros.push({
+                            nombre: "Uy, estaba muy difícil.",
+                            descripcion: "Fallaste épicamente el examen.",
+                            imagen: "img/fallaEpica.png"
+                    });
+
+                localStorage.setItem("misLogros", JSON.stringify(logros));
+                alert("¡Desbloqueaste un logro!");
+            }
+        }
+    }
+}
+
+function checkAchievement4(){
+    if(aciertos === preguntas.length){
+        if(localStorage.getItem("misLogros") === null){
+            var logros = {
+                logros:[{
+                        nombre: "Todo un Pro.",
+                        descripcion: "Respondiste correctamente todas las preguntas.",
+                        imagen: "img/enPerra.png"
+                }]
+            };
+            alert("¡Desbloqueaste un logro!");
+
+            localStorage.setItem("misLogros", JSON.stringify(logros));
+        }else{
+            var logros = {};
+            var obtenido = 0;
+            logros = JSON.parse(localStorage.getItem("misLogros"));
+            for(var k = 0; k < logros.logros.length; k++){
+                if(logros.logros[k].nombre.indexOf("Todo un Pro.") > -1){
+                    obtenido = 1;
+                }
+            }
+            if(obtenido === 0){
+                logros.logros.push({
+                        nombre: "Todo un Pro.",
+                        descripcion: "Respondiste correctamente todas las preguntas.",
+                        imagen: "img/elGuapo.png"
+                    });
+
+                localStorage.setItem("misLogros", JSON.stringify(logros));
+                alert("¡Desbloqueaste un logro!");
+            }
+        }
+    }
+}
+
+function checkAchievement5(){
+    if(contador < (preguntas.length / 2)){
+        if(localStorage.getItem("misLogros") === null){
+            var logros = {
+                logros:[{
+                        nombre: "Ahí vamos.",
+                        descripcion: "Se te acabo el tiempo antes de responder la mitad del examen.",
+                        imagen: "img/enCamino.png"
+                }]
+            };
+            alert("¡Desbloqueaste un logro!");
+
+            localStorage.setItem("misLogros", JSON.stringify(logros));
+        }else{
+            var logros = {};
+            var obtenido = 0;
+            logros = JSON.parse(localStorage.getItem("misLogros"));
+            for(var k = 0; k < logros.logros.length; k++){
+                if(logros.logros[k].nombre.indexOf("Ahí vamos.") > -1){
+                    obtenido = 1;
+                }
+            }
+            if(obtenido === 0){
+                logros.logros.push({
+                        nombre: "Ahí vamos.",
+                        descripcion: "Se te acabo el tiempo antes de responder la mitad del examen.",
+                        imagen: "img/enCamino.png"
+                    });
+
+                localStorage.setItem("misLogros", JSON.stringify(logros));
+                alert("¡Desbloqueaste un logro!");
+            }
+        }
+    }
 }
 
 function changeQuestion(){
