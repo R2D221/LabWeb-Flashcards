@@ -207,7 +207,7 @@ app.get('/grupo_alumno', function(req, res){
                 }   
 
                 connection.query('SELECT DISTINCT grus.id_grupo, nombre, descripcion FROM grupo AS grus, grupo_alumno AS gals WHERE grus.id_grupo = gals.id_grupo AND gals.id_alumno = ?' + 
-                        ' AND fecha_inicio > NOW() AND fecha_fin < NOW() AND NOT exists(SELECT DISTINCT gru.id_grupo, nombre, descripcion FROM grupo AS gru, grupo_alumno AS gal, alumno_pregunta AS ap WHERE' +
+                        ' AND grus.fecha_inicio < NOW() AND grus.fecha_fin > NOW() AND NOT exists(SELECT DISTINCT gru.id_grupo, nombre, descripcion FROM grupo AS gru, grupo_alumno AS gal, alumno_pregunta AS ap WHERE' +
                         '  grus.id_grupo = gru.id_grupo AND  gru.id_grupo = gal.id_grupo AND ap.id_alumno = ? AND ap.id_grupo = gru.id_grupo);',
                         [req.session.idAlumno,req.session.idAlumno], function(err, rows){
                     connection.release();
@@ -236,7 +236,7 @@ app.get('/grupo_alumno', function(req, res){
                   return;
                 }   
 
-                connection.query('SELECT DISTINCT gru.id_grupo, nombre, descripcion FROM grupo AS gru, grupo_alumno AS gal, alumno_pregunta AS ap WHERE gru.id_grupo = gal.id_grupo AND ap.id_alumno = ? AND fecha_inicio > NOW() AND fecha_fin < NOW() AND ap.id_grupo = gru.id_grupo;', req.session.idAlumno, function(err, rows){
+                connection.query('SELECT DISTINCT gru.id_grupo, nombre, descripcion FROM grupo AS gru, grupo_alumno AS gal, alumno_pregunta AS ap WHERE gru.id_grupo = gal.id_grupo AND ap.id_alumno = ? AND fecha_inicio < NOW() AND fecha_fin > NOW() AND ap.id_grupo = gru.id_grupo;', req.session.idAlumno, function(err, rows){
                     connection.release();
                     if(!err){
                         if(typeof rows[0] !== 'undefined'){
