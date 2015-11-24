@@ -1271,6 +1271,167 @@ app.post('/subirMaterial', function(req, res){
     });
 });
 
+app.get('/materiales', function(req, res){
+    pool.getConnection(function(err,connection){
+        if (err) {
+          connection.release();
+          res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+          return;
+        }   
+
+        connection.query('SELECT DISTINCT ga.id_referencia, ga.id_grupo, ga.nombre, ga.descripcion, ga.archivo, ga.fecha_inicio, ga.fecha_fin  FROM referencias AS ga, grupo AS g WHERE id_profesor = ? AND ga.id_grupo = g.id_grupo;', req.session.idProfesor, function(err, rows){
+            connection.release();
+            if(!err){
+                res.render('listaMateriales.ejs', {materiales:rows, usuario:req.session.usuario});
+            }else{
+                console.log('Hubo error.');
+            }
+        });
+
+        connection.on('error', function(err) {      
+              res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+              return;     
+        });
+    });
+});
+
+app.get('/altaMateriales', function(req, res){
+    pool.getConnection(function(err,connection){
+        if (err) {
+          connection.release();
+          res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+          return;
+        }   
+
+        connection.query('SELECT * FROM Grupo WHERE id_profesor = ?', req.session.idProfesor, function(err, rows){
+            connection.release();
+            if(!err){
+                res.render('materiales.ejs', {grupos:rows, usuario:req.session.usuario});
+            }else{
+                console.log('Hubo error.');
+            }
+        });
+
+        connection.on('error', function(err) {      
+              res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+              return;     
+        });
+    });
+});
+
+app.get('/agregarMaterial', function(req, res){
+    pool.getConnection(function(err,connection){
+        if (err) {
+          connection.release();
+          res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+          return;
+        }   
+
+        connection.query('SELECT * FROM Grupo WHERE id_profesor = ?', req.session.idProfesor, function(err,rows){
+            connection.release();
+            if(!err){
+                res.render('materiales.ejs', {grupos:rows, usuario:req.session.usuario});
+            }else{
+                console.log('Hubo error.');
+            }
+        });
+
+        connection.on('error', function(err) {      
+              res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+              return;     
+        });
+    });
+});
+
+app.post('/cambiosMaterial', function(req, res){
+  pool.getConnection(function(err,connection){
+        if (err) {
+          connection.release();
+          res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+          return;
+        } 
+        connection.query('SELECT * FROM Referencias WHERE id_referencia = ?', req.body.idMaterial, function(err, rows){
+            connection.release();
+            if(!err){
+                var inicio=dateFormat(rows[0].fecha_inicio, "yyyy-mm-dd");
+                var fin=dateFormat(rows[0].fecha_fin, "yyyy-mm-dd");
+                rows[0].fecha_inicio = inicio;
+                rows[0].fecha_fin = fin;
+                res.render('cambiosMaterial.ejs', {material:rows, usuario:req.session.usuario});
+            }else{
+                console.log('Hubo error.');
+            }
+        });
+
+        connection.on('error', function(err) {      
+              res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+              return;     
+        });
+    });
+});
+
+app.post('/detalleMaterial', function(req, res){
+  pool.getConnection(function(err,connection){
+        if (err) {
+          connection.release();
+          res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+          return;
+        } 
+        connection.query('SELECT * FROM Referencias WHERE id_referencia = ?', req.body.idMaterial, function(err, rows){
+            connection.release();
+            if(!err){
+                var inicio=dateFormat(rows[0].fecha_inicio, "yyyy-mm-dd");
+                var fin=dateFormat(rows[0].fecha_fin, "yyyy-mm-dd");
+                rows[0].fecha_inicio = inicio;
+                rows[0].fecha_fin = fin;
+                res.render('detallesMaterial.ejs', {material:rows, usuario:req.session.usuario});
+            }else{
+                console.log('Hubo error.');
+            }
+        });
+
+        connection.on('error', function(err) {      
+              res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+              return;     
+        });
+    });
+});
+
+app.post('/actualizarMaterial', function(req, res){
+    var prof = req.session.idProfesor;
+    var id_material = req.body.idMaterial;
+    var nom = req.body.nombre;
+    var descrip = req.body.descripcion;
+    var ini = req.body.inicio;
+    var fin = req.body.fin;
+
+    console.log(ini);
+    
+    pool.getConnection(function(err,connection){
+        if (err) {
+          connection.release();
+          res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+          return;
+        }   
+
+        var query = connection.query('Update Referencias SET ? where id_referencia = ?',[{nombre:nom, descripcion:descrip, fecha_inicio:ini, fecha_fin:fin},id_material],function(err,rows){
+            connection.release();
+            if(!err) {
+                console.log('Se guardo el Material.');               
+            } else {
+                console.log('Hubo error en el insertado de actualizacion.');
+                console.log(query);
+              }
+        });
+
+        connection.on('error', function(err) {      
+              res.json({codigo : 100, estatus: "Error en la conexion con la base de datos"});
+              return;     
+        });
+    });
+    res.redirect('/materiales');
+});
+
 app.listen(3000, function(){
     console.log("Running on port 3000...");
 });

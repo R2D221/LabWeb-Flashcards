@@ -134,15 +134,21 @@ td{
     font-size: 20px;
 }
 
-#grupo, #nombre, #descripcion, #archivo, #inicio, #fin, #acepta{
+#idMaterial,#grupo, #nombre, #descripcion, #archivo, #inicio, #fin, #acepta{
     font-family: 'Abel', sans-serif;
     font-size: 20px;
+}
+
+#idMaterial{
+    position: relative;
+    top: 45px;
+    left: 115px;
 }
 
 #grupo{
     position: relative;
     top: 45px;
-    left: 150px;
+    left: 152px;
 }
 
 #nombre{
@@ -161,7 +167,7 @@ td{
 
 #archivo{
     position: relative;
-    top: 45px;
+    top: 40px;
     left: 135px;
 }
 
@@ -174,7 +180,7 @@ td{
 #fin{
     position: relative;
     top: 45px;
-    left: 107.5px;
+    left: 102px;
 }
 
 #acepta{
